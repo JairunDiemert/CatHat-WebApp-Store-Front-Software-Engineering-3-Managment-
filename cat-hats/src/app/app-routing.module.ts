@@ -7,7 +7,8 @@ import { CartPageComponent } from './pages/cart-page/cart-page.component';
 const routes: Routes = [
   { path: "catalog", component: CatalogPageComponent },
   { path: "", component: HomePageComponent },
-  { path: "cart", component:CartPageComponent}
+  { path: "cart", component:CartPageComponent},
+  {path: '**', redirectTo: ""}
 ];
 
 @NgModule({
