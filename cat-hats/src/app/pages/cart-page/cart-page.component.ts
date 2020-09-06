@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Cart } from '../../models/Cart';
+import { customerModel } from '../../models/customer-model';
+import { ItemModel } from 'src/app/models/item-model';
 
 @Component({
   selector: 'app-cart-page',
@@ -9,18 +10,35 @@ import { Cart } from '../../models/Cart';
 export class CartPageComponent implements OnInit {
  
   //array of cart items
-  cart_Item:Cart[];
+  public cart_Items : ItemModel[] = [];
 
   constructor() { }
 
   ngOnInit(): void {
 
     //TO DO: listing data for each cart item from database
-    this.cart_Item = [
-      {
-        title: 'Party Cat Hat'
-      }
-    ]
+    
+    //let the array cart_Items be named cart
+    let cart = [];
+
+    //temporary objects for viewing functionality, will update with database objects
+    for(let i = 0; i < 5; i++){
+      //push inserts objects into cart array
+      cart.push({
+        itemName: "Mini Kitty Beanie",
+        itemPrice: 16.79,
+        itemID: 2,
+        itemDescription: "A miniature feline beanie",
+        itemQuantity: 9,
+        itemImg: "./../../../assets/200x200.png"
+      })
+    }
+
+    //constructor instantiation
+    this.cart_Items = cart;
+
+    //displays array objects contained within the cart array
+    console.log(cart);
   } 
   
 }

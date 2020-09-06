@@ -7,7 +7,6 @@ import { CatalogPageComponent } from "./pages/catalog-page/catalog-page.componen
 import { ItemCardComponent } from "./modules/item-card/item-card.component";
 import { HomePageComponent } from "./pages/home-page/home-page.component";
 import { CartPageComponent } from './pages/cart-page/cart-page.component';
-import { CartItemComponent } from './modules/cart-item/cart-item.component';
 import { NavBarComponent } from './modules/nav-bar/nav-bar.component';
 
 @NgModule({
@@ -17,7 +16,6 @@ import { NavBarComponent } from './modules/nav-bar/nav-bar.component';
     ItemCardComponent,
     HomePageComponent,
     CartPageComponent,
-    CartItemComponent,
     NavBarComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
