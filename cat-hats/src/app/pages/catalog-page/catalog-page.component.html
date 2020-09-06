@@ -1,13 +1,18 @@
 <div>
-    <header>
-        <h1>Cat Hat Catalog</h1>
-    </header>
-    <main>
-        <div id="pageItems" class="d-flex flex-wrap align-items-stretch justify-content-center">
-            <div class="item p-2 flex-fill bd-highlight" *ngFor="let item of pageItems">
-                <app-item-card [items]="item"></app-item-card>
-            </div>
-        </div>
-    </main>
+  <header>
+    <h1>Cat Hat Catalog</h1>
+  </header>
+  <main>
+    <div
+      id="pageItems"
+      class="d-flex flex-wrap align-items-stretch justify-content-center"
+    >
+      <div
+        class="item p-2 flex-fill bd-highlight"
+        *ngFor="let item of pageItems"
+      >
+        <app-item-card [items]="item"></app-item-card>
+      </div>
+    </div>
+  </main>
 </div>
-
