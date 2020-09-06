@@ -22,7 +22,8 @@ export class CartPageComponent implements OnInit {
     let cart = [];
 
     //temporary objects for viewing functionality, will update with database objects
-    for(let i = 0; i < 5; i++){
+    for(let i = 0; i < 3; i++){
+
       //push inserts objects into cart array
       cart.push({
         itemName: "Mini Kitty Beanie",

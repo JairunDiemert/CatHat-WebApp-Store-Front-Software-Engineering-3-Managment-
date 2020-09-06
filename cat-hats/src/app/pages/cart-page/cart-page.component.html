@@ -3,14 +3,14 @@
         <h1>Shopping Cart</h1>
     </header>
     <main>
-        <div id="cart_Items" class="d-flex flex-wrap align-items-stretch justify-content-center">
+        <div id="cart_Items" class="justify-content-left">
             
             <!--loop through array of cart items-->
-            <div class="item p-2 flex-fill bd-highlight" *ngFor="let item of cart_Items">
+            <ul class="list-group-item" *ngFor="let item of cart_Items">
             
                 <!--connects to item-card.component.html view-->
                 <app-item-card [items]="item"></app-item-card>
-            </div>
+            </ul>
         </div>
     </main>
 </div>
