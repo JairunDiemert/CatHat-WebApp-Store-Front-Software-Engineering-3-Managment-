@@ -12,7 +12,7 @@ export class CatalogPageComponent implements OnInit {
 
   ngOnInit(): void {
     let list = [];
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 20; i++) {
       list.push({
         itemName: "Small Cat Hat",
         itemPrice: 15.99,

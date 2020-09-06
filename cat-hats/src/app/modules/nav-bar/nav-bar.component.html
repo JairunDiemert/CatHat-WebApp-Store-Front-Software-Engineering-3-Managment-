@@ -1,41 +1,18 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" routerLink="/" routerLinkActive="active-link"
-    >Mad Catter</a
-  >
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target=".navbar-collapse"
-    (click)="isShown = !isShown"
-    [attr.aria-expanded]="isShown"
-    aria-controls="navbarNavAltMarkup"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
+<nav class="navbar navbar-expand-lg navbar-light">
+  <a class="navbar-brand" routerLink="/" routerLinkActive="active-link">
+    <img class="logo" src="../../../assets/madCatter_sketch_05_small.png" alt="Mad Hatter logo with a cat" />
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse"
+    (click)="isShown = !isShown" [attr.aria-expanded]="isShown" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+    aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div
-    class="collapse navbar-collapse justify-content-between"
-    [ngClass]="{ show: isShown }"
-    id="navbarNavAltMarkup"
-  >
+  <div class="collapse navbar-collapse center-content" [ngClass]="{ show: isShown }" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link" routerLink="/" routerLinkActive="active-link"
-        >Home <span class="sr-only">(current)</span></a
-      >
-      <a
-        class="nav-item nav-link"
-        routerLink="/catalog"
-        routerLinkActive="active-link"
-        >Catalog</a
-      >
-      <a
-        class="nav-item nav-link"
-        routerLink="/cart"
-        routerLinkActive="active-link"
-        >Cart</a
-      >
+      <a class="nav-item nav-link" routerLink="/" routerLinkActive="active-link">Home <span
+          class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" routerLink="/catalog" routerLinkActive="active-link">Catalog</a>
+      <a class="nav-item nav-link" routerLink="/cart" routerLinkActive="active-link">Cart</a>
     </div>
   </div>
 </nav>
