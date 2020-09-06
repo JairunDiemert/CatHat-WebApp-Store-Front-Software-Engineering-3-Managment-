@@ -3,19 +3,17 @@ import { customerModel } from '../../models/customer-model';
 import { ItemModel } from 'src/app/models/item-model';
 
 @Component({
-  selector: 'app-cart-page',
-  templateUrl: './cart-page.component.html',
-  styleUrls: ['./cart-page.component.css']
+  selector: "app-cart-page",
+  templateUrl: "./cart-page.component.html",
+  styleUrls: ["./cart-page.component.css"],
 })
 export class CartPageComponent implements OnInit {
- 
   //array of cart items
   public cart_Items : ItemModel[] = [];
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
-
     //TO DO: listing data for each cart item from database
     
     //let the array cart_Items be named cart

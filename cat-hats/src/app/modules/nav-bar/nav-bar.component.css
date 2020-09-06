@@ -1,0 +1,17 @@
+.logo {
+    width: 75%;
+    height: auto;
+}
+
+.nav-link {
+    font-family: 'Alice', serif;
+    font-size: larger;
+}
+
+nav {
+    z-index: 6;
+}
+
+.navbar-light {
+    background-color: #b3a4c4;
+}

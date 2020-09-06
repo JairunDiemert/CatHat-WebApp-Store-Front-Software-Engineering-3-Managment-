@@ -1,0 +1,20 @@
+h5, p {
+    font-family: 'Alice', serif;
+}
+
+.card-price {
+    font-weight: bold;
+    font-size: larger;
+}
+
+p {
+    text-align: left;
+}
+
+.btn-primary {
+    background-color: #5d3980;
+}
+
+.card{
+    box-shadow: 2px 2px 2px 2px #888888;
+}

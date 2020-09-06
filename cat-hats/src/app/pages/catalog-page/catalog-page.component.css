@@ -1,0 +1,13 @@
+
+h1 {
+    font-family: 'Alice', serif;
+}
+
+header {
+    align-content: center;
+    text-align: center;
+}
+
+.header-img {
+    width: 75%;
+}
