@@ -14,7 +14,10 @@
                 <thead>
                   <tr>
                     <th scope="col" class="border-0 bg-light">
-                      <div class="p-2 px-3 text-uppercase">Product</div>
+                        <div class="p-2 text-uppercase">Remove</div>
+                    </th>
+                    <th scope="col" class="border-0 bg-light">
+                      <div class="p-2 text-uppercase">Product</div>
                     </th>
                     <th scope="col" class="border-0 bg-light">
                       <div class="py-2 text-uppercase">Price</div>
@@ -23,14 +26,19 @@
                       <div class="py-2 text-uppercase">Quantity</div>
                     </th>
                     <th scope="col" class="border-0 bg-light">
-                      <div class="py-2 text-uppercase">Remove</div>
+                        <div class="py-2 text-uppercase">Subtotal</div>
                     </th>
                   </tr>
                 </thead>
-                <tbody *ngFor="let item of cart_Items">
-                        <!--connects to cart-item.component.html view-->
-                        <app-cart-item [items]="item"></app-cart-item>
+                <tbody>
+                  <tr *ngFor="let item of cart_Items">
+                    <!--connects to cart-item.component.html view-->
+                    <app-cart-item [items]="item"></app-cart-item>
+                  </tr>
                 </tbody>
+            
+                  <p class="font-weight-bold text-right">TOTAL: $</p>
+                
               </table>
             </div>
           </div>
