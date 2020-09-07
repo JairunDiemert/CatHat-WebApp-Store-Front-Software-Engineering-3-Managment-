@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { customerModel } from '../../models/customer-model';
+import { customerModel } from 'src/app/models/customer-model';
 import { ItemModel } from 'src/app/models/item-model';
 
 @Component({
@@ -8,6 +8,8 @@ import { ItemModel } from 'src/app/models/item-model';
   styleUrls: ["./cart-page.component.css"],
 })
 export class CartPageComponent implements OnInit {
+  public customer : customerModel;
+
   //array of cart items
   public cart_Items : ItemModel[] = [];
 
