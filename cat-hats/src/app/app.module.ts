@@ -8,6 +8,7 @@ import { ItemCardComponent } from "./modules/item-card/item-card.component";
 import { HomePageComponent } from "./pages/home-page/home-page.component";
 import { CartPageComponent } from './pages/cart-page/cart-page.component';
 import { NavBarComponent } from './modules/nav-bar/nav-bar.component';
+import { CartItemComponent } from './modules/cart-item/cart-item.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { NavBarComponent } from './modules/nav-bar/nav-bar.component';
     HomePageComponent,
     CartPageComponent,
     NavBarComponent,
+    CartItemComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
