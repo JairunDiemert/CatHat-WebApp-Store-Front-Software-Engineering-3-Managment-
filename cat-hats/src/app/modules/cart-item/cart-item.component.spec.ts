@@ -6,10 +6,12 @@ import { async, ComponentFixture, TestBed, inject, tick, fakeAsync } from '@angu
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
+import { CartPageComponent } from 'src/app/pages/cart-page/cart-page.component';
 import { CartItemComponent } from './cart-item.component';
 
 //describe test suite
 describe('CartItemComponent', () => {
+  //declare components for easy change of test variables in test specs
   let component: CartItemComponent;
 
   //declare test environment that provides access to cart item component AND rendered html debug element
@@ -21,7 +23,7 @@ describe('CartItemComponent', () => {
   //setup test bed before each spec, ngmodule specific for testing environment
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CartItemComponent ]
+      declarations: [ CartItemComponent, CartPageComponent ]
     })
     //method called to compile component's html and css
     .compileComponents();
@@ -51,5 +53,4 @@ describe('CartItemComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  
 });
