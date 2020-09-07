@@ -39,7 +39,7 @@ export class CartPageComponent implements OnInit {
     this.cart_Items = cart;
 
     //displays array objects contained within the cart array
-    console.log(cart);
+    //console.log(cart);
   } 
   
 }
