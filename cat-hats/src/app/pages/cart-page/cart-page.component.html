@@ -1,16 +1,43 @@
-<div>
-    <header>
-        <h1>Shopping Cart</h1>
-    </header>
-    <main>
-        <div id="cart_Items" class="justify-content-left">
-            
-            <!--loop through array of cart items-->
-            <ul class="list-group-item" *ngFor="let item of cart_Items">
-            
-                <!--connects to item-card.component.html view-->
-                <app-item-card [items]="item"></app-item-card>
-            </ul>
+<div class="px-4 px-lg-0">
+    <div class="container py-5 text-center">
+      <h1 class="display-4">Shopping Cart</h1>
+    </div>
+  
+    <div class="pb-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 p-5 bg-white rounded shadow-lg mb-5">
+  
+            <!-- Shopping cart table -->
+            <div class="table-responsive w-auto">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col" class="border-0 bg-light">
+                      <div class="p-2 px-3 text-uppercase">Product</div>
+                    </th>
+                    <th scope="col" class="border-0 bg-light">
+                      <div class="py-2 text-uppercase">Price</div>
+                    </th>
+                    <th scope="col" class="border-0 bg-light">
+                      <div class="py-2 text-uppercase">Quantity</div>
+                    </th>
+                    <th scope="col" class="border-0 bg-light">
+                      <div class="py-2 text-uppercase">Remove</div>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let item of cart_Items">
+                        <!--connects to cart-item.component.html view-->
+                        <app-cart-item [items]="item"></app-cart-item>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
-    </main>
-</div>
+      </div>
+    </div>
+  </div>
+
+
+  
