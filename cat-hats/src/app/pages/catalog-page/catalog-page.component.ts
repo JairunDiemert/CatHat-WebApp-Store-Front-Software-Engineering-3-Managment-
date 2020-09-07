@@ -16,7 +16,7 @@ export class CatalogPageComponent implements OnInit {
       list.push({
         itemName: "Small Cat Hat",
         itemPrice: 15.99,
-        itemID: 1,
+        itemID: i + 1,
         itemDescription: "A small hat for a cat.",
         itemQuantity: 15,
         itemImg: "./../../../assets/Hat_200x200.png",

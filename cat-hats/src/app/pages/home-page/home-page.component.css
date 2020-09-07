@@ -1,0 +1,23 @@
+.carousel-caption {
+  font-family: "Alice", serif;
+  position: absolute;
+  left: 0;
+  width: 30%;
+  top: 0%;
+  margin-left: 27%;
+  text-align: left;
+  color: darkturquoise;
+}
+
+.carousel-caption h5 {
+  font-size: 3em;
+  width: 200%;
+}
+
+.btn-outline-success {
+  color: white;
+  background-image: none;
+  background-color: transparent;
+  border-color: whitesmoke;
+  border-radius: 30px;
+}
