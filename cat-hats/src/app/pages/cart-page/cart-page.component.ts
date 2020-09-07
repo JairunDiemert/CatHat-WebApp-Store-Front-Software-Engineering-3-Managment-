@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { customerModel } from 'src/app/models/customer-model';
-import { ItemModel } from 'src/app/models/item-model';
+import { Component, OnInit } from "@angular/core";
+import { customerModel } from "src/app/models/customer-model";
+import { ItemModel } from "src/app/models/item-model";
 
 @Component({
   selector: "app-cart-page",
@@ -39,7 +39,7 @@ export class CartPageComponent implements OnInit {
     this.cart_Items = cart;
 
     //displays array objects contained within the cart array
-    //console.log(cart);
+    console.log(cart);
   } 
   
 }
