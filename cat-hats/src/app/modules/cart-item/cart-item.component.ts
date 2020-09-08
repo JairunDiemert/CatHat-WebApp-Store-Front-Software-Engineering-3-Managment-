@@ -4,7 +4,7 @@ import { ItemModel } from "src/app/models/item-model";
 import { customerModel } from "src/app/models/customer-model";
 
 @Component({
-  selector: 'app-cart-item',
+  selector: '[app-cart-item]',
   templateUrl: './cart-item.component.html',
   styleUrls: ['./cart-item.component.css']
 })
