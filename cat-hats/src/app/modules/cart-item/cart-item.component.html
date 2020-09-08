@@ -1,16 +1,16 @@
-<tr>
-    <td scope="col" class="align-middle"><a href="#" class="btn btn-primary">X</a></td>
-    <td scope="col">
-        <div class="py-2">
-            <img src="{{ items.itemImg }}" alt="{{ items.itemName }}" width="60" class="img-fluid rounded shadow-sm align-self-center">
-            <div class="ml-3 d-inline-block align-middle">
-                <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block align-middle">{{ items.itemName }}</a></h5>
-            </div>
+<!--parsing cart-item rows into separate columns with respective information-->
+<td class="align-middle text-center"><a href="#" class="btn btn-primary">X</a></td>
+<td>
+    <div class="px-2 py-2 d-inline-block">
+        <img src="{{ items.itemImg }}" alt="{{ items.itemName }}" width="80" class="img-fluid rounded shadow-sm align-self-center">
+        <div class="ml-3 d-inline-block align-middle text-center">
+            <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block align-middle text-right">{{ items.itemName }}</a></h5>
         </div>
-    </td>
-    <td class="align-middle"><strong>${{ items.itemPrice }}</strong></td>
-    <td class="align-middle"><strong>{{ items.itemQuantity }}</strong></td>
-    <td class="align-middle"><strong><span>${{ (items.itemPrice * items.itemQuantity) | number:'1.2-2' }}</span></strong></td>
-</tr>
+    </div>
+</td>
+<td class="align-middle text-center"><strong>${{ items.itemPrice }}</strong></td>
+<td class="align-middle text-center"><strong>{{ items.itemQuantity }}</strong></td>
+<td class="align-middle text-center"><strong><span>${{ (items.itemPrice * items.itemQuantity) | number:'1.2-2' }}</span></strong></td>
+
            
   

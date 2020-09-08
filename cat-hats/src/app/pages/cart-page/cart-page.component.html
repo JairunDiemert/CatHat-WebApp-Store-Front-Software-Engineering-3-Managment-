@@ -1,16 +1,14 @@
 <body>
-<div class="px-4 px-lg-0">
   <header>
-    <div class="container py-5 text-center">
+    <div class="container py-3 text-center">
       <h1 class="display-4">Shopping Cart</h1>
     </div>
   </header>
 
   <main>
-    <div class="pb-5">
       <div class="container">
         <div class="row">
-          <div class="col-lg-12 p-5 bg-white rounded shadow-lg mb-5">
+          <div class="col-lg-12 p-5 bg-white rounded shadow-lg mb-4">
 
             <!-- Shopping cart table -->
             <div class="table-responsive w-auto">
@@ -18,31 +16,29 @@
                 <thead>
                   <tr>
                     <th scope="col" class="border-0 bg-light">
-                      <div class="p-2 text-uppercase">Remove</div></th>
+                      <div class="py-2 text-uppercase align-middle text-center">Remove</div></th>
                     <th scope="col" class="border-0 bg-light">
-                      <div class="p-2 text-uppercase">Product</div></th>
+                      <div class="py-2 text-uppercase align-middle text-center">Product</div></th>
                     <th scope="col" class="border-0 bg-light">
-                      <div class="py-2 text-uppercase">Price</div></th>
+                      <div class="py-2 text-uppercase align-middle text-center">Price</div></th>
                     <th scope="col" class="border-0 bg-light">
-                      <div class="py-2 text-uppercase">Quantity</div></th>
+                      <div class="py-2 text-uppercase align-middle text-center">Quantity</div></th>
                     <th scope="col" class="border-0 bg-light">
-                      <div class="py-2 text-uppercase">Subtotal</div></th>
+                      <div class="py-2 text-uppercase align-middle text-center">Subtotal</div></th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let item of cart_Items">
+                  <tr *ngFor="let item of cart_Items" app-cart-item [items]="item">
                     <!--connects to cart-item.component.html view-->
-                    <app-cart-item [items]="item"></app-cart-item>
                   </tr>
                 </tbody>
-                <p class="font-weight-bold text-right">TOTAL: $</p>
               </table>
+              <p class="text-center"><a href="#" class="btn btn-primary">Proceed to Checkout</a></p>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    
   </main>
-</div>
+<app-footer></app-footer>
 </body>
-</div>

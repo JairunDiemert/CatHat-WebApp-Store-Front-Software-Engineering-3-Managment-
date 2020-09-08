@@ -34,12 +34,7 @@ export class CartPageComponent implements OnInit {
         itemImg: "./../../../assets/200x200.png"
       })
     }
-
     //constructor instantiation
     this.cart_Items = cart;
-
-    //displays array objects contained within the cart array
-    console.log(cart);
   } 
-  
 }
