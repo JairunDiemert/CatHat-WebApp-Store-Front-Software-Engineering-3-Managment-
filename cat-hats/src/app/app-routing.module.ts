@@ -3,11 +3,13 @@ import { Routes, RouterModule } from "@angular/router";
 import { CatalogPageComponent } from "./pages/catalog-page/catalog-page.component";
 import { HomePageComponent } from "./pages/home-page/home-page.component";
 import { CartPageComponent } from "./pages/cart-page/cart-page.component";
+import { RecordsPageComponent} from "./pages/records-page/records-page.component";
 
 const routes: Routes = [
   { path: "catalog", component: CatalogPageComponent },
   { path: "", component: HomePageComponent },
   { path: "cart", component: CartPageComponent },
+  { path: "records", component: RecordsPageComponent },
   { path: "**", redirectTo: "" },
 ];
 

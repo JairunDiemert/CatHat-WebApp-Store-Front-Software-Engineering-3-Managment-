@@ -9,7 +9,9 @@ import { HomePageComponent } from "./pages/home-page/home-page.component";
 import { CartPageComponent } from "./pages/cart-page/cart-page.component";
 import { NavBarComponent } from "./modules/nav-bar/nav-bar.component";
 import { CartItemComponent } from "./modules/cart-item/cart-item.component";
-import { FooterComponent } from './modules/footer/footer.component';
+import { FooterComponent } from "./modules/footer/footer.component";
+import { RecordsPageComponent } from "./pages/records-page/records-page.component";
+import { RecordsService } from "./records.service";
 
 @NgModule({
   declarations: [
@@ -21,9 +23,10 @@ import { FooterComponent } from './modules/footer/footer.component';
     NavBarComponent,
     CartItemComponent,
     FooterComponent,
+    RecordsPageComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
-  providers: [],
+  providers: [RecordsService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
