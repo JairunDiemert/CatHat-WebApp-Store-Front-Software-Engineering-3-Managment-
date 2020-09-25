@@ -11,6 +11,7 @@ import { NavBarComponent } from "./modules/nav-bar/nav-bar.component";
 import { CartItemComponent } from "./modules/cart-item/cart-item.component";
 import { FooterComponent } from './modules/footer/footer.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
+import { LoginCardComponent } from './modules/login-card/login-card.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ProfilePageComponent } from './pages/profile-page/profile-page.componen
     CartItemComponent,
     FooterComponent,
     ProfilePageComponent,
+    LoginCardComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
