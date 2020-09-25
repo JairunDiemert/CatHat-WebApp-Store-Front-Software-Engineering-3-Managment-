@@ -16,41 +16,37 @@
                     </ul>
                 </div>
                 <div class="card-body">
-                    <div class="tab-pane active" id="profile" role="tabpanel" aria-labelledby="profile-tab" *ngIf="profileShow == true">
-                        <h5 class="card-title">Name Here</h5>
-                        <p class="username">Username Here</p>
-                        <p class="email">Email Here</p>
-                        <p class="address">Address Here</p>
+                    <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab" *ngIf="profileShow == true">
+                        <h5 class="card-title">{{customer.name}}</h5>
+                        <p class="username">{{customer.username}}</p>
+                        <p class="email">{{customer.email}}</p>
+                        <p class="address">{{customer.address}}</p>
                     </div>
                     <div class="tab-pane" id="edit-profile" role="tabpanel" aria-labelledby="edit-profile-tab" *ngIf="profileShow == false">
-                        <!-- <h5 class="card-title">Name Here</h5>
-                        <p class="username">Username Here</p>
-                        <p class="email">Email Here</p>
-                        <p class="address">Address Here</p> -->
-                        <form>
+                        <form [formGroup]="profileForm">
                             <div class="form-group">
                                 <label for="exampleInputName1">Name</label>
-                                <input type="name" class="form-control" id="exampleInputName1" aria-describedby="nameHelp" placeholder="Enter your name">
+                                <input type="text" formControlName="name" class="form-control" id="exampleInputName1" aria-describedby="nameHelp" value="{{customer.name}}">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputUsername1">Username</label>
-                                <input type="username" class="form-control" id="exampleInputUsername1" aria-describedby="usernameHelp" placeholder="Enter your username">
+                                <input type="text" formControlName="username" class="form-control" id="exampleInputUsername1" aria-describedby="usernameHelp" value="{{customer.username}}">
                             </div>
                             <div class="form-group">
                               <label for="exampleInputEmail1">Email address</label>
-                              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                              <input type="text" formControlName="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{customer.email}}">
                               <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputAddress1">Address</label>
-                                <input type="address" class="form-control" id="exampleInputAddress1" aria-describedby="addressHelp" placeholder="Enter your address">
+                                <input type="text" formControlName="address" class="form-control" id="exampleInputAddress1" aria-describedby="addressHelp" value="{{customer.address}}">
                                 <small id="addressHelp" class="form-text text-muted">We'll never share your address with anyone else.</small>
                               </div>
                             <div class="form-group">
                               <label for="exampleInputPassword1">Password</label>
-                              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                              <input type="text" formControlName="password" class="form-control" id="exampleInputPassword1" value="{{customer.password}}">
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary" (click)="submitClick($event)">Submit</button>
                           </form>
                     </div>
 
