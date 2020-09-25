@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { UserService } from "../user.service";
 
 @Component({
-  selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css']
+  selector: "app-admin",
+  templateUrl: "./admin.component.html",
+  styleUrls: ["./admin.component.css"],
 })
 export class AdminComponent implements OnInit {
+  message = "Loading...";
 
-  constructor() { }
+  constructor(private user: UserService) {}
 
   ngOnInit(): void {
+    this.user.getSomeData().subscribe((data) => {
+      this.message = data.message;
+    });
   }
-
 }
