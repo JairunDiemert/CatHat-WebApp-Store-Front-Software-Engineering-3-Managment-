@@ -1,39 +1,64 @@
-<div class="container">
-	<div class="row login_box">
-	    <div class="col-md-12 col-xs-12" align="center">
-            <div class="outter"><img src="../../../assets/200x200.png" class="image-circle"/></div>   
-            <h1>Hi Guest</h1>
-            <span>INDIAN</span>
-	    </div>
-        <div class="col-md-6 col-xs-6 follow line" align="center">
-            <h3>
-                 125651 <br/> <span>FOLLOWERS</span>
-            </h3>
-        </div>
-        <div class="col-md-6 col-xs-6 follow line" align="center">
-            <h3>
-                 125651 <br/> <span>FOLLOWERS</span>
-            </h3>
-        </div>
-        
-        <div class="col-md-12 col-xs-12 login_control">
-                
-                <div class="control">
-                    <div class="label">Email Address</div>
-                    <input type="text" class="form-control" value="admin@gmail.com"/>
+<header>
+    <img class="header-img" src="../../../assets/cats.png" alt="cats walking across the page" />
+    <h1 class="display-4">User Profile</h1>
+</header>
+<main>
+    <div class="pb-5">
+        <div class="container d-flex justify-content-center">
+            <div class="card text-center">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" (click)="profileClick()">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" (click)="editProfileClick()">Edit Profile</a>
+                    </ul>
                 </div>
-                
-                <div class="control">
-                     <div class="label">Password</div>
-                    <input type="password" class="form-control" value="123456"/>
+                <div class="card-body">
+                    <div class="tab-pane active" id="profile" role="tabpanel" aria-labelledby="profile-tab" *ngIf="profileShow == true">
+                        <h5 class="card-title">Name Here</h5>
+                        <p class="username">Username Here</p>
+                        <p class="email">Email Here</p>
+                        <p class="address">Address Here</p>
+                    </div>
+                    <div class="tab-pane" id="edit-profile" role="tabpanel" aria-labelledby="edit-profile-tab" *ngIf="profileShow == false">
+                        <!-- <h5 class="card-title">Name Here</h5>
+                        <p class="username">Username Here</p>
+                        <p class="email">Email Here</p>
+                        <p class="address">Address Here</p> -->
+                        <form>
+                            <div class="form-group">
+                                <label for="exampleInputName1">Name</label>
+                                <input type="name" class="form-control" id="exampleInputName1" aria-describedby="nameHelp" placeholder="Enter your name">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputUsername1">Username</label>
+                                <input type="username" class="form-control" id="exampleInputUsername1" aria-describedby="usernameHelp" placeholder="Enter your username">
+                            </div>
+                            <div class="form-group">
+                              <label for="exampleInputEmail1">Email address</label>
+                              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputAddress1">Address</label>
+                                <input type="address" class="form-control" id="exampleInputAddress1" aria-describedby="addressHelp" placeholder="Enter your address">
+                                <small id="addressHelp" class="form-text text-muted">We'll never share your address with anyone else.</small>
+                              </div>
+                            <div class="form-group">
+                              <label for="exampleInputPassword1">Password</label>
+                              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                          </form>
+                    </div>
+
                 </div>
-                <div align="center">
-                     <button class="btn btn-orange">LOGIN</button>
-                </div>
-                
+            </div>
+            <div class="card text-center">
+                <p>ad for cat hat goes here</p>
+            </div>
         </div>
-        
-        
-            
     </div>
-</div>
+</main>

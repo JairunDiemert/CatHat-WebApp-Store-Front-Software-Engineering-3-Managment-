@@ -1,3 +1,21 @@
-h5, p {
+
+h1 {
     font-family: 'Alice', serif;
+}
+
+header {
+    align-content: center;
+    text-align: center;
+}
+
+.header-img {
+    width: 75%;
+}
+
+.card{
+    width: 50%;
+}
+
+.btn-primary {
+    background-color: #5d3980;
 }

@@ -8,8 +8,18 @@ import { Component, OnInit } from '@angular/core';
 export class ProfilePageComponent implements OnInit {
 
   constructor() { }
+  
+  profileShow : Boolean = true;
 
   ngOnInit(): void {
+  }
+
+  editProfileClick(){
+    this.profileShow = false;
+  }
+
+  profileClick(){
+    this.profileShow = true;
   }
 
 }
