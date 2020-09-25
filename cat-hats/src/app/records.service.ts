@@ -9,6 +9,6 @@ export class RecordsService {
 
   //remove after testing
   getData() {
-    return this.http.get<any>("http://localhost:1234/fake-data.php");
+    return this.http.get<any>("/api/fake-data.php");
   }
 }
