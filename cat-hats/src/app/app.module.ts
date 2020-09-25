@@ -3,7 +3,6 @@ import { NgModule } from "@angular/core";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { ReactiveFormsModule } from '@angular/forms';
 import { CatalogPageComponent } from "./pages/catalog-page/catalog-page.component";
 import { ItemCardComponent } from "./modules/item-card/item-card.component";
 import { HomePageComponent } from "./pages/home-page/home-page.component";
@@ -27,7 +26,7 @@ import { LoginCardComponent } from './modules/login-card/login-card.component';
     ProfilePageComponent,
     LoginCardComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
+  imports: [BrowserModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
 })
