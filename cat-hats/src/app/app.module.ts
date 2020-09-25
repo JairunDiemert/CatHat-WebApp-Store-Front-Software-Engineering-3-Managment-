@@ -13,9 +13,10 @@ import { CartItemComponent } from "./modules/cart-item/cart-item.component";
 import { FooterComponent } from "./modules/footer/footer.component";
 import { RecordsPageComponent } from "./pages/records-page/records-page.component";
 import { RecordsService } from "./records.service";
-import { LoginComponent } from './login/login.component';
-import { AdminComponent } from './admin/admin.component';
-import { HomeTESTComponent } from './home-test/home-test.component';
+import { LoginComponent } from "./login/login.component";
+import { AdminComponent } from "./admin/admin.component";
+import { HomeTESTComponent } from "./home-test/home-test.component";
+import { AuthGuard } from "./auth.guard";
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { HomeTESTComponent } from './home-test/home-test.component';
     HomeTESTComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
-  providers: [RecordsService],
+  providers: [RecordsService, AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
