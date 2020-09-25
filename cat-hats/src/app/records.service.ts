@@ -1,14 +1,14 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 
-@Injectable({
-  providedIn: "root",
-})
+interface myData {
+  obj: Array<Object>;
+}
+@Injectable()
 export class RecordsService {
   constructor(private http: HttpClient) {}
 
-  //remove after testing
   getData() {
-    return this.http.get<any>("/api/fake-data.php");
+    return this.http.get<myData>("/api/fake-data.php");
   }
 }
