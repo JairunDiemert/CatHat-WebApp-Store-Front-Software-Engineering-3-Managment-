@@ -7,11 +7,13 @@ import { RecordsService } from "src/app/records.service";
   styleUrls: ["./records-page.component.css"],
 })
 export class RecordsPageComponent implements OnInit {
-  records = {};
+  records = [];
 
   constructor(private myFirstService: RecordsService) {}
 
   ngOnInit(): void {
-    this.records = this.myFirstService.getData();
+    this.myFirstService.getData().subscribe((data) => {
+      this.records = data.obj;
+    });
   }
 }

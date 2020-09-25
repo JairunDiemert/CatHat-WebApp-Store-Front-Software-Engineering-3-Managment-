@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
+import { HttpClientModule } from "@angular/common/http";
 import { CatalogPageComponent } from "./pages/catalog-page/catalog-page.component";
 import { ItemCardComponent } from "./modules/item-card/item-card.component";
 import { HomePageComponent } from "./pages/home-page/home-page.component";
@@ -25,7 +26,7 @@ import { RecordsService } from "./records.service";
     FooterComponent,
     RecordsPageComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [RecordsService],
   bootstrap: [AppComponent],
 })
