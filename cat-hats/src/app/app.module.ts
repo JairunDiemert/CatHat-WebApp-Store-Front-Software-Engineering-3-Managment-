@@ -10,6 +10,7 @@ import { CartPageComponent } from "./pages/cart-page/cart-page.component";
 import { NavBarComponent } from "./modules/nav-bar/nav-bar.component";
 import { CartItemComponent } from "./modules/cart-item/cart-item.component";
 import { FooterComponent } from './modules/footer/footer.component';
+import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { FooterComponent } from './modules/footer/footer.component';
     NavBarComponent,
     CartItemComponent,
     FooterComponent,
+    ProfilePageComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],

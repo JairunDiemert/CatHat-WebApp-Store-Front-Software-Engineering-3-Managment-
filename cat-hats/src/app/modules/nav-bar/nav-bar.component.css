@@ -3,8 +3,11 @@
     height: auto;
 }
 
-.nav-link {
+.nav-link, button, p {
     font-family: 'Alice', serif;
+}
+
+.nav-link {
     font-size: larger;
 }
 
@@ -14,4 +17,19 @@ nav {
 
 .navbar-light {
     background-color: #b3a4c4;
+}
+
+button {
+    background-color: #b3a4c4;
+    border: none;
+    padding: 15px 32px;
+}
+
+.dropdown-menu{
+    min-width: 100%;
+    padding:15px 32px;
+}
+
+p {
+    font-style: italic;
 }
