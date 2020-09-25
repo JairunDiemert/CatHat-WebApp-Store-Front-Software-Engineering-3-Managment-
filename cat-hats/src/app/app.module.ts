@@ -12,6 +12,7 @@ import { CartItemComponent } from "./modules/cart-item/cart-item.component";
 import { FooterComponent } from './modules/footer/footer.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { LoginCardComponent } from './modules/login-card/login-card.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { LoginCardComponent } from './modules/login-card/login-card.component';
     ProfilePageComponent,
     LoginCardComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
