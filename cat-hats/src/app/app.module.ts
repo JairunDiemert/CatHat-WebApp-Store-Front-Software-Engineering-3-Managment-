@@ -13,6 +13,9 @@ import { CartItemComponent } from "./modules/cart-item/cart-item.component";
 import { FooterComponent } from "./modules/footer/footer.component";
 import { RecordsPageComponent } from "./pages/records-page/records-page.component";
 import { RecordsService } from "./records.service";
+import { LoginComponent } from './login/login.component';
+import { AdminComponent } from './admin/admin.component';
+import { HomeTESTComponent } from './home-test/home-test.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +28,9 @@ import { RecordsService } from "./records.service";
     CartItemComponent,
     FooterComponent,
     RecordsPageComponent,
+    LoginComponent,
+    AdminComponent,
+    HomeTESTComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [RecordsService],
