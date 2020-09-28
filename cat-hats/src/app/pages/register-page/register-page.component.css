@@ -7,10 +7,6 @@ header {
     text-align: center;
 }
 
-.form-control:not(select) {
-    padding: 1.5rem 0.5rem;
-}
-
 body {
     background: #00b09b;
     background: -webkit-linear-gradient(to right, #00b09b, #96c93d);
@@ -18,16 +14,3 @@ body {
     min-height: 100vh;
   }
 
-select.form-control {
-    height: 52px;
-    padding-left: 0.5rem;
-}
-
-.form-control::placeholder {
-    color: #ccc;
-    font-weight: bold;
-    font-size: 0.9rem;
-}
-.form-control:focus {
-    box-shadow: none;
-}
