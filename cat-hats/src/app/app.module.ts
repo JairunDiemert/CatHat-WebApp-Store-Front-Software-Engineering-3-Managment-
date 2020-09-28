@@ -13,6 +13,8 @@ import { FooterComponent } from './modules/footer/footer.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { LoginCardComponent } from './modules/login-card/login-card.component';
 import { FormsModule } from '@angular/forms';
+import { RegisterPageComponent } from './pages/register-page/register-page.component';
+import { RegisterCardComponent } from './modules/register-card/register-card.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { FormsModule } from '@angular/forms';
     FooterComponent,
     ProfilePageComponent,
     LoginCardComponent,
+    RegisterPageComponent,
+    RegisterCardComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
