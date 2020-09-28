@@ -18,6 +18,7 @@ import { AdminComponent } from "./admin/admin.component";
 import { HomeTESTComponent } from "./home-test/home-test.component";
 import { AuthGuard } from "./auth.guard";
 import { UserService } from "./user.service";
+import { LogoutComponent } from "./logout/logout.component";
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { UserService } from "./user.service";
     LoginComponent,
     AdminComponent,
     HomeTESTComponent,
+    LogoutComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [RecordsService, UserService, AuthGuard],

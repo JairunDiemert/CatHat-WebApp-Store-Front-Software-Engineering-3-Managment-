@@ -8,6 +8,7 @@ import { LoginComponent } from "./login/login.component";
 import { AdminComponent } from "./admin/admin.component";
 import { HomeTESTComponent } from "./home-test/home-test.component";
 import { AuthGuard } from "./auth.guard";
+import { LogoutComponent } from "./logout/logout.component";
 
 const routes: Routes = [
   { path: "catalog", component: CatalogPageComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: "records", component: RecordsPageComponent },
   { path: "login", component: LoginComponent },
   { path: "admin", component: AdminComponent, canActivate: [AuthGuard] },
+  { path: "logout", component: LogoutComponent },
   { path: "home-test", component: HomeTESTComponent },
   { path: "**", redirectTo: "" },
 ];
