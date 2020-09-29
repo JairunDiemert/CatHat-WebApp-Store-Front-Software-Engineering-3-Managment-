@@ -15,6 +15,7 @@ import { DashboardComponent } from "./dashboard/dashboard.component";
 import { RegisterComponent } from "./register/register.component";
 
 const routes: Routes = [
+  { path: "", component: HomePageComponent },
   { path: "catalog", component: CatalogPageComponent },
   { path: "cart", component: CartPageComponent },
   { path: "profile", component: ProfilePageComponent },
@@ -27,7 +28,6 @@ const routes: Routes = [
   { path: "dashboard", component: DashboardComponent },
   { path: "register-test", component: RegisterComponent },
   { path: "**", redirectTo: "" },
-  { path: "", component: HomePageComponent },
 ];
 
 @NgModule({
