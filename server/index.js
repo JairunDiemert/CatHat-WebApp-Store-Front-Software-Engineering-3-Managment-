@@ -1,15 +1,19 @@
+const connectionString =
+  "mongodb+srv://madcatter:madcatter@cluster0.gjo41.mongodb.net/angulardb?retryWrites=true&w=majority";
 const express = require("express");
 const bodyParser = require("body-parser");
 const { Mongoose } = require("mongoose");
+const User = require("./models/users");
 const app = express();
 const mongoose = require("mongoose");
-
-mongoose.Promise = Promise;
-mongoose
-  .connect("mongodb://localhost:27017/angulardb")
+const connector = mongoose
+  .connect(connectionString)
   .then(() => console.log("Mongoose up"));
 
-const User = require("./models/users");
+mongoose.Promise = Promise;
+//mongoose
+//.connect("mongodb://localhost:27017/angulardb")
+//.then(() => console.log("Mongoose up"));
 
 app.use(bodyParser.json());
 
