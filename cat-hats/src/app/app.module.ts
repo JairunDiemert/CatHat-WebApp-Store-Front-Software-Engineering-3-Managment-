@@ -10,15 +10,12 @@ import { HomePageComponent } from "./pages/home-page/home-page.component";
 import { CartPageComponent } from "./pages/cart-page/cart-page.component";
 import { NavBarComponent } from "./modules/nav-bar/nav-bar.component";
 import { CartItemComponent } from "./modules/cart-item/cart-item.component";
-<<<<<<< HEAD
-import { FooterComponent } from './modules/footer/footer.component';
-import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
-import { LoginCardComponent } from './modules/login-card/login-card.component';
-import { FormsModule } from '@angular/forms';
-import { RegisterPageComponent } from './pages/register-page/register-page.component';
-import { RegisterCardComponent } from './modules/register-card/register-card.component';
-=======
 import { FooterComponent } from "./modules/footer/footer.component";
+import { ProfilePageComponent } from "./pages/profile-page/profile-page.component";
+import { LoginCardComponent } from "./modules/login-card/login-card.component";
+import { FormsModule } from "@angular/forms";
+import { RegisterPageComponent } from "./pages/register-page/register-page.component";
+import { RegisterCardComponent } from "./modules/register-card/register-card.component";
 import { RecordsPageComponent } from "./pages/records-page/records-page.component";
 import { RecordsService } from "./records.service";
 import { LoginComponent } from "./login/login.component";
@@ -27,9 +24,8 @@ import { HomeTESTComponent } from "./home-test/home-test.component";
 import { AuthGuard } from "./auth.guard";
 import { UserService } from "./user.service";
 import { LogoutComponent } from "./logout/logout.component";
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { RegisterComponent } from './register/register.component';
->>>>>>> Learning-MongoDB
+import { DashboardComponent } from "./dashboard/dashboard.component";
+import { RegisterComponent } from "./register/register.component";
 
 @NgModule({
   declarations: [
@@ -41,15 +37,14 @@ import { RegisterComponent } from './register/register.component';
     NavBarComponent,
     CartItemComponent,
     FooterComponent,
-<<<<<<< HEAD
     ProfilePageComponent,
     LoginCardComponent,
     RegisterPageComponent,
     RegisterCardComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
-  providers: [],
-=======
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  providers: [
+    RecordsService,
     RecordsPageComponent,
     LoginComponent,
     AdminComponent,
@@ -57,10 +52,10 @@ import { RegisterComponent } from './register/register.component';
     LogoutComponent,
     DashboardComponent,
     RegisterComponent,
+    UserService,
+    AuthGuard,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
-  providers: [RecordsService, UserService, AuthGuard],
->>>>>>> Learning-MongoDB
+
   bootstrap: [AppComponent],
 })
 export class AppModule {}
