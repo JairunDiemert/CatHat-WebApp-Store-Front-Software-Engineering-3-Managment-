@@ -3,15 +3,36 @@ import { Routes, RouterModule } from "@angular/router";
 import { CatalogPageComponent } from "./pages/catalog-page/catalog-page.component";
 import { HomePageComponent } from "./pages/home-page/home-page.component";
 import { CartPageComponent } from "./pages/cart-page/cart-page.component";
+<<<<<<< HEAD
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
+=======
+import { RecordsPageComponent } from "./pages/records-page/records-page.component";
+import { LoginComponent } from "./login/login.component";
+import { AdminComponent } from "./admin/admin.component";
+import { HomeTESTComponent } from "./home-test/home-test.component";
+import { AuthGuard } from "./auth.guard";
+import { LogoutComponent } from "./logout/logout.component";
+import { DashboardComponent } from "./dashboard/dashboard.component";
+import { RegisterComponent } from "./register/register.component";
+>>>>>>> Learning-MongoDB
 
 const routes: Routes = [
   { path: "catalog", component: CatalogPageComponent },
   { path: "", component: HomePageComponent },
   { path: "cart", component: CartPageComponent },
+<<<<<<< HEAD
   { path: "profile", component: ProfilePageComponent},
   { path: "register", component: RegisterPageComponent},
+=======
+  { path: "records", component: RecordsPageComponent },
+  { path: "login", component: LoginComponent },
+  { path: "admin", component: AdminComponent, canActivate: [AuthGuard] },
+  { path: "logout", component: LogoutComponent },
+  { path: "home-test", component: HomeTESTComponent },
+  { path: "dashboard", component: DashboardComponent },
+  { path: "register", component: RegisterComponent },
+>>>>>>> Learning-MongoDB
   { path: "**", redirectTo: "" },
 ];
 
