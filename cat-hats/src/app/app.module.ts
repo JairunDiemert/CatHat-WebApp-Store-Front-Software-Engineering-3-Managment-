@@ -41,10 +41,6 @@ import { RegisterComponent } from "./register/register.component";
     LoginCardComponent,
     RegisterPageComponent,
     RegisterCardComponent,
-  ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
-  providers: [
-    RecordsService,
     RecordsPageComponent,
     LoginComponent,
     AdminComponent,
@@ -52,9 +48,9 @@ import { RegisterComponent } from "./register/register.component";
     LogoutComponent,
     DashboardComponent,
     RegisterComponent,
-    UserService,
-    AuthGuard,
   ],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
+  providers: [RecordsService, UserService, AuthGuard],
 
   bootstrap: [AppComponent],
 })
