@@ -1,13 +1,13 @@
-const express = require('express')
-const bodyParser = require('body-parser')
-const app = express()
+const express = require("express");
+const bodyParser = require("body-parser");
+const app = express();
 
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
-app.post('/api/register', (req, res) => {
-	const {username, password} = req.body
+app.post("/api2/register", (req, res) => {
+  const { username, password } = req.body;
+  console.log(req.body);
+  // store this data on database
+});
 
-	// store this data on database
-})
-
-app.listen(1234, () => console.log('Server listening at 1234'))
+app.listen(12345, () => console.log("Server listening at 12345"));
