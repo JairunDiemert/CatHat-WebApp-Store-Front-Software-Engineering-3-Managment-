@@ -6,6 +6,85 @@
       </div>
     </header>
 
-    <app-register-card></app-register-card>
+        <!-- Registeration Form -->
+        <div class="col-md-7 col-lg-6 ml-auto">
+          <form action="#" #UserRegistrationForm="ngForm" (ngSubmit)="onSubmit(UserRegistrationForm)">
+              <div class="row">
+  
+                  <!-- Name -->
+                  <div class="input-group col-lg-12 mb-4">
+                      <div class="input-group-prepend">
+                          <span class="input-group-text bg-white px-4 border-md border-right-0">
+                              <i class="fa fa-user text-muted"></i>
+                          </span>
+                      </div>
+                      <input id="name" type="text" name="name" placeholder="Name" #Name="ngModel" [(ngModel)]="customer.name" class="form-control bg-white border-left-0 border-md">
+                  </div>
+  
+                  <!-- Street Address -->
+                  <div class="input-group col-lg-12 mb-4">
+                      <div class="input-group-prepend">
+                          <span class="input-group-text bg-white px-4 border-md border-right-0">
+                              <i class="fa fa-home text-muted"></i>
+                          </span>
+                      </div>
+                      <input id="address" type="text" name="address" placeholder="Street Address (i.e. Address, City, State, Zipcode)" #Address="ngModel" [(ngModel)]="customer.address" class="form-control bg-white border-left-0 border-md">
+                  </div>
+  
+                  <!-- Username -->
+                  <div class="input-group col-lg-12 mb-4">
+                      <div class="input-group-prepend">
+                          <span class="input-group-text bg-white px-4 border-md border-right-0">
+                              <i class="fa fa-user text-muted"></i>
+                          </span>
+                      </div>
+                      <input id="username" type="text" name="username" placeholder="Username" #Username="ngModel" [(ngModel)]="customer.username" class="form-control bg-white border-left-0 border-md">
+                  </div>
+  
+                  <!-- Email Address -->
+                  <div class="input-group col-lg-12 mb-4">
+                      <div class="input-group-prepend">
+                          <span class="input-group-text bg-white px-4 border-md border-right-0">
+                              <i class="fa fa-envelope text-muted"></i>
+                          </span>
+                      </div>
+                      <input id="email" type="email" name="email" placeholder="Email" #Email="ngModel" [(ngModel)]="customer.email"class="validate form-control bg-white border-left-0 border-md" required>
+                  </div>
+  
+                  <!-- Password -->
+                  <div class="input-group col-lg-6 mb-4">
+                      <div class="input-group-prepend">
+                          <span class="input-group-text bg-white px-4 border-md border-right-0">
+                              <i class="fa fa-lock text-muted"></i>
+                          </span>
+                      </div>
+                      <input id="password" type="password" name="password" placeholder="Password" #Password="ngModel" [(ngModel)]="customer.password" class="validate form-control bg-white border-left-0 border-md" required>
+                  </div>
+  
+                  <!-- Password Confirmation -->
+                  <div class="input-group col-lg-6 mb-4">
+                      <div class="input-group-prepend">
+                          <span class="input-group-text bg-white px-4 border-md border-right-0">
+                              <i class="fa fa-lock text-muted"></i>
+                          </span>
+                      </div>
+                      <input id="passwordConfirmation" type="text" name="passwordConfirmation" placeholder="Confirm Password" #ConfirmPassword="ngModel" [(ngModel)]="customer.password" class="validate form-control bg-white border-left-0 border-md" required>
+                  </div>
+  
+                  <!-- Submit Button -->
+                  <div class="form-group col-lg-12 mx-auto mb-0">
+                      <a href="#" button type="submit" class="btn btn-primary btn-block py-2">
+                          <span class="font-weight-bold">Create Your Account</span>
+                      </a>
+                  </div>
+  
+                  <!-- Already Registered -->
+                  <div class="text-center w-100">
+                      <p class="text-muted font-weight-bold">Already Registered? <a href="#" class="text-primary ml-2">Login</a></p>
+                  </div>
+  
+              </div>
+          </form>
+      </div>
         
 </body>
