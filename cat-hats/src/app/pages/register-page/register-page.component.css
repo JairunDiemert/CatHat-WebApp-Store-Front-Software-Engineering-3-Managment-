@@ -14,3 +14,35 @@ body {
     min-height: 100vh;
   }
 
+  .btn-primary {
+    background-color: #5d3980;
+}
+
+.ccontainer{
+    box-shadow: 2px 2px 2px 2px #888888;
+}
+
+.form-control:not(select) {
+    padding: 1.5rem 0.5rem;
+}
+
+select.form-control {
+    height: 52px;
+    padding-left: 0.5rem;
+}
+
+.form-control::placeholder {
+    color: #ccc;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+.form-control:focus {
+    box-shadow: none;
+}
+
+button {
+    background-color: #b3a4c4;
+    border: none;
+    padding: 15px 32px;
+}
+

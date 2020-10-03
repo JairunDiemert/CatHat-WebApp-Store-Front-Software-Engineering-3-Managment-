@@ -15,7 +15,6 @@ import { ProfilePageComponent } from "./pages/profile-page/profile-page.componen
 import { LoginCardComponent } from "./modules/login-card/login-card.component";
 import { FormsModule } from "@angular/forms";
 import { RegisterPageComponent } from "./pages/register-page/register-page.component";
-import { RegisterCardComponent } from "./modules/register-card/register-card.component";
 import { RecordsPageComponent } from "./pages/records-page/records-page.component";
 import { RecordsService } from "./records.service";
 import { LoginComponent } from "./login/login.component";
@@ -40,7 +39,6 @@ import { RegisterComponent } from "./register/register.component";
     ProfilePageComponent,
     LoginCardComponent,
     RegisterPageComponent,
-    RegisterCardComponent,
     RecordsPageComponent,
     LoginComponent,
     AdminComponent,
