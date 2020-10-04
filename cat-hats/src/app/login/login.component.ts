@@ -10,7 +10,7 @@ import { Router } from "@angular/router";
 export class LoginComponent implements OnInit {
   constructor(private Auth: AuthService, private router: Router) {}
 
-  ngOnInit() {}
+  ngOnInit() {} 
 
   loginUser(event) {
     event.preventDefault();
