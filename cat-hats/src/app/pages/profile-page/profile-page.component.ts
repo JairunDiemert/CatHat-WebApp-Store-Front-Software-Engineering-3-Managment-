@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NgForm} from '@angular/forms';
+import { AuthService } from 'src/app/auth.service';
 import { customerModel } from 'src/app/models/customer-model';
 
 @Component({
@@ -9,7 +10,17 @@ import { customerModel } from 'src/app/models/customer-model';
 })
 export class ProfilePageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private Auth: AuthService) { 
+    // let email : String = localStorage.getItem("email");
+    // let user = this.Auth.getUser(email).subscribe((data) => {
+    //   if (data.success) {
+    //     console.log(data);
+    //   } else {
+    //     window.alert(data.message);
+    //   }
+    // });
+    // console.log(user);
+  }
   
   profileShow : Boolean = true;
   public customer: customerModel = {
