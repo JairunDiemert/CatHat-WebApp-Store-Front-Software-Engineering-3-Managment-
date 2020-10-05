@@ -3,8 +3,9 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 
 interface myData {
-  message: string;
-  success: boolean;
+  email: string;
+  total: string;
+  status: boolean;
 }
 
 interface isLoggedIn {
@@ -15,21 +16,31 @@ interface logoutStatus {
   success: boolean;
 }
 
+interface totalStatus {
+  status: boolean;
+}
+
 @Injectable({
   providedIn: "root",
 })
 export class UserService {
   constructor(private http: HttpClient) {}
 
-  getSomeData() {
-    return this.http.get<myData>("/api/database.php");
+  getData() {
+    return this.http.get<myData>("/api/data");
+  }
+
+  updateTotal(value) {
+    return this.http.post<totalStatus>("/api/total", {
+      value,
+    });
   }
 
   isLoggedIn(): Observable<isLoggedIn> {
-    return this.http.get<isLoggedIn>("/api/isloggedin.php");
+    return this.http.get<isLoggedIn>("/api/isloggedin");
   }
 
   logout() {
-    return this.http.get<logoutStatus>("/api/logout.php");
+    return this.http.get<logoutStatus>("/api/logout");
   }
 }

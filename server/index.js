@@ -5,15 +5,20 @@ const bodyParser = require("body-parser");
 const { Mongoose } = require("mongoose");
 const User = require("./models/users");
 const app = express();
+const session = require("express-session");
 const mongoose = require("mongoose");
 const connector = mongoose
   .connect(connectionString)
   .then(() => console.log("Mongoose up"));
 
+app.use(
+  session({
+    secret: "cathat",
+    cookie: {},
+  })
+);
+
 mongoose.Promise = Promise;
-//mongoose
-//.connect("mongodb://localhost:27017/angulardb")
-//.then(() => console.log("Mongoose up"));
 
 app.use(bodyParser.json());
 
@@ -31,9 +36,17 @@ app.post("/api/login", async (req, res) => {
     res.json({
       success: true,
     });
+    req.session.user = email;
+    req.session.save();
     console.log("logging you in");
   }
   //res.send("XXX")
+});
+
+app.get("/api/isloggedin", (req, res) => {
+  res.json({
+    status: !!req.session.user,
+  });
 });
 
 app.post("/api/register", async (req, res) => {
@@ -59,6 +72,51 @@ app.post("/api/register", async (req, res) => {
   res.json({
     success: true,
     message: "Welcome!",
+  });
+});
+
+app.get("/api/data", async (req, res) => {
+  const user = await User.findOne({ email: req.session.user });
+
+  if (!user) {
+    res.json({
+      status: false,
+      message: "User was deleted",
+    });
+    return;
+  }
+
+  res.json({
+    status: true,
+    email: req.session.user,
+    total: user.total,
+  });
+});
+
+app.get("/api/logout", (req, res) => {
+  req.session.destroy();
+  res.json({
+    success: true,
+  });
+});
+
+app.post("/api/total", async (req, res) => {
+  console.log(req.session.user, req.body.value);
+  const user = await User.findOne({ email: req.session.user });
+  if (!user) {
+    res.json({
+      success: false,
+      message: "Invalid user!",
+    });
+    return;
+  }
+
+  await User.update(
+    { email: req.session.user },
+    { $set: { total: req.body.value } }
+  );
+  res.json({
+    success: true,
   });
 });
 

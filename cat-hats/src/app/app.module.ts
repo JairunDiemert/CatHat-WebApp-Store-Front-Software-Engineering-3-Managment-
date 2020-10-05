@@ -18,7 +18,6 @@ import { RegisterPageComponent } from "./pages/register-page/register-page.compo
 import { RecordsPageComponent } from "./pages/records-page/records-page.component";
 import { RecordsService } from "./records.service";
 import { LoginComponent } from "./login/login.component";
-import { AdminComponent } from "./admin/admin.component";
 import { HomeTESTComponent } from "./home-test/home-test.component";
 import { AuthGuard } from "./auth.guard";
 import { UserService } from "./user.service";
@@ -41,7 +40,6 @@ import { RegisterComponent } from "./register/register.component";
     RegisterPageComponent,
     RecordsPageComponent,
     LoginComponent,
-    AdminComponent,
     HomeTESTComponent,
     LogoutComponent,
     DashboardComponent,

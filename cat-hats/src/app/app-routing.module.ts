@@ -22,10 +22,13 @@ const routes: Routes = [
   { path: "register", component: RegisterPageComponent },
   { path: "records", component: RecordsPageComponent },
   { path: "login", component: LoginComponent },
-  { path: "admin", component: AdminComponent, canActivate: [AuthGuard] },
   { path: "logout", component: LogoutComponent },
   { path: "home-test", component: HomeTESTComponent },
-  { path: "dashboard", component: DashboardComponent },
+  {
+    path: "dashboard",
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
+  },
   { path: "register-test", component: RegisterComponent },
   { path: "**", redirectTo: "" },
 ];
