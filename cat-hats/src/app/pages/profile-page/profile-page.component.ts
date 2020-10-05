@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {NgForm} from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/auth.service';
 import { customerModel } from 'src/app/models/customer-model';
 
@@ -9,38 +9,38 @@ import { customerModel } from 'src/app/models/customer-model';
   styleUrls: ['./profile-page.component.css']
 })
 export class ProfilePageComponent implements OnInit {
-
-  constructor(private Auth: AuthService) { 
-    // let email : String = localStorage.getItem("email");
-    // let user = this.Auth.getUser(email).subscribe((data) => {
-    //   if (data.success) {
-    //     console.log(data);
-    //   } else {
-    //     window.alert(data.message);
-    //   }
-    // });
-    // console.log(user);
-  }
-  
-  profileShow : Boolean = true;
   public customer: customerModel = {
     username: "null12",
     cartItems: [],
     cartTotal: 0,
-    name: "Jane Doe",
-    email: "Jane@123.com",
-    address: " 12234 Drive",
-    password: "123"
+    name: "null",
+    email: "null",
+    address: "null",
+    password: "null"
   };
+  constructor(private Auth: AuthService) {
+    let email: String = localStorage.getItem("email");
+    this.Auth.getUser(email).subscribe(data => {
+      console.log(data.username);
+      this.customer.username = data.username;
+      this.customer.name = data.name;
+      this.customer.email = data.email;
+      this.customer.address = data.address;
+      this.customer.password = data.password;
+    });
+    console.log(this.customer);
+  }
+
+  profileShow: Boolean = true;
 
   ngOnInit(): void {
   }
 
-  editProfileClick(){
+  editProfileClick() {
     this.profileShow = false;
   }
 
-  profileClick(){
+  profileClick() {
     this.profileShow = true;
   }
 

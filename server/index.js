@@ -17,26 +17,16 @@ mongoose.Promise = Promise;
 
 app.use(bodyParser.json());
 
-//Leesa's try at retrieving info
-// app.get("/api/user/:email", async (req, res) => {
-//   const email = req.params.email;
-//   console.log(email);
-//   const resp = await User.find({email : email});
-//   if (!resp) {
-//     //console.log("incorrect details");
-//     res.json({
-//       success: false,
-//       message: "Incorrect details",
-//     });
-//   } else {
-//     res.send(resp);
-//     res.json({
-//       success: true,
-//     });
-//     console.log("user found");
-//   }
-//   //res.send("XXX")
-// });
+app.get("/api/user/:email", async (req, res) => {
+  const userEmail = req.params.email;
+  await User.find({email : userEmail}, function(err, result) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send(result[0]);
+    }
+  });
+});
 
 app.post("/api/login", async (req, res) => {
   const { email, password } = req.body;
