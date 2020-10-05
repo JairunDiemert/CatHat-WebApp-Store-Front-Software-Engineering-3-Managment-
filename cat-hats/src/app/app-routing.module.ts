@@ -7,7 +7,6 @@ import { ProfilePageComponent } from "./pages/profile-page/profile-page.componen
 import { RegisterPageComponent } from "./pages/register-page/register-page.component";
 import { RecordsPageComponent } from "./pages/records-page/records-page.component";
 import { LoginComponent } from "./login/login.component";
-import { AdminComponent } from "./admin/admin.component";
 import { HomeTESTComponent } from "./home-test/home-test.component";
 import { AuthGuard } from "./auth.guard";
 import { LogoutComponent } from "./logout/logout.component";

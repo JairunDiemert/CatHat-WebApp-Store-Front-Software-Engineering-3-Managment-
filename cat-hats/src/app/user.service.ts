@@ -17,7 +17,7 @@ interface logoutStatus {
 }
 
 interface totalStatus {
-  status: boolean;
+  success: boolean;
 }
 
 @Injectable({
