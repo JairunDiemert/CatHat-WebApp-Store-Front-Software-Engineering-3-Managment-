@@ -22,6 +22,27 @@ mongoose.Promise = Promise;
 
 app.use(bodyParser.json());
 
+//Leesa's try at retrieving info
+// app.get("/api/user/:email", async (req, res) => {
+//   const email = req.params.email;
+//   console.log(email);
+//   const resp = await User.find({email : email});
+//   if (!resp) {
+//     //console.log("incorrect details");
+//     res.json({
+//       success: false,
+//       message: "Incorrect details",
+//     });
+//   } else {
+//     res.send(resp);
+//     res.json({
+//       success: true,
+//     });
+//     console.log("user found");
+//   }
+//   //res.send("XXX")
+// });
+
 app.post("/api/login", async (req, res) => {
   const { email, password } = req.body;
   console.log(email, password);
@@ -66,7 +87,6 @@ app.post("/api/register", async (req, res) => {
     email,
     password,
   });
-
   const result = await user.save();
   console.log(result);
   res.json({
