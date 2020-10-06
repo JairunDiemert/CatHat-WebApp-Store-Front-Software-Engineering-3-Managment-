@@ -8,7 +8,8 @@
 
         <!-- Registeration Form -->
         <div class="col-md-7 col-lg-6 ml-auto">
-          <form action="#" #UserRegistrationForm="ngForm" (submit)="registerUser($event)">
+            <!-- (submit)="registerUser($event)" (ngSubmit)="onSubmit(UserRegistrationForm)"-->
+          <form action="#" #UserRegistrationForm="ngForm" (ngSubmit)="registerUser(UserRegistrationForm)">
               <div class="row">
   
                   <!-- Name -->
@@ -68,7 +69,7 @@
                               <i class="fa fa-lock text-muted"></i>
                           </span>
                       </div>
-                      <input id="cpassword" type="password" name="cpassword" placeholder="Confirm Password" class="validate form-control bg-white border-left-0 border-md" required>
+                      <input id="cpassword" type="password" name="cpassword" placeholder="Confirm Password" #CPassword="ngModel" [(ngModel)]="cpassword" class="validate form-control bg-white border-left-0 border-md" required>
                   </div>
   
                   <!-- Submit Button -->

@@ -21,8 +21,10 @@ export class RegisterPageComponent implements OnInit {
     name: "",
     email: "",
     address: "",
-    password: ""
+    password: "",
   };
+
+  public cpassword: String = "";
 
   ngOnInit(): void {
     //this.resetForm();
@@ -45,17 +47,10 @@ export class RegisterPageComponent implements OnInit {
       }
     }
   }
-
+*/
   registerUser(registerForm: NgForm) {
     const errors = [];
-    this.customer.username = registerForm.value.username;
-    this.customer.name = registerForm.value.name;
-    this.customer.email = registerForm.value.email;
-    this.customer.address = registerForm.value.address;
-    this.customer.password = registerForm.value.password;
-    const cpassword = registerForm.value.cpassword;
-  */
-
+/*
   registerUser(event) {
     event.preventDefault();
     const errors = [];
@@ -66,14 +61,17 @@ export class RegisterPageComponent implements OnInit {
     const address = target.querySelector("#address").value;
     const password = target.querySelector("#password").value;
     const cpassword = target.querySelector("#password").value;
-
-    if (password != cpassword) {
+*/
+    if (this.customer.password != this.cpassword) {
       errors.push("Passwords do not match");
     }
 
+    console.log(errors);
+    console.log(this.customer);
+
     if (errors.length == 0) {
-      //this.auth.registerUser(this.customer.username, this.customer.name, this.customer.email, this.customer.address, this.customer.password).subscribe((data) => {
-      this.auth.registerUser(username, name, email, address, password).subscribe((data) => {
+      this.auth.registerUser(this.customer.username, this.customer.name, this.customer.email, this.customer.address, this.customer.password).subscribe((data) => {
+      //this.auth.registerUser(username, name, email, address, password).subscribe((data) => {
           console.log(data);
         if (data.success) {
           console.log("User registered.")
@@ -82,7 +80,7 @@ export class RegisterPageComponent implements OnInit {
       });
     }
 
-    //console.log(this.customer.username, this.customer.password);
-    console.log(username, password);
+    console.log(this.customer.username, this.customer.password);
+    //console.log(username, password);
   }
 }
