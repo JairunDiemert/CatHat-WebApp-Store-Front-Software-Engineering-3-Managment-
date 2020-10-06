@@ -17,6 +17,9 @@ export class RegisterComponent implements OnInit {
     const errors = [];
     const target = event.target;
     const username = target.querySelector("#username").value;
+    const name = target.querySelector("#name").value;
+    const email= target.querySelector("#email").value;
+    const address = target.querySelector("#address").value;
     const password = target.querySelector("#password").value;
     const cpassword = target.querySelector("#cpassword").value;
 
@@ -27,7 +30,7 @@ export class RegisterComponent implements OnInit {
     //more validation ie. if this else that..
 
     if (errors.length == 0) {
-      this.auth.registerUser(username, password).subscribe((data) => {
+      this.auth.registerUser(username, name, email, address, password).subscribe((data) => {
         console.log(data);
         if (data.success) {
           this.router.navigate(["dashboard"]);
