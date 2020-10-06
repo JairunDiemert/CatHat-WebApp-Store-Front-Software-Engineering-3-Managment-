@@ -24,7 +24,7 @@ app.use(bodyParser.json());
 
 app.get("/api/user/:email", async (req, res) => {
   const userEmail = req.params.email;
-  await User.find({email : userEmail}, function(err, result) {
+  await User.find({ email: userEmail }, function (err, result) {
     if (err) {
       res.send(err);
     } else {
@@ -34,9 +34,9 @@ app.get("/api/user/:email", async (req, res) => {
 });
 
 app.post("/api/login", async (req, res) => {
-  const { email, password } = req.body;
-  console.log(email, password);
-  const resp = await User.findOne({ email, password });
+  const { username, password } = req.body;
+  console.log(username, password);
+  const resp = await User.findOne({ username, password });
   if (!resp) {
     //console.log("incorrect details");
     res.json({
@@ -47,7 +47,7 @@ app.post("/api/login", async (req, res) => {
     res.json({
       success: true,
     });
-    req.session.user = email;
+    req.session.user = username;
     req.session.save();
     console.log("logging you in");
   }
@@ -75,14 +75,15 @@ app.post("/api/register", async (req, res) => {
 
   const user = new User({
     username,
-    name, 
+    name,
     email,
     address,
     password,
   });
-  
+
   const result = await user.save();
   console.log(result);
+  req.session.destroy();
   res.json({
     success: true,
     message: "Welcome!",
