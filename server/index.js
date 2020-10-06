@@ -61,7 +61,7 @@ app.get("/api/isloggedin", (req, res) => {
 });
 
 app.post("/api/register", async (req, res) => {
-  const { email, password } = req.body;
+  const { username, name, email, address, password } = req.body;
 
   const existingUser = await User.findOne({ email });
 
@@ -74,9 +74,13 @@ app.post("/api/register", async (req, res) => {
   }
 
   const user = new User({
+    username,
+    name, 
     email,
+    address,
     password,
   });
+  
   const result = await user.save();
   console.log(result);
   res.json({
