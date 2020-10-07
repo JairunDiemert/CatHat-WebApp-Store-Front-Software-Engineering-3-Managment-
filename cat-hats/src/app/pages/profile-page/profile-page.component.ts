@@ -21,14 +21,12 @@ export class ProfilePageComponent implements OnInit {
   constructor(private Auth: AuthService) {
     let email: String = localStorage.getItem("email");
     this.Auth.getUser(email).subscribe(data => {
-      console.log(data.username);
       this.customer.username = data.username;
       this.customer.name = data.name;
       this.customer.email = data.email;
       this.customer.address = data.address;
       this.customer.password = data.password;
     });
-    console.log(this.customer);
   }
 
   profileShow: Boolean = true;
