@@ -44,10 +44,18 @@ constructor(private http: HttpClient) { }
     });
   }
 
-  registerUser(email, password) {
+  registerUser(username, name, email, address, password) {
+    localStorage.setItem("username", username);
+    localStorage.setItem("name", name);
     localStorage.setItem("email", email);
+    localStorage.setItem("address", address);
+    localStorage.setItem("password", password);
+    
     return this.http.post<registerResponse>("/api/register", {
+      username,
+      name,
       email,
+      address,
       password,
     });
   }

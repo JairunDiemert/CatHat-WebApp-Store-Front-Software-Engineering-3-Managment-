@@ -8,7 +8,8 @@
 
         <!-- Registeration Form -->
         <div class="col-md-7 col-lg-6 ml-auto">
-          <form action="#" #UserRegistrationForm="ngForm" (ngSubmit)="onSubmit(UserRegistrationForm)">
+            <!-- (submit)="registerUser($event)" (ngSubmit)="onSubmit(UserRegistrationForm)"-->
+          <form action="#" #UserRegistrationForm="ngForm" (ngSubmit)="registerUser(UserRegistrationForm)">
               <div class="row">
   
                   <!-- Name -->
@@ -48,7 +49,7 @@
                               <i class="fa fa-envelope text-muted"></i>
                           </span>
                       </div>
-                      <input id="email" type="email" name="email" placeholder="Email" #Email="ngModel" [(ngModel)]="customer.email"class="validate form-control bg-white border-left-0 border-md" required>
+                      <input id="email" type="email" name="email" placeholder="Email" #Email="ngModel" [(ngModel)]="customer.email" class="validate form-control bg-white border-left-0 border-md" required>
                   </div>
   
                   <!-- Password -->
@@ -68,14 +69,12 @@
                               <i class="fa fa-lock text-muted"></i>
                           </span>
                       </div>
-                      <input id="passwordConfirmation" type="text" name="passwordConfirmation" placeholder="Confirm Password" #ConfirmPassword="ngModel" [(ngModel)]="customer.password" class="validate form-control bg-white border-left-0 border-md" required>
+                      <input id="cpassword" type="password" name="cpassword" placeholder="Confirm Password" #CPassword="ngModel" [(ngModel)]="cpassword" class="validate form-control bg-white border-left-0 border-md" required>
                   </div>
   
                   <!-- Submit Button -->
                   <div class="form-group col-lg-12 mx-auto mb-0">
-                      <a href="#" button type="submit" class="btn btn-primary btn-block py-2">
-                          <span class="font-weight-bold">Create Your Account</span>
-                      </a>
+                      <button type="submit" class="btn btn-primary btn-block py-2 font-weight-bold">Create Your Account</button>
                   </div>
   
                   <!-- Already Registered -->
