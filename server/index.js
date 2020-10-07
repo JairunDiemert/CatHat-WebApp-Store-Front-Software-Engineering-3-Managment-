@@ -44,6 +44,7 @@ app.post("/api/login", async (req, res) => {
       message: "Incorrect details",
     });
   } else {
+    //json object created with success value
     res.json({
       success: true,
     });
