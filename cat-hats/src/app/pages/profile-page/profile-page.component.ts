@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/auth.service';
 import { customerModel } from 'src/app/models/customer-model';
+import { UserService } from 'src/app/user.service';
 
 @Component({
   selector: 'app-profile-page',
@@ -18,7 +19,7 @@ export class ProfilePageComponent implements OnInit {
     address: "null",
     password: "null"
   };
-  constructor(private Auth: AuthService) {
+  constructor(private Auth: AuthService, private user: UserService) {
     let email: String = localStorage.getItem("email");
     this.Auth.getUser(email).subscribe(data => {
       this.customer.username = data.username;
@@ -27,6 +28,17 @@ export class ProfilePageComponent implements OnInit {
       this.customer.address = data.address;
       this.customer.password = data.password;
     });
+    // this.user.getData().subscribe((data) => {
+    //   if (data.status) {
+    //     this.customer.username = data.username;
+    //     this.customer.name = data.name;
+    //     this.customer.email = data.email;
+    //     this.customer.address = data.address;
+    //     this.customer.password = data.password;
+    //   } else {
+    //     this.router.navigate(["logout"]);
+    //   }
+    // });
   }
 
   profileShow: Boolean = true;
@@ -48,6 +60,14 @@ export class ProfilePageComponent implements OnInit {
     this.customer.email = profileForm.value.email;
     this.customer.address = profileForm.value.address;
     this.customer.password = profileForm.value.password;
+
+    this.user.updateUser(this.customer).subscribe((data) => {
+      if (data.success) {
+        alert("Your profile was updated");
+      } else {
+        alert("Some problem");
+      }
+    });
   }
 
 }

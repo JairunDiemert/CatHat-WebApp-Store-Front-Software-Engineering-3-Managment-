@@ -11,7 +11,7 @@ import { UserService } from 'src/app/user.service';
 })
 export class LoginCardComponent implements OnInit {
   loginShow: Boolean = true;
-  constructor(private Auth: AuthService, private router: Router) {
+  constructor(private Auth: AuthService, private router: Router, private User : UserService) {
     this.loginShow = this.Auth.getisLoggedIn();
   }
 
@@ -24,9 +24,15 @@ export class LoginCardComponent implements OnInit {
   }
 
   logout(){
-    this.Auth.setLoggedIn(false);
-    this.router.navigate(["/"]);
-    this.loginShow = this.Auth.getisLoggedIn();
+    this.User.logout().subscribe((data) => {
+      if (data.success) {
+        this.router.navigate(["/"]);
+        this.Auth.setLoggedIn(false);
+        this.loginShow = this.Auth.getisLoggedIn();
+      } else {
+        window.alert("Some problem");
+      }
+    });
   }
 
   onSubmit(login: NgForm) {

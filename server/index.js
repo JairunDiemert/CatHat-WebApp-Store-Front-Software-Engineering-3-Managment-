@@ -24,7 +24,7 @@ app.use(bodyParser.json());
 
 app.get("/api/user/:email", async (req, res) => {
   const userEmail = req.params.email;
-  await User.find({email : userEmail}, function(err, result) {
+  await User.find({ email: userEmail }, function (err, result) {
     if (err) {
       res.send(err);
     } else {
@@ -76,12 +76,12 @@ app.post("/api/register", async (req, res) => {
 
   const user = new User({
     username,
-    name, 
+    name,
     email,
     address,
     password,
   });
-  
+
   const result = await user.save();
   console.log(result);
   res.json({
@@ -105,11 +105,17 @@ app.get("/api/data", async (req, res) => {
     status: true,
     email: req.session.user,
     total: user.total,
+    username: user.username,
+    password: user.password,
+    name: user.name,
+    address: user.address,
   });
 });
 
 app.get("/api/logout", (req, res) => {
+  console.log("loging you out");
   req.session.destroy();
+  
   res.json({
     success: true,
   });
@@ -129,6 +135,35 @@ app.post("/api/total", async (req, res) => {
   await User.update(
     { email: req.session.user },
     { $set: { total: req.body.value } }
+  );
+  res.json({
+    success: true,
+  });
+});
+
+app.post("/api/user/:email", async (req, res) => {
+  console.log(req.session.user, req.body.value);
+  const user = await User.findOne({ email: req.session.user });
+  if (!user) {
+    res.json({
+      success: false,
+      message: "Invalid user!",
+    });
+    return;
+  }
+
+  await User.update(
+    { email: req.session.user },
+    {
+      $set:
+      {
+        username: req.body.value.username,
+        name: req.body.value.name,
+        address: req.body.value.address,
+        password: req.body.value.password,
+        email: req.body.value.email
+      }
+    }
   );
   res.json({
     success: true,

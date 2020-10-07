@@ -30,6 +30,11 @@ export class UserService {
     return this.http.get<myData>("/api/data");
   }
 
+  updateUser(value) {
+    return this.http.post<totalStatus>("/api/user/:email", {
+      value,
+    });
+  }
   updateTotal(value) {
     return this.http.post<totalStatus>("/api/total", {
       value,
