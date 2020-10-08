@@ -23,4 +23,28 @@ app.post("/api/login", async (req, res) => {
     });
 });
 
+//angular post connects to this endpoint, mirrors the post in the user service
+app.post("/api/register", async (req, res) => {
+  //axios to make http request to user service
+  axios
+    .post("http://localhost:12345/api/register", {
+      //retrieve variable info from json payload that came from client side, sends to user service
+      username: req.body.username,
+      name: req.body.name,
+      email: req.body.email,
+      address: req.body.address,
+      password: req.body.password,
+    })
+    //axiosResponse: json payload returned from user service
+    .then((axiosResponse) => {
+      console.log(axiosResponse);
+      //sends json request back to calling client
+      res.json(axiosResponse.data);
+    })
+    //catch calls errors with sending or receiving request
+    .catch((axiosError) => {
+      console.log(axiosError);
+    });
+});
+
 app.listen(54321);
