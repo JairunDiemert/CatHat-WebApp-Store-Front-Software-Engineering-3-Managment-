@@ -45,6 +45,7 @@ export class LoginCardComponent implements OnInit {
         this.Auth.setLoggedIn(true);
         this.loginShow = this.Auth.getisLoggedIn();
       } else {
+        this.router.navigate(["/login"]);
         window.alert(data.message);
         this.loginShow = this.Auth.getisLoggedIn();
       }

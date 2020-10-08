@@ -8,20 +8,24 @@ import { Router } from "@angular/router";
   styleUrls: ["./login.component.css"],
 })
 export class LoginComponent implements OnInit {
-  constructor(private Auth: AuthService, private router: Router) {}
+  constructor(private Auth: AuthService, private router: Router) {
+    if(this.Auth.getisLoggedIn()){
+      this.router.navigate(["/"]);
+    }
+  }
 
   ngOnInit() {} 
 
   loginUser(event) {
     event.preventDefault();
     const target = event.target;
-    const username = target.querySelector("#username").value;
+    const username = target.querySelector("#email").value;
     const password = target.querySelector("#password").value;
 
     this.Auth.getUserDetails(username, password).subscribe((data) => {
       if (data.success) {
-        this.router.navigate(["dashboard"]);
         this.Auth.setLoggedIn(true);
+        location.reload();
       } else {
         window.alert(data.message);
       }

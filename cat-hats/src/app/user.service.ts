@@ -46,6 +46,7 @@ export class UserService {
   }
 
   logout() {
+    localStorage.setItem("loggedIn","false");
     return this.http.get<logoutStatus>("/api/logout");
   }
 }

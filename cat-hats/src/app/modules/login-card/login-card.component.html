@@ -1,4 +1,4 @@
-<div class="dropdown" *ngIf="loginShow == false">
+<div class="dropdown" *ngIf="!loginShow">
     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="true">
         Already have an account? Login to our site
@@ -21,7 +21,7 @@
         </form>
     </div>
 </div>
-<div *ngIf="loginShow == true">
+<div *ngIf="loginShow">
     <button class="btn btn-primary" (click)="profileReroute()">Profile Page</button>
     <button class="btn btn-primary" (click)="logout()">Log Out</button>
 </div>
