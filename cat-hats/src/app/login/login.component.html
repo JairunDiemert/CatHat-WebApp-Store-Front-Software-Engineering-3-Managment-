@@ -1,23 +1,15 @@
-<form (submit)="loginUser($event)">
-  <div class="container">
-    <div>
-      <input
-        type="text"
-        autocomplete="off"
-        placeholder="Username"
-        id="username"
-      />
+<div>
+  <form (submit)="loginUser($event)">
+    <div class="container">
+      <div>
+        <input type="text" autocomplete="off" placeholder="Email" id="email" />
+      </div>
+      <div>
+        <input type="password" autocomplete="off" placeholder="Password" id="password" />
+      </div>
+      <div>
+        <button type="submit" id="submit">Submit</button>
+      </div>
     </div>
-    <div>
-      <input
-        type="password"
-        autocomplete="off"
-        placeholder="Password"
-        id="password"
-      />
-    </div>
-    <div>
-      <button type="submit" id="submit">Submit</button>
-    </div>
-  </div>
-</form>
+  </form>
+</div>

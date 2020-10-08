@@ -28,17 +28,6 @@ export class ProfilePageComponent implements OnInit {
       this.customer.address = data.address;
       this.customer.password = data.password;
     });
-    // this.user.getData().subscribe((data) => {
-    //   if (data.status) {
-    //     this.customer.username = data.username;
-    //     this.customer.name = data.name;
-    //     this.customer.email = data.email;
-    //     this.customer.address = data.address;
-    //     this.customer.password = data.password;
-    //   } else {
-    //     this.router.navigate(["logout"]);
-    //   }
-    // });
   }
 
   profileShow: Boolean = true;
