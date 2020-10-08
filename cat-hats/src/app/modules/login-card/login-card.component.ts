@@ -1,29 +1,31 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AuthService } from 'src/app/auth.service';
-import { UserService } from 'src/app/user.service';
+import { Component, OnInit } from "@angular/core";
+import { NgForm } from "@angular/forms";
+import { Router } from "@angular/router";
+import { AuthService } from "src/app/auth.service";
+import { UserService } from "src/app/user.service";
 
 @Component({
-  selector: 'app-login-card',
-  templateUrl: './login-card.component.html',
-  styleUrls: ['./login-card.component.css']
+  selector: "app-login-card",
+  templateUrl: "./login-card.component.html",
+  styleUrls: ["./login-card.component.css"],
 })
 export class LoginCardComponent implements OnInit {
   loginShow: Boolean = true;
-  constructor(private Auth: AuthService, private router: Router, private User : UserService) {
+  constructor(
+    private Auth: AuthService,
+    private router: Router,
+    private User: UserService
+  ) {
     this.loginShow = this.Auth.getisLoggedIn();
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
 
-  }
-
-  profileReroute(){
+  profileReroute() {
     this.router.navigate(["/profile"]);
   }
 
-  logout(){
+  logout() {
     this.User.logout().subscribe((data) => {
       if (data.success) {
         this.router.navigate(["/"]);
@@ -52,5 +54,4 @@ export class LoginCardComponent implements OnInit {
     });
     console.log(username, password);
   }
-
 }

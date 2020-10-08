@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { DebugElement } from '@angular/core';
-import { By } from '@angular/platform-browser';
+import { DebugElement } from "@angular/core";
+import { By } from "@angular/platform-browser";
 
 import { CartItemComponent } from "src/app/modules/cart-item/cart-item.component";
 import { CartPageComponent } from "./cart-page.component";
@@ -24,7 +24,7 @@ describe("CartPageComponent", () => {
     fixture.detectChanges();
 
     //used to test rendered html via debug
-    de = fixture.debugElement.query(By.css('*'));
+    de = fixture.debugElement.query(By.css("*"));
     console.log(de);
     el = de.nativeElement;
   });
@@ -34,8 +34,9 @@ describe("CartPageComponent", () => {
   });
 
   //check correct html rendering using dsl of debug element to query debug elements in DOM
-  it('should have an H1 tag of `Shopping Cart`', () => {
-    expect(de.query(By.css('h1')).nativeElement.innerText).toBe('Shopping Cart');
+  it("should have an H1 tag of `Shopping Cart`", () => {
+    expect(de.query(By.css("h1")).nativeElement.innerText).toBe(
+      "Shopping Cart"
+    );
   });
-
 });

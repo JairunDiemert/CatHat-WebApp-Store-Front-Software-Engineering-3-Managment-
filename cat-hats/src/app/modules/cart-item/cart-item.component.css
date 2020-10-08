@@ -1,15 +1,16 @@
-h5, p {
-    font-family: 'Alice', serif;
+h5,
+p {
+  font-family: "Alice", serif;
 }
 
 p {
-    text-align: left;
+  text-align: left;
 }
 
 .btn-primary {
-    background-color: #5d3980;
+  background-color: #5d3980;
 }
 
-.ccontainer{
-    box-shadow: 2px 2px 2px 2px #888888;
+.ccontainer {
+  box-shadow: 2px 2px 2px 2px #888888;
 }

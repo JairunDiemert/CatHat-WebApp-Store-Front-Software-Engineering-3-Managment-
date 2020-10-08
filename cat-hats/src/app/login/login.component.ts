@@ -9,12 +9,12 @@ import { Router } from "@angular/router";
 })
 export class LoginComponent implements OnInit {
   constructor(private Auth: AuthService, private router: Router) {
-    if(this.Auth.getisLoggedIn()){
+    if (this.Auth.getisLoggedIn()) {
       this.router.navigate(["/"]);
     }
   }
 
-  ngOnInit() {} 
+  ngOnInit() {}
 
   loginUser(event) {
     event.preventDefault();

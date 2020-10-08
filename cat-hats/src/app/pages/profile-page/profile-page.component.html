@@ -1,60 +1,114 @@
 <header>
-    <img class="header-img" src="../../../assets/cats.png" alt="cats walking across the page" />
-    <h1 class="display-4">User Profile</h1>
+  <img
+    class="header-img"
+    src="../../../assets/cats.png"
+    alt="cats walking across the page"
+  />
+  <h1 class="display-4">User Profile</h1>
 </header>
 <main>
-    <div class="pb-5">
-        <div class="container d-flex justify-content-center">
-            <div class="card text-center">
-                <div class="card-header">
-                    <ul class="nav nav-tabs card-header-tabs">
-                        <li class="nav-item">
-                            <a class="nav-link active" (click)="profileClick()">Profile</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" (click)="editProfileClick()">Edit Profile</a>
-                    </ul>
-                </div> 
-                <div class="card-body">
-                    <div class="tab-pane active" id="profile" role="tabpanel" aria-labelledby="profile-tab" *ngIf="profileShow == true">
-                        <h5 class="card-title">{{customer.name}}</h5>
-                        <p class="username">{{customer.username}}</p>
-                        <p class="email">{{customer.email}}</p>
-                        <p class="address">{{customer.address}}</p>
-                    </div>
-                    <div class="tab-pane" id="edit-profile" role="tabpanel" aria-labelledby="edit-profile-tab" *ngIf="profileShow == false">
-                        <form #profile="ngForm" (ngSubmit)="onSubmit(profile)">
-                            <div class="form-group">
-                                <label for="exampleInputName1">Name</label>
-                                <input name="name" ngModel class="form-control" id="exampleInputName1" aria-describedby="nameHelp" [(ngModel)]="customer.name">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputUsername1">Username</label>
-                                <input name="username" ngModel class="form-control" id="exampleInputUsername1" aria-describedby="usernameHelp" [(ngModel)]="customer.username">
-                            </div>
-                            <div class="form-group">
-                              <label for="exampleInputEmail1">Email address</label>
-                              <input name="email" ngModel class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="customer.email">
-                              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputAddress1">Address</label>
-                                <input name="address" ngModel class="form-control" id="exampleInputAddress1" aria-describedby="addressHelp" [(ngModel)]="customer.address">
-                                <small id="addressHelp" class="form-text text-muted">We'll never share your address with anyone else.</small>
-                              </div>
-                            <div class="form-group">
-                              <label for="exampleInputPassword1">Password</label>
-                              <input name="password" ngModel class="form-control" id="exampleInputPassword1" [(ngModel)]="customer.password">
-                            </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                          </form>
-                    </div>
-
-                </div>
-            </div>
-            <div class="card text-center">
-                <p>ad for cat hat goes here</p>
-            </div>
+  <div class="pb-5">
+    <div class="container d-flex justify-content-center">
+      <div class="card text-center">
+        <div class="card-header">
+          <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+              <a class="nav-link active" (click)="profileClick()">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" (click)="editProfileClick()">Edit Profile</a>
+            </li>
+          </ul>
         </div>
+        <div class="card-body">
+          <div
+            class="tab-pane active"
+            id="profile"
+            role="tabpanel"
+            aria-labelledby="profile-tab"
+            *ngIf="profileShow == true"
+          >
+            <h5 class="card-title">{{ customer.name }}</h5>
+            <p class="username">{{ customer.username }}</p>
+            <p class="email">{{ customer.email }}</p>
+            <p class="address">{{ customer.address }}</p>
+          </div>
+          <div
+            class="tab-pane"
+            id="edit-profile"
+            role="tabpanel"
+            aria-labelledby="edit-profile-tab"
+            *ngIf="profileShow == false"
+          >
+            <form #profile="ngForm" (ngSubmit)="onSubmit(profile)">
+              <div class="form-group">
+                <label for="exampleInputName1">Name</label>
+                <input
+                  name="name"
+                  ngModel
+                  class="form-control"
+                  id="exampleInputName1"
+                  aria-describedby="nameHelp"
+                  [(ngModel)]="customer.name"
+                />
+              </div>
+              <div class="form-group">
+                <label for="exampleInputUsername1">Username</label>
+                <input
+                  name="username"
+                  ngModel
+                  class="form-control"
+                  id="exampleInputUsername1"
+                  aria-describedby="usernameHelp"
+                  [(ngModel)]="customer.username"
+                />
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input
+                  name="email"
+                  ngModel
+                  class="form-control"
+                  id="exampleInputEmail1"
+                  aria-describedby="emailHelp"
+                  [(ngModel)]="customer.email"
+                />
+                <small id="emailHelp" class="form-text text-muted"
+                  >We'll never share your email with anyone else.</small
+                >
+              </div>
+              <div class="form-group">
+                <label for="exampleInputAddress1">Address</label>
+                <input
+                  name="address"
+                  ngModel
+                  class="form-control"
+                  id="exampleInputAddress1"
+                  aria-describedby="addressHelp"
+                  [(ngModel)]="customer.address"
+                />
+                <small id="addressHelp" class="form-text text-muted"
+                  >We'll never share your address with anyone else.</small
+                >
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input
+                  name="password"
+                  ngModel
+                  class="form-control"
+                  id="exampleInputPassword1"
+                  [(ngModel)]="customer.password"
+                />
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="card text-center">
+        <p>ad for cat hat goes here</p>
+      </div>
     </div>
+  </div>
 </main>

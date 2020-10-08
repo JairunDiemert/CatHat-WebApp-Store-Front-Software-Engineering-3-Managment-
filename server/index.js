@@ -116,7 +116,7 @@ app.get("/api/data", async (req, res) => {
 app.get("/api/logout", (req, res) => {
   console.log("loging you out");
   req.session.destroy();
-  
+
   res.json({
     success: true,
   });
@@ -156,14 +156,13 @@ app.post("/api/user/:email", async (req, res) => {
   await User.update(
     { email: req.session.user },
     {
-      $set:
-      {
+      $set: {
         username: req.body.value.username,
         name: req.body.value.name,
         address: req.body.value.address,
         password: req.body.value.password,
-        email: req.body.value.email
-      }
+        email: req.body.value.email,
+      },
     }
   );
   res.json({

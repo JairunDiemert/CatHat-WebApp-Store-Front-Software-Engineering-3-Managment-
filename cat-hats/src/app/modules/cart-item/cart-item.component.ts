@@ -4,16 +4,14 @@ import { ItemModel } from "src/app/models/item-model";
 import { customerModel } from "src/app/models/customer-model";
 
 @Component({
-  selector: '[app-cart-item]',
-  templateUrl: './cart-item.component.html',
-  styleUrls: ['./cart-item.component.css']
+  selector: "[app-cart-item]",
+  templateUrl: "./cart-item.component.html",
+  styleUrls: ["./cart-item.component.css"],
 })
 export class CartItemComponent implements OnInit {
   @Input() public items: ItemModel;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
