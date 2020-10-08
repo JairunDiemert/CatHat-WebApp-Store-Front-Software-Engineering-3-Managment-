@@ -26,7 +26,7 @@
             id="profile"
             role="tabpanel"
             aria-labelledby="profile-tab"
-            *ngIf="profileShow == true"
+            *ngIf="profileShow"
           >
             <h5 class="card-title">{{ customer.name }}</h5>
             <p class="username">{{ customer.username }}</p>
@@ -38,7 +38,7 @@
             id="edit-profile"
             role="tabpanel"
             aria-labelledby="edit-profile-tab"
-            *ngIf="profileShow == false"
+            *ngIf="!profileShow"
           >
             <form #profile="ngForm" (ngSubmit)="onSubmit(profile)">
               <div class="form-group">

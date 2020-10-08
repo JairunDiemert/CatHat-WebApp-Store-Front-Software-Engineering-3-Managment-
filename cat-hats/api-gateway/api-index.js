@@ -47,4 +47,42 @@ app.post("/api/register", async (req, res) => {
     });
 });
 
+//angular post connects to this endpoint, mirrors the post in the user service
+app.get("/api/user", async (req, res) => {
+  //axios to make http request to user service
+  axios
+    .get("http://localhost:12345/api/user", {
+      //retrieve variable info from json payload that came from client side, sends to user service
+    })
+    //axiosResponse: json payload returned from user service
+    .then((axiosResponse) => {
+      console.log(axiosResponse);
+      //sends json request back to calling client
+      res.json(axiosResponse.data);
+    })
+    //catch calls errors with sending or receiving request
+    .catch((axiosError) => {
+      console.log(axiosError);
+    });
+});
+
+//angular post connects to this endpoint, mirrors the post in the user service
+app.get("/api/logout", async (req, res) => {
+  //axios to make http request to user service
+  axios
+    .get("http://localhost:12345/api/logout", {
+      //retrieve variable info from json payload that came from client side, sends to user service
+    })
+    //axiosResponse: json payload returned from user service
+    .then((axiosResponse) => {
+      console.log(axiosResponse);
+      //sends json request back to calling client
+      res.json(axiosResponse.data);
+    })
+    //catch calls errors with sending or receiving request
+    .catch((axiosError) => {
+      console.log(axiosError);
+    });
+});
+
 app.listen(54321);

@@ -22,7 +22,7 @@ mongoose.Promise = Promise;
 
 app.use(bodyParser.json());
 
-app.get("/api/user/:email", async (req, res) => {
+/*app.get("/api/user/:email", async (req, res) => {
   const userEmail = req.params.email;
   await User.find({ email: userEmail }, function (err, result) {
     if (err) {
@@ -30,6 +30,27 @@ app.get("/api/user/:email", async (req, res) => {
     } else {
       res.send(result[0]);
     }
+  });
+});*/
+app.get("/api/user", async (req, res) => {
+  const user = await User.findOne({ email: req.session.user });
+
+  if (!user) {
+    res.json({
+      status: false,
+      message: "User was deleted",
+    });
+    return;
+  }
+
+  res.json({
+    status: true,
+    email: req.session.user,
+    total: user.total,
+    username: user.username,
+    password: user.password,
+    name: user.name,
+    address: user.address,
   });
 });
 
@@ -84,7 +105,6 @@ app.post("/api/register", async (req, res) => {
 
   const result = await user.save();
   console.log(result);
-  req.session.destroy();
   res.json({
     success: true,
     message: "Welcome!",
