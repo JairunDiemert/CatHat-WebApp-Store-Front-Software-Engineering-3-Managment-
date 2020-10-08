@@ -34,9 +34,9 @@ app.get("/api/user/:email", async (req, res) => {
 });
 
 app.post("/api/login", async (req, res) => {
-  const { username, password } = req.body;
-  console.log(username, password);
-  const resp = await User.findOne({ username, password });
+  const { email, password } = req.body;
+  console.log(email, password);
+  const resp = await User.findOne({ email, password });
   if (!resp) {
     //console.log("incorrect details");
     res.json({
@@ -48,7 +48,7 @@ app.post("/api/login", async (req, res) => {
     res.json({
       success: true,
     });
-    req.session.user = username;
+    req.session.user = email;
     req.session.save();
     console.log("logging you in");
   }

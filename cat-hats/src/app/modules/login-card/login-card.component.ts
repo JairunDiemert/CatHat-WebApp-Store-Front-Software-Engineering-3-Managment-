@@ -38,10 +38,10 @@ export class LoginCardComponent implements OnInit {
   }
 
   onSubmit(login: NgForm) {
-    const username = login.value.email;
+    const email = login.value.email;
     const password = login.value.password;
 
-    this.Auth.getUserDetails(username, password).subscribe((data) => {
+    this.Auth.getUserDetails(email, password).subscribe((data) => {
       if (data.success) {
         this.router.navigate(["/"]);
         this.Auth.setLoggedIn(true);
@@ -52,6 +52,6 @@ export class LoginCardComponent implements OnInit {
         this.loginShow = this.Auth.getisLoggedIn();
       }
     });
-    console.log(username, password);
+    console.log(email, password);
   }
 }

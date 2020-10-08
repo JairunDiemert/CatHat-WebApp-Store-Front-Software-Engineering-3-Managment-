@@ -31,12 +31,12 @@ export class AuthService {
     return this.loggedInStatus;
   }
 
-  getUserDetails(username, password) {
-    localStorage.setItem("username", username);
+  getUserDetails(email, password) {
+    localStorage.setItem("email", email);
 
     ///post these details to API server return user info if correct
     return this.http.post<any>("/api/login", {
-      username,
+      email,
       password,
     });
   }
