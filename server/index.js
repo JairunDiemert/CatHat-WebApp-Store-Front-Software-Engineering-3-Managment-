@@ -32,9 +32,10 @@ app.use(bodyParser.json());
     }
   });
 });*/
-app.get("/api/user", async (req, res) => {
-  const user = await User.findOne({ email: req.session.user });
-
+app.get("/api/user/:email", async (req, res) => {
+  const userEmail = req.params.email;
+  const user = await User.findOne({ email: userEmail });
+  console.log(userEmail);
   if (!user) {
     res.json({
       status: false,
@@ -45,7 +46,7 @@ app.get("/api/user", async (req, res) => {
 
   res.json({
     status: true,
-    email: req.session.user,
+    email: user.email,
     total: user.total,
     username: user.username,
     password: user.password,

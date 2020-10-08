@@ -48,10 +48,11 @@ app.post("/api/register", async (req, res) => {
 });
 
 //angular post connects to this endpoint, mirrors the post in the user service
-app.get("/api/user", async (req, res) => {
+app.get("/api/user/:email", async (req, res) => {
+  const userEmail = req.params.email;
   //axios to make http request to user service
   axios
-    .get("http://localhost:12345/api/user", {
+    .get("http://localhost:12345/api/user/" + userEmail, {
       //retrieve variable info from json payload that came from client side, sends to user service
     })
     //axiosResponse: json payload returned from user service

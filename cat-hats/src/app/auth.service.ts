@@ -57,11 +57,7 @@ export class AuthService {
     });
   }
 
-  /*getUser(email) {
-    return this.http.get<any>("/api/user/" + email);
-  }*/
-
   getUser(email) {
-    return this.http.get<any>("/api/user");
+    return this.http.get<any>("/api/user/" + email);
   }
 }
