@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: "", component: HomePageComponent },
   { path: "catalog", component: CatalogPageComponent },
   { path: "cart", component: CartPageComponent },
-  { path: "profile", component: ProfilePageComponent },
+  { path: "profile", component: ProfilePageComponent, canActivate: [AuthGuard], },
   { path: "register", component: RegisterPageComponent },
   { path: "records", component: RecordsPageComponent },
   { path: "login", component: LoginComponent },
