@@ -1,16 +1,15 @@
 h1 {
-    font-family: 'Alice', serif;
+  font-family: "Alice", serif;
 }
 
 header {
-    align-content: center;
-    text-align: center;
+  align-content: center;
+  text-align: center;
 }
 
 body {
-    background: #eecda3;
-    background: -webkit-linear-gradient(to right, #eecda3, #ef629f);
-    background: linear-gradient(to right, #eecda3, #ef629f);
-    min-height: 100vh;
-  }
-  
+  background: #eecda3;
+  background: -webkit-linear-gradient(to right, #eecda3, #ef629f);
+  background: linear-gradient(to right, #eecda3, #ef629f);
+  min-height: 100vh;
+}

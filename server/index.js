@@ -1,26 +1,31 @@
 const connectionString =
   "mongodb+srv://madcatter:madcatter@cluster0.gjo41.mongodb.net/angulardb?retryWrites=true&w=majority";
 const express = require("express");
-const bodyParser = require("body-parser");
-const { Mongoose } = require("mongoose");
-const User = require("./models/users");
 const app = express();
+const User = require("./models/users");
 const session = require("express-session");
+const bodyParser = require("body-parser");
+const cookieParser = require('cookie-parser');
+const { Mongoose } = require("mongoose");
 const mongoose = require("mongoose");
 const connector = mongoose
   .connect(connectionString)
   .then(() => console.log("Mongoose up"));
 
+
 app.use(
+  //session cookie for reloading and open/closing
   session({
     secret: "cathat",
     cookie: {},
   })
 );
 
-mongoose.Promise = Promise;
-
 app.use(bodyParser.json());
+
+app.use(cookieParser());
+
+mongoose.Promise = Promise;
 
 app.get("/api/user/:email", async (req, res) => {
   const userEmail = req.params.email;
@@ -31,38 +36,62 @@ app.get("/api/user/:email", async (req, res) => {
       res.send(result[0]);
     }
   });
+});*/
+app.get("/api/user/:email", async (req, res) => {
+  const userEmail = req.params.email;
+  const user = await User.findOne({ email: userEmail });
+  console.log(userEmail);
+  if (!user) {
+    res.json({
+      status: false,
+      message: "User was deleted",
+    });
+    return;
+  }
+
+  res.json({
+    status: true,
+    email: user.email,
+    total: user.total,
+    username: user.username,
+    password: user.password,
+    name: user.name,
+    address: user.address,
+  });
 });
 
 app.post("/api/login", async (req, res) => {
   const { email, password } = req.body;
   console.log(email, password);
-  const resp = await User.findOne({ email, password });
+
+  let resp;
+
+  //if using token, pass through api token
+  if(req.body.token != undefined) {
+    resp = await User.findOne({apiToken: req.body.token});
+  } else {
+    resp = await User.findOne({ email, password });
+  }
   if (!resp) {
     //console.log("incorrect details");
     res.json({
       success: false,
-      message: "Incorrect details",
+      message: "Incorrect credentials",
     });
   } else {
     //json object created with success value
     res.json({
       success: true,
     });
-    req.session.user = email;
-    req.session.save();
-    console.log("logging you in");
   }
   //res.send("XXX")
 });
 
-app.get("/api/isloggedin", (req, res) => {
-  res.json({
-    status: !!req.session.user,
-  });
-});
-
 app.post("/api/register", async (req, res) => {
   const { username, name, email, address, password } = req.body;
+
+  //concatenate cat with email string, template literal
+  const token = `cat-${email}`;
 
   const existingUser = await User.findOne({ email });
 
@@ -80,13 +109,18 @@ app.post("/api/register", async (req, res) => {
     email,
     address,
     password,
+    apiToken: token //pass concat string to db
   });
 
   const result = await user.save();
   console.log(result);
+  
   res.json({
     success: true,
     message: "Welcome!",
+    
+    //set cookie, (name of cookie being created, value of cookie concat string)
+    token
   });
 });
 
@@ -112,15 +146,6 @@ app.get("/api/data", async (req, res) => {
   });
 });
 
-app.get("/api/logout", (req, res) => {
-  console.log("loging you out");
-  req.session.destroy();
-  
-  res.json({
-    success: true,
-  });
-});
-
 app.post("/api/total", async (req, res) => {
   console.log(req.session.user, req.body.value);
   const user = await User.findOne({ email: req.session.user });
@@ -142,8 +167,8 @@ app.post("/api/total", async (req, res) => {
 });
 
 app.post("/api/user/:email", async (req, res) => {
-  console.log(req.session.user, req.body.value);
-  const user = await User.findOne({ email: req.session.user });
+  console.log(req.session.user, req.body.oldEmail);
+  const user = await User.findOne({ email: req.body.oldEmail });
   if (!user) {
     res.json({
       success: false,
@@ -153,16 +178,15 @@ app.post("/api/user/:email", async (req, res) => {
   }
 
   await User.update(
-    { email: req.session.user },
+    { email: req.body.oldEmail },
     {
-      $set:
-      {
-        username: req.body.value.username,
-        name: req.body.value.name,
-        address: req.body.value.address,
-        password: req.body.value.password,
-        email: req.body.value.email
-      }
+      $set: {
+        username: req.body.username,
+        name: req.body.name,
+        address: req.body.address,
+        password: req.body.password,
+        email: req.body.email,
+      },
     }
   );
   res.json({

@@ -1,48 +1,47 @@
 h1 {
-    font-family: 'Alice', serif;
+  font-family: "Alice", serif;
 }
 
 header {
-    align-content: center;
-    text-align: center;
+  align-content: center;
+  text-align: center;
 }
 
 body {
-    background: #00b09b;
-    background: -webkit-linear-gradient(to right, #00b09b, #96c93d);
-    background: linear-gradient(to right, #00b084, #43e085);
-    min-height: 100vh;
-  }
-
-  .btn-primary {
-    background-color: #5d3980;
+  background: #00b09b;
+  background: -webkit-linear-gradient(to right, #00b09b, #96c93d);
+  background: linear-gradient(to right, #00b084, #43e085);
+  min-height: 100vh;
 }
 
-.ccontainer{
-    box-shadow: 2px 2px 2px 2px #888888;
+.btn-primary {
+  background-color: #5d3980;
+}
+
+.ccontainer {
+  box-shadow: 2px 2px 2px 2px #888888;
 }
 
 .form-control:not(select) {
-    padding: 1.5rem 0.5rem;
+  padding: 1.5rem 0.5rem;
 }
 
 select.form-control {
-    height: 52px;
-    padding-left: 0.5rem;
+  height: 52px;
+  padding-left: 0.5rem;
 }
 
 .form-control::placeholder {
-    color: #ccc;
-    font-weight: bold;
-    font-size: 0.9rem;
+  color: #ccc;
+  font-weight: bold;
+  font-size: 0.9rem;
 }
 .form-control:focus {
-    box-shadow: none;
+  box-shadow: none;
 }
 
 button {
-    background-color: #b3a4c4;
-    border: none;
-    padding: 15px 32px;
+  background-color: #b3a4c4;
+  border: none;
+  padding: 15px 32px;
 }
-
