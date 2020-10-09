@@ -36,7 +36,8 @@ app.get("/api/user/:email", async (req, res) => {
       res.send(result[0]);
     }
   });
-});*/
+});
+
 app.get("/api/user/:email", async (req, res) => {
   const userEmail = req.params.email;
   const user = await User.findOne({ email: userEmail });
