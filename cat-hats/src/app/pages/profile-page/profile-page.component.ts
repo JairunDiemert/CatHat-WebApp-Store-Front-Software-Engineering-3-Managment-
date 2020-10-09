@@ -43,18 +43,29 @@ export class ProfilePageComponent implements OnInit {
   }
 
   onSubmit(profileForm: NgForm) {
+    let oldEmail: String = localStorage.getItem("email");
+    console.log(oldEmail);
     this.customer.username = profileForm.value.username;
     this.customer.name = profileForm.value.name;
     this.customer.email = profileForm.value.email;
     this.customer.address = profileForm.value.address;
     this.customer.password = profileForm.value.password;
 
-    this.user.updateUser(this.customer).subscribe((data) => {
-      if (data.success) {
-        alert("Your profile was updated");
-      } else {
-        alert("Some problem");
-      }
-    });
+    this.user
+      .updateUser(
+        oldEmail,
+        this.customer.username,
+        this.customer.name,
+        this.customer.email,
+        this.customer.address,
+        this.customer.password
+      )
+      .subscribe((data) => {
+        if (data.success) {
+          alert("Your profile was updated");
+        } else {
+          alert("Some problem");
+        }
+      });
   }
 }
