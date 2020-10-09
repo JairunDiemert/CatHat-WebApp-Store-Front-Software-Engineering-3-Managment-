@@ -1,21 +1,20 @@
-
 h1 {
-    font-family: 'Alice', serif;
+  font-family: "Alice", serif;
 }
 
 header {
-    align-content: center;
-    text-align: center;
+  align-content: center;
+  text-align: center;
 }
 
 .header-img {
-    width: 75%;
+  width: 75%;
 }
 
-.card{
-    width: 50%;
+.card {
+  width: 50%;
 }
 
 .btn-primary {
-    background-color: #5d3980;
+  background-color: #5d3980;
 }

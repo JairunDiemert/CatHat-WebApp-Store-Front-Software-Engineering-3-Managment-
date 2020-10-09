@@ -1,16 +1,34 @@
 <!--parsing cart-item rows into separate columns with respective information-->
-<td class="align-middle text-center"><a href="#" class="btn btn-primary">X</a></td>
-<td>
-    <div class="px-2 py-2 d-inline-block">
-        <img src="{{ items.itemImg }}" alt="{{ items.itemName }}" width="80" class="img-fluid rounded shadow-sm align-self-center">
-        <div class="ml-3 d-inline-block align-middle text-center">
-            <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block align-middle text-right">{{ items.itemName }}</a></h5>
-        </div>
-    </div>
+<td class="align-middle text-center">
+  <a href="#" class="btn btn-primary">X</a>
 </td>
-<td class="align-middle text-center"><strong>${{ items.itemPrice }}</strong></td>
-<td class="align-middle text-center"><strong>{{ items.itemQuantity }}</strong></td>
-<td class="align-middle text-center"><strong><span>${{ (items.itemPrice * items.itemQuantity) | number:'1.2-2' }}</span></strong></td>
-
-           
-  
+<td>
+  <div class="px-2 py-2 d-inline-block">
+    <img
+      src="{{ items.itemImg }}"
+      alt="{{ items.itemName }}"
+      width="80"
+      class="img-fluid rounded shadow-sm align-self-center"
+    />
+    <div class="ml-3 d-inline-block align-middle text-center">
+      <h5 class="mb-0">
+        <a href="#" class="text-dark d-inline-block align-middle text-right">{{
+          items.itemName
+        }}</a>
+      </h5>
+    </div>
+  </div>
+</td>
+<td class="align-middle text-center">
+  <strong>${{ items.itemPrice }}</strong>
+</td>
+<td class="align-middle text-center">
+  <strong>{{ items.itemQuantity }}</strong>
+</td>
+<td class="align-middle text-center">
+  <strong
+    ><span
+      >${{ items.itemPrice * items.itemQuantity | number: "1.2-2" }}</span
+    ></strong
+  >
+</td>

@@ -1,35 +1,37 @@
 .logo {
-    width: 75%;
-    height: auto;
+  width: 75%;
+  height: auto;
 }
 
-.nav-link, button, p {
-    font-family: 'Alice', serif;
+.nav-link,
+button,
+p {
+  font-family: "Alice", serif;
 }
 
 .nav-link {
-    font-size: larger;
+  font-size: larger;
 }
 
 nav {
-    z-index: 6;
+  z-index: 6;
 }
 
 .navbar-light {
-    background-color: #b3a4c4;
+  background-color: #b3a4c4;
 }
 
 button {
-    background-color: #b3a4c4;
-    border: none;
-    padding: 15px 32px;
+  background-color: #b3a4c4;
+  border: none;
+  padding: 15px 32px;
 }
 
-.dropdown-menu{
-    min-width: 100%;
-    padding:15px 32px;
+.dropdown-menu {
+  min-width: 100%;
+  padding: 15px 32px;
 }
 
 p {
-    font-style: italic;
+  font-style: italic;
 }

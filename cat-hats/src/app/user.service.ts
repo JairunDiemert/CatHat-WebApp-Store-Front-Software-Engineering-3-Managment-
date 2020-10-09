@@ -30,9 +30,14 @@ export class UserService {
     return this.http.get<myData>("/api/data");
   }
 
-  updateUser(value) {
+  updateUser(oldEmail, username, name, email, address, password) {
     return this.http.post<totalStatus>("/api/user/:email", {
-      value,
+      oldEmail,
+      username,
+      name,
+      email,
+      address,
+      password,
     });
   }
   updateTotal(value) {
@@ -46,6 +51,7 @@ export class UserService {
   }
 
   logout() {
+    localStorage.setItem("loggedIn", "false");
     return this.http.get<logoutStatus>("/api/logout");
   }
 }

@@ -36,6 +36,28 @@ app.get("/api/user/:email", async (req, res) => {
       res.send(result[0]);
     }
   });
+});*/
+app.get("/api/user/:email", async (req, res) => {
+  const userEmail = req.params.email;
+  const user = await User.findOne({ email: userEmail });
+  console.log(userEmail);
+  if (!user) {
+    res.json({
+      status: false,
+      message: "User was deleted",
+    });
+    return;
+  }
+
+  res.json({
+    status: true,
+    email: user.email,
+    total: user.total,
+    username: user.username,
+    password: user.password,
+    name: user.name,
+    address: user.address,
+  });
 });
 
 app.post("/api/login", async (req, res) => {
@@ -145,8 +167,8 @@ app.post("/api/total", async (req, res) => {
 });
 
 app.post("/api/user/:email", async (req, res) => {
-  console.log(req.session.user, req.body.value);
-  const user = await User.findOne({ email: req.session.user });
+  console.log(req.session.user, req.body.oldEmail);
+  const user = await User.findOne({ email: req.body.oldEmail });
   if (!user) {
     res.json({
       success: false,
@@ -156,16 +178,15 @@ app.post("/api/user/:email", async (req, res) => {
   }
 
   await User.update(
-    { email: req.session.user },
+    { email: req.body.oldEmail },
     {
-      $set:
-      {
-        username: req.body.value.username,
-        name: req.body.value.name,
-        address: req.body.value.address,
-        password: req.body.value.password,
-        email: req.body.value.email
-      }
+      $set: {
+        username: req.body.username,
+        name: req.body.name,
+        address: req.body.address,
+        password: req.body.password,
+        email: req.body.email,
+      },
     }
   );
   res.json({

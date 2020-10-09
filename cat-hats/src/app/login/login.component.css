@@ -18,7 +18,7 @@ form {
   border-radius: 20px;
 }
 
-input#username,
+input#email,
 input#password {
   outline: 0;
   font-size: 20px;
