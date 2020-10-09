@@ -4,17 +4,17 @@
 
 To run our project:
 
-1. Turn on Service
+<b>Turn on Service</b>
   1. cd into our server folder
   2. run npm install
   3. node index.js
   
-2. Turn on Gateway
+<b>Turn on Gateway</b>
   1. cd into our api-gateway folder
   2. run npm install
   3. node api-index.js
 
-3. Turn on Client
+<b>Then Turn on Client</b>
   1. cd into our cat-hats folder
   2. run npm install
   3. ng serve or npm start
