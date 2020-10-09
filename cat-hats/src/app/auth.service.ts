@@ -34,11 +34,41 @@ export class AuthService {
   getUserDetails(email, password) {
     localStorage.setItem("email", email);
 
-    ///post these details to API server return user info if correct
-    return this.http.post<any>("/api/login", {
-      email,
-      password,
-    });
+    //declare string containing cookie name
+    let cookieName = "authToken";
+
+    //function retrieves cookie on browser, returns "" if no existing cookie
+    function getCookie(cookieName) {
+      var name = cookieName + "=";
+      var decodedCookie = decodeURIComponent(document.cookie);
+      var ca = decodedCookie.split(';');
+      for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
+    }
+
+    let token = getCookie(cookieName);
+
+    //if token is set checked by getting cookie storing the token, 
+    if(token != "") {
+      //then post api token using get(token)
+      return this.http.post<any>("/api/login", {
+        token
+      });
+    } else { //checks if cookie set in document.cookie
+      ///post these details to API server, will return user information if correct
+      return this.http.post<any>("/api/login", {
+        email,
+        password,
+      });
+    }
   }
 
   registerUser(username, name, email, address, password) {
@@ -47,7 +77,8 @@ export class AuthService {
     localStorage.setItem("email", email);
     localStorage.setItem("address", address);
     localStorage.setItem("password", password);
-
+    
+    //receive cookie containing token
     return this.http.post<registerResponse>("/api/register", {
       username,
       name,
