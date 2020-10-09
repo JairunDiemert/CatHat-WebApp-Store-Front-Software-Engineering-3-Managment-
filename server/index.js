@@ -1,26 +1,31 @@
 const connectionString =
   "mongodb+srv://madcatter:madcatter@cluster0.gjo41.mongodb.net/angulardb?retryWrites=true&w=majority";
 const express = require("express");
-const bodyParser = require("body-parser");
-const { Mongoose } = require("mongoose");
-const User = require("./models/users");
 const app = express();
+const User = require("./models/users");
 const session = require("express-session");
+const bodyParser = require("body-parser");
+const cookieParser = require('cookie-parser');
+const { Mongoose } = require("mongoose");
 const mongoose = require("mongoose");
 const connector = mongoose
   .connect(connectionString)
   .then(() => console.log("Mongoose up"));
 
+
 app.use(
+  //session cookie for reloading and open/closing
   session({
     secret: "cathat",
     cookie: {},
   })
 );
 
-mongoose.Promise = Promise;
-
 app.use(bodyParser.json());
+
+app.use(cookieParser());
+
+mongoose.Promise = Promise;
 
 app.get("/api/user/:email", async (req, res) => {
   const userEmail = req.params.email;
@@ -36,33 +41,35 @@ app.get("/api/user/:email", async (req, res) => {
 app.post("/api/login", async (req, res) => {
   const { email, password } = req.body;
   console.log(email, password);
-  const resp = await User.findOne({ email, password });
+
+  let resp;
+
+  //if using token, pass through api token
+  if(req.body.token != undefined) {
+    resp = await User.findOne({apiToken: req.body.token});
+  } else {
+    resp = await User.findOne({ email, password });
+  }
   if (!resp) {
     //console.log("incorrect details");
     res.json({
       success: false,
-      message: "Incorrect details",
+      message: "Incorrect credentials",
     });
   } else {
     //json object created with success value
     res.json({
       success: true,
     });
-    req.session.user = email;
-    req.session.save();
-    console.log("logging you in");
   }
   //res.send("XXX")
 });
 
-app.get("/api/isloggedin", (req, res) => {
-  res.json({
-    status: !!req.session.user,
-  });
-});
-
 app.post("/api/register", async (req, res) => {
   const { username, name, email, address, password } = req.body;
+
+  //concatenate cat with email string, template literal
+  const token = `cat-${email}`;
 
   const existingUser = await User.findOne({ email });
 
@@ -80,13 +87,18 @@ app.post("/api/register", async (req, res) => {
     email,
     address,
     password,
+    apiToken: token //pass concat string to db
   });
 
   const result = await user.save();
   console.log(result);
+  
   res.json({
     success: true,
     message: "Welcome!",
+    
+    //set cookie, (name of cookie being created, value of cookie concat string)
+    token
   });
 });
 
@@ -109,15 +121,6 @@ app.get("/api/data", async (req, res) => {
     password: user.password,
     name: user.name,
     address: user.address,
-  });
-});
-
-app.get("/api/logout", (req, res) => {
-  console.log("loging you out");
-  req.session.destroy();
-  
-  res.json({
-    success: true,
   });
 });
 
