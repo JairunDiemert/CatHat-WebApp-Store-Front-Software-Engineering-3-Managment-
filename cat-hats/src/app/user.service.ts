@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
+import { AuthService } from "src/app/auth.service";
 
 interface myData {
   email: string;
@@ -24,22 +25,22 @@ interface totalStatus {
   providedIn: "root",
 })
 export class UserService {
-  constructor(private http: HttpClient) {}
+  constructor(private auth: AuthService, private http: HttpClient) {}
 
   getData() {
     return this.http.get<myData>("/api/data");
   }
 
-  updateUser(oldEmail, username, name, email, address, password) {
+  updateUser= (oldEmail, username, name, email, address, password) => {
+    
+    let cookieName = "authToken";
+    let token = this.auth.getCookie(cookieName); 
+
     return this.http.post<totalStatus>("/api/user/:email", {
-      oldEmail,
-      username,
-      name,
-      email,
-      address,
-      password,
-    });
+      oldEmail, username, name, email, address, password, token
+    }); 
   }
+
   updateTotal(value) {
     return this.http.post<totalStatus>("/api/total", {
       value,

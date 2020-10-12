@@ -27,38 +27,40 @@ export class AuthService {
       this.loggedInStatus = true;
     } else if (localStorage.getItem("loggedIn") == "false") {
       this.loggedInStatus = false;
+      localStorage.clear();
     }
     return this.loggedInStatus;
   }
 
-  getUserDetails(email, password) {
+  //function retrieves existing cookie on browser, returns "" if no existing cookie
+  getCookie(cookieName) {
+    var name = cookieName + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
+  //method handling login
+  getUserDetails= (email, password) => { //forced binding
     localStorage.setItem("email", email);
 
     //declare string containing cookie name
     let cookieName = "authToken";
+    let token = this.getCookie(cookieName).toString(); 
 
-    //function retrieves cookie on browser, returns "" if no existing cookie
-    function getCookie(cookieName) {
-      var name = cookieName + "=";
-      var decodedCookie = decodeURIComponent(document.cookie);
-      var ca = decodedCookie.split(';');
-      for(var i = 0; i <ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-          c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-          return c.substring(name.length, c.length);
-        }
-      }
-      return "";
-    }
+    console.log("Token found in browser when logging in: ", token);
 
-    let token = getCookie(cookieName);
-
-    //if token is set checked by getting cookie storing the token, 
+    //checks if token is set by getting cookie storing the token
     if(token != "") {
-      //then post api token using get(token)
       return this.http.post<any>("/api/login", {
         token
       });
@@ -72,13 +74,6 @@ export class AuthService {
   }
 
   registerUser(username, name, email, address, password) {
-    localStorage.setItem("username", username);
-    localStorage.setItem("name", name);
-    localStorage.setItem("email", email);
-    localStorage.setItem("address", address);
-    localStorage.setItem("password", password);
-    
-    //receive cookie containing token
     return this.http.post<registerResponse>("/api/register", {
       username,
       name,
@@ -90,5 +85,6 @@ export class AuthService {
 
   getUser(email) {
     return this.http.get<any>("/api/user/" + email);
+    console.log("getUser method in auth.service called");
   }
 }
