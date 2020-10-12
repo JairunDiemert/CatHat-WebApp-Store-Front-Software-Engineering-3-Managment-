@@ -6,10 +6,9 @@ const UserSchema = new mongoose.Schema({
 	name: {type: String, default: "Jane Doe"},
 	address: {type: String, default: "1234 Lane"},
 	username: {type: String, default: "janedoe"},
-	total: {type: String, default: "You have no total"},
-	apiToken: {type: String}
+	total: {type: String, default: "You have no total"}
 })
 
-const User = mongoose.model('People', UserSchema)
+const User = mongoose.model('User', UserSchema)
 
 module.exports = User;

@@ -30,6 +30,6 @@ export class LoginComponent implements OnInit {
         window.alert(data.message);
       }
     });
-    console.log(username, password);
+    console.log("Log in with: ", username, password);
   }
 }

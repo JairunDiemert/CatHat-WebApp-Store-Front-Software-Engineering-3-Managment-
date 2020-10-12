@@ -22,25 +22,27 @@ app.get("/api/isloggedin", (req, res) => {
 });
 
 app.get("/api/logout", (req, res) => {
-    console.log("loging you out");
+    console.log("Logging you out...");
     req.session.destroy();
+    res.clearCookie("authToken");
     
     res.json({
       success: true,
     });
   });
 
-//angular post connects to this endpoint, mirrors the post in the user service
+//connect client method with matching protocol in user service
 app.get("/api/user/:email", async (req, res) => {
     const userEmail = req.params.email;
+    
     //axios to make http request to user service
     axios
-      .get("http://localhost:12345/api/user/" + userEmail, {
-        //retrieve variable info from json payload that came from client side, sends to user service
-      })
+      .get("http://localhost:12345/api/user/" + userEmail, {})
       //axiosResponse: json payload returned from user service
       .then((axiosResponse) => {
-        console.log(axiosResponse);
+        
+        res.cookie("authToken", axiosResponse.data.apiToken);
+
         //sends json request back to calling client
         res.json(axiosResponse.data);
       })
@@ -50,22 +52,29 @@ app.get("/api/user/:email", async (req, res) => {
       });
   });
 
-//angular post connects to this endpoint, mirrors the post in the user service
+//connect updateUser method with matching POST in user service
 app.post("/api/user/:email", async (req, res) => {
+
+    //jsonPayload containing request sent from client post in updateUser method
+    let jsonPayload = {        
+      oldEmail: req.body.oldEmail,
+      username: req.body.username,
+      name: req.body.name,
+      email: req.body.email,
+      address: req.body.address,
+      password: req.body.password,
+      token: req.body.token
+    };
+
     //axios to make http request to user service
     axios
-      .post("http://localhost:12345/api/user/:email", {
-        //retrieve variable info from json payload that came from client side, sends to user service
-        oldEmail: req.body.oldEmail,
-        username: req.body.username,
-        name: req.body.name,
-        email: req.body.email,
-        address: req.body.address,
-        password: req.body.password,
-      })
+      .post("http://localhost:12345/api/user/:email", jsonPayload) 
+
       //axiosResponse: json payload returned from user service
       .then((axiosResponse) => {
-        console.log(axiosResponse);
+
+        res.cookie("authToken", axiosResponse.data.apiToken);
+
         //sends json request back to calling client
         res.json(axiosResponse.data);
       })
@@ -75,46 +84,38 @@ app.post("/api/user/:email", async (req, res) => {
       });
 });
 
-//angular post connects to this endpoint, mirrors the post in the user service
+//connect getUserDetails with user service login protocol
 app.post("/api/login", async (req, res) => {
-
-    //create variable to hold jsonPayload containing request sent through client post
     let jsonPayload;
 
-    //if api get(token) set, then login with api token, else login with email and password
+    //checks if token retrieved from browser on client side for login usage, else login with email and password
     if(req.body.token != undefined) {
         jsonPayload = {token: req.body.token};
-    }
-    else {
+    } else {
         jsonPayload = {email: req.body.email, password: req.body.password};
     }
 
-    //axios to make http request to user service
-    //retrieve variable info from json payload that came from client side, sends to user service
+    //passes json payload to endpoint in user service
     axios.post('http://localhost:12345/api/login', jsonPayload)
     
-    //axiosResponse: json payload returned from user service
     .then(axiosResponse => {
-        console.log(axiosResponse);
-
         if(axiosResponse.data.success == true) {
             req.session.user = req.body.email;
             req.session.save();
+
+            res.cookie("authToken", axiosResponse.data.apiToken);
+
             console.log("Logging you in...");
         }
-
-        //sends json request back to calling client
         res.json(axiosResponse.data);
     })
-    //catch calls errors with sending or receiving request
     .catch(axiosError => {
         console.log(axiosError);
     });
 });
 
+//connect registerUser method with matching endpoint in user service
 app.post("/api/register", async (req, res) => {
-
-    //create variable to hold jsonPayload containing request sent through client post
     let jsonPayload;
 
     jsonPayload = {
@@ -125,23 +126,15 @@ app.post("/api/register", async (req, res) => {
         password: req.body.password,
     };
 
-    //axios to make http request to user service
-    //retrieve variable info from json payload that came from client side, sends to user service
     axios.post('http://localhost:12345/api/register', jsonPayload)
-
-    //axiosResponse: json payload returned from user service contains message and token if success message true
-    .then(axiosResponse => {
-        console.log(axiosResponse);
-
-        res.cookie("authToken", axiosResponse.data.token);
-
-        //sends json request back to calling client
-        res.json(axiosResponse.data);
-    })
-    //catch calls errors with sending or receiving request
-    .catch(axiosError => {
-        console.log(axiosError);
-    });
+        .then(axiosResponse => {
+            console.log(axiosResponse);
+            res.cookie("authToken", axiosResponse.data.apiToken);
+            res.json(axiosResponse.data);
+        })
+        .catch(axiosError => {
+            console.log(axiosError);
+        });
 });
 
 app.listen(54321);

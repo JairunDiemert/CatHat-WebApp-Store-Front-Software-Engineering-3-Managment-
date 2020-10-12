@@ -29,23 +29,20 @@ mongoose.Promise = Promise;
 
 app.get("/api/user/:email", async (req, res) => {
   const userEmail = req.params.email;
-  await User.find({ email: userEmail }, function (err, result) {
-    if (err) {
-      res.send(err);
-    } else {
-      res.send(result[0]);
-    }
-  });
-});
 
-app.get("/api/user/:email", async (req, res) => {
-  const userEmail = req.params.email;
-  const user = await User.findOne({ email: userEmail });
-  console.log(userEmail);
+  let user;
+  let apiToken;
+
+  if(req.body.token != undefined) {
+    user = await User.findOne({ apiToken: req.body.token });
+  } else {
+    user = await User.findOne({ email: userEmail });
+  }
+
   if (!user) {
     res.json({
       status: false,
-      message: "User was deleted",
+      message: "User was deleted.",
     });
     return;
   }
@@ -58,48 +55,89 @@ app.get("/api/user/:email", async (req, res) => {
     password: user.password,
     name: user.name,
     address: user.address,
+    apiToken: user._id
   });
+});
+
+app.post("/api/user/:email", async (req, res) => {
+  let user;
+  let apiToken = req.body.token;
+
+  //if using token, pass through api token
+  if((req.body.token != undefined) && mongoose.Types.ObjectId.isValid(apiToken)) {
+    user = await User.findById(apiToken);
+  } else {
+    user = await User.findOne({ email: req.body.oldEmail });
+  }
+
+  console.log("User found for profile update: ", user);
+
+  if (!user) {
+    res.json({
+      success: false,
+      message: "Invalid user!",
+    });
+    return;
+  }
+
+  await User.updateOne(
+    { email: req.body.oldEmail },
+    {
+      $set: {
+        username: req.body.username,
+        name: req.body.name,
+        address: req.body.address,
+        password: req.body.password,
+        email: req.body.email,
+      },
+    }
+  );
+
+  res.json({
+    success: true,
+    apiToken
+  });
+
 });
 
 app.post("/api/login", async (req, res) => {
   const { email, password } = req.body;
-  console.log(email, password);
 
-  let resp;
+  let user;
+  let apiToken = req.body.token;
 
-  //if using token, pass through api token
-  if(req.body.token != undefined) {
-    resp = await User.findOne({apiToken: req.body.token});
+  console.log("Token sent into login from api: ", req.body.token);
+
+  //retrieve user by token or regular info
+  if((req.body.token != undefined) && mongoose.Types.ObjectId.isValid(apiToken))  {
+    user = await User.findById(apiToken);
   } else {
-    resp = await User.findOne({ email, password });
+    user = await User.findOne({ email, password });
   }
-  if (!resp) {
-    //console.log("incorrect details");
+  
+  if (!user) {
     res.json({
       success: false,
-      message: "Incorrect credentials",
+      message: "Incorrect credentials.",
     });
   } else {
     //json object created with success value
     res.json({
       success: true,
+      apiToken: user._id
     });
   }
-  //res.send("XXX")
 });
 
 app.post("/api/register", async (req, res) => {
   const { username, name, email, address, password } = req.body;
-
-  //concatenate cat with email string, template literal
-  const token = `cat-${email}`;
 
   const existingUser = await User.findOne({ email });
 
   if (existingUser) {
     res.json({
       success: false,
-      message: "Email already in use",
+      message: "Email already in use.",
     });
     return;
   }
@@ -109,19 +147,19 @@ app.post("/api/register", async (req, res) => {
     name,
     email,
     address,
-    password,
-    apiToken: token //pass concat string to db
+    password
   });
 
+  //set apiToken to ObjectID
+  const apiToken = user._id;
+
   const result = await user.save();
-  console.log(result);
+  console.log("New user successfully saved: ", result);
   
   res.json({
     success: true,
     message: "Welcome!",
-    
-    //set cookie, (name of cookie being created, value of cookie concat string)
-    token
+    apiToken
   });
 });
 
@@ -131,7 +169,7 @@ app.get("/api/data", async (req, res) => {
   if (!user) {
     res.json({
       status: false,
-      message: "User was deleted",
+      message: "User was deleted.",
     });
     return;
   }
@@ -148,7 +186,7 @@ app.get("/api/data", async (req, res) => {
 });
 
 app.post("/api/total", async (req, res) => {
-  console.log(req.session.user, req.body.value);
+  console.log(req.body.value);
   const user = await User.findOne({ email: req.session.user });
   if (!user) {
     res.json({
@@ -167,34 +205,6 @@ app.post("/api/total", async (req, res) => {
   });
 });
 
-app.post("/api/user/:email", async (req, res) => {
-  console.log(req.session.user, req.body.oldEmail);
-  const user = await User.findOne({ email: req.body.oldEmail });
-  if (!user) {
-    res.json({
-      success: false,
-      message: "Invalid user!",
-    });
-    return;
-  }
-
-  await User.update(
-    { email: req.body.oldEmail },
-    {
-      $set: {
-        username: req.body.username,
-        name: req.body.name,
-        address: req.body.address,
-        password: req.body.password,
-        email: req.body.email,
-      },
-    }
-  );
-  res.json({
-    success: true,
-  });
-});
-
-app.listen(12345, () => console.log("Server listening at 12345"));
+app.listen(12345, () => console.log("Server listening at 12345."));
 
 // curl --header "Content-Type: application/json" --request POST --data '{"email":"cat1","password":"mad1"}' http://localhost:12345/api/login

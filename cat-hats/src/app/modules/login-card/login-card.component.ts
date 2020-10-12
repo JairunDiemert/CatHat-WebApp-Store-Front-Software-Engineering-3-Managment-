@@ -52,6 +52,6 @@ export class LoginCardComponent implements OnInit {
         this.loginShow = this.Auth.getisLoggedIn();
       }
     });
-    console.log(email, password);
+    console.log("Login card: ", email, password);
   }
 }

@@ -51,6 +51,12 @@ export class ProfilePageComponent implements OnInit {
     this.customer.address = profileForm.value.address;
     this.customer.password = profileForm.value.password;
 
+    localStorage.setItem("username", profileForm.value.username);
+    localStorage.setItem("name", profileForm.value.name);
+    localStorage.setItem("email", profileForm.value.email);
+    localStorage.setItem("address", profileForm.value.address);
+    localStorage.setItem("password", profileForm.value.password);
+
     this.user
       .updateUser(
         oldEmail,

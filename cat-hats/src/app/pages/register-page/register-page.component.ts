@@ -26,43 +26,14 @@ export class RegisterPageComponent implements OnInit {
   public cpassword: String = "";
 
   ngOnInit(): void {
-    //this.resetForm();
   }
 
-  /*
-  resetForm(form?:NgModel)
-  {
-    if(form != null) {
-      form.reset();
-      this.customer = {
-        username: "",
-        cartItems: [],
-        cartTotal: 0,
-        name: "",
-        email: "",
-        address: "",
-        password: ""
-      }
-    }
-  }
-*/
   registerUser(registerForm: NgForm) {
     const errors = [];
-    /*
-  registerUser(event) {
-    event.preventDefault();
-    const errors = [];
-    const target = event.target;
-    const username = target.querySelector("#username").value;
-    const name = target.querySelector("#name").value;
-    const email = target.querySelector("#email").value;
-    const address = target.querySelector("#address").value;
-    const password = target.querySelector("#password").value;
-    const cpassword = target.querySelector("#cpassword").value;
-*/
+
     if (this.customer.password != this.cpassword) {
-      errors.push("Passwords do not match");
-      window.alert("Passwords do not match");
+      errors.push("Passwords do not match.");
+      window.alert("Passwords do not match.");
     }
 
     console.log(errors);
@@ -78,7 +49,6 @@ export class RegisterPageComponent implements OnInit {
           this.customer.password
         )
         .subscribe((data) => {
-          //this.auth.registerUser(username, name, email, address, password).subscribe((data) => {
           console.log(data);
           if (data.success) {
             console.log("User registered.");
@@ -87,8 +57,6 @@ export class RegisterPageComponent implements OnInit {
           } else window.alert(data.message);
         });
     }
-
     console.log(this.customer.username, this.customer.password);
-    //console.log(username, password);
   }
 }
