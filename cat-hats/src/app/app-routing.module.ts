@@ -12,10 +12,12 @@ import { AuthGuard } from "./auth.guard";
 import { LogoutComponent } from "./logout/logout.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { RegisterComponent } from "./register/register.component";
+import { ItemPageComponent } from './pages/item-page/item-page.component';
 
 const routes: Routes = [
   { path: "", component: HomePageComponent },
   { path: "catalog", component: CatalogPageComponent },
+  { path: "catalog/:item", component: ItemPageComponent},
   { path: "cart", component: CartPageComponent },
   { path: "profile", component: ProfilePageComponent, canActivate: [AuthGuard], },
   { path: "register", component: RegisterPageComponent },

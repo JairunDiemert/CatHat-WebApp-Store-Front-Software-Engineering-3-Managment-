@@ -25,6 +25,7 @@ import { LogoutComponent } from "./logout/logout.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { RegisterComponent } from "./register/register.component";
 import { SearchBarComponent } from './modules/search-bar/search-bar.component';
+import { ItemPageComponent } from './pages/item-page/item-page.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { SearchBarComponent } from './modules/search-bar/search-bar.component';
     DashboardComponent,
     RegisterComponent,
     SearchBarComponent,
+    ItemPageComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [RecordsService, UserService, AuthGuard],

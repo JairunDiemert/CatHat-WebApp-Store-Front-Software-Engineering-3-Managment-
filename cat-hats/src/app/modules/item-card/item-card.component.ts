@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
+import { Router } from '@angular/router';
 import { ItemModel } from "src/app/models/item-model";
 
 @Component({
@@ -9,7 +10,10 @@ import { ItemModel } from "src/app/models/item-model";
 export class ItemCardComponent implements OnInit {
   @Input() public items: ItemModel;
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
+  handleClick(){
+    this.router.navigate(['catalog/' + this.items.itemName]);
+  }
 }
