@@ -24,6 +24,7 @@ import { UserService } from "./user.service";
 import { LogoutComponent } from "./logout/logout.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { RegisterComponent } from "./register/register.component";
+import { SearchBarComponent } from './modules/search-bar/search-bar.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { RegisterComponent } from "./register/register.component";
     LogoutComponent,
     DashboardComponent,
     RegisterComponent,
+    SearchBarComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [RecordsService, UserService, AuthGuard],
