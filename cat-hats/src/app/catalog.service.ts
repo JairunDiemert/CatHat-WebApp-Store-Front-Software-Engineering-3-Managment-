@@ -18,5 +18,9 @@ export class CatalogService {
   getCatalog() {
     return this.http.get<any>("/api/catalog");
   }
+
+  getItem(item) {
+    return this.http.get<any>("/api/item/" + item);
+  }
   
 }

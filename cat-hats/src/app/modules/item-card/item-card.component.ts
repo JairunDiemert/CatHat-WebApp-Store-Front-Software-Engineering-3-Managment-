@@ -14,6 +14,6 @@ export class ItemCardComponent implements OnInit {
 
   ngOnInit(): void {}
   handleClick(){
-    this.router.navigate(['catalog/' + this.items.itemName]);
+    this.router.navigate(['catalog/' + this.items.itemID]);
   }
 }

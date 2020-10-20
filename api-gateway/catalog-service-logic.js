@@ -17,3 +17,15 @@ exports.getCatalog = async (req, res) => {
             console.log(axiosError);
         });
 }
+
+exports.getCatalogItem = async (req, res) => {
+    const item = req.params.item;
+    axios
+        .get("http://localhost:2468/api/item/" + item, {})
+        .then((axiosResponse) => {
+            res.json(axiosResponse.data);
+        })
+        .catch((axiosError) => {
+            console.log(axiosError);
+        });
+}

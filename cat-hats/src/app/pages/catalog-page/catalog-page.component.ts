@@ -21,7 +21,7 @@ export class CatalogPageComponent implements OnInit {
           initialList.push({
             itemName: item.title,
             itemPrice: (item.price).toFixed(2),
-            itemID: item.id,
+            itemID: item._id,
             itemDescription: item.description,
             itemQuantity: item.quantity,
             itemImg : item.img
