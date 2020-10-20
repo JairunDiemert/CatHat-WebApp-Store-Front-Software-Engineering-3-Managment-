@@ -1,16 +1,17 @@
-const connectionString =
-  "mongodb+srv://madcatter:madcatter@cluster0.gjo41.mongodb.net/angulardb?retryWrites=true&w=majority";
 const express = require("express");
 const app = express();
-const User = require("./models/users");
 const session = require("express-session");
 const bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser');
+const User = require("./models/users");
+
 const { Mongoose } = require("mongoose");
 const mongoose = require("mongoose");
+const connectionString =
+  "mongodb+srv://madcatter:madcatter@cluster0.gjo41.mongodb.net/angulardb?retryWrites=true&w=majority";
 const connector = mongoose
-  .connect(connectionString)
-  .then(() => console.log("Mongoose up"));
+  .connect(connectionString, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
+  .then(() => console.log("Mongoose connection to Users MongoDB succesfully established!"));
 
 
 app.use(
@@ -18,11 +19,12 @@ app.use(
   session({
     secret: "cathat",
     cookie: {},
+    resave: true,
+    saveUninitialized: true
   })
 );
 
 app.use(bodyParser.json());
-
 app.use(cookieParser());
 
 mongoose.Promise = Promise;

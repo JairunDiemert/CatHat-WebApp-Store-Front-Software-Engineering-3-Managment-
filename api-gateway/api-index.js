@@ -4,6 +4,7 @@ const session = require("express-session");
 const bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser');
 let userService = require("./user-service-logic");
+let catalogService = require("./catalog-service-logic");
 
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -13,6 +14,8 @@ app.use(
   session({
     secret: "cathat",
     cookie: {},
+    resave: true,
+    saveUninitialized: true
   })
 );
 
@@ -27,6 +30,10 @@ app.get("/api/logout", (req, res) => {
 //connect client method with matching protocol in user service
 app.get("/api/user/:email", async (req, res) => {
   userService.userByEmail(req,res);
+});
+
+app.get("/api/catalog", async (req, res) => {
+  catalogService.getCatalog(req,res);
 });
 
 //connect updateUser method with matching POST in user service
@@ -44,5 +51,4 @@ app.post("/api/register", async (req, res) => {
   userService.register(req,res);
 });
 
-app.listen(54321);
-
+app.listen(54321, () => console.log("API gateway server listening at 54321."));
