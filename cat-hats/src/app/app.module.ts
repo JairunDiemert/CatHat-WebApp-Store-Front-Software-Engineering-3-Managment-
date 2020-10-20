@@ -26,6 +26,7 @@ import { DashboardComponent } from "./dashboard/dashboard.component";
 import { RegisterComponent } from "./register/register.component";
 import { SearchBarComponent } from './modules/search-bar/search-bar.component';
 import { ItemPageComponent } from './pages/item-page/item-page.component';
+import { CatalogService } from './catalog.service';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,7 @@ import { ItemPageComponent } from './pages/item-page/item-page.component';
     ItemPageComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
-  providers: [RecordsService, UserService, AuthGuard],
+  providers: [RecordsService, UserService, AuthGuard, CatalogService],
 
   bootstrap: [AppComponent],
 })

@@ -85,6 +85,5 @@ export class AuthService {
 
   getUser(email) {
     return this.http.get<any>("/api/user/" + email);
-    console.log("getUser method in auth.service called");
   }
 }

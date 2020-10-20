@@ -18,6 +18,7 @@
     "express-session": "^1.17.1",
     "mongoose": "^5.10.9",
     "node": "^14.14.0",
+    "node-cleanup": "^2.1.2",
     "nodemon": "^2.0.6",
     "session": "^0.1.0"
   }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ItemModel } from "src/app/models/item-model";
+import { CatalogService } from "src/app/catalog.service";
 
 @Component({
   selector: "app-catalog-page",
@@ -8,7 +9,21 @@ import { ItemModel } from "src/app/models/item-model";
 })
 export class CatalogPageComponent implements OnInit {
   public pageItems: ItemModel[] = [];
-  constructor() {}
+  
+  public list = [];
+
+  constructor(private Catalog: CatalogService) {
+    this.Catalog.getCatalog().subscribe((data) => {
+      console.log(data);
+      if (data.success) {
+        alert("The catalog has been retrieved from the database.");
+      } else {
+        alert("The catalog has not been successfully retrieved from the database.");
+      }
+
+      this.list = data;
+    });
+  }
 
   ngOnInit(): void {
     let list = [];
