@@ -40,6 +40,10 @@ app.get("/api/item/:item", async (req, res) => {
   catalogService.getCatalogItem(req,res);
 })
 
+app.get("/api/search/:item", async (req, res) => {
+  catalogService.getSearch(req,res);
+})
+
 //connect updateUser method with matching POST in user service
 app.post("/api/user/:email", async (req, res) => {
   userService.updateUser(req,res);

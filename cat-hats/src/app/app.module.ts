@@ -27,6 +27,7 @@ import { RegisterComponent } from "./register/register.component";
 import { SearchBarComponent } from './modules/search-bar/search-bar.component';
 import { ItemPageComponent } from './pages/item-page/item-page.component';
 import { CatalogService } from './catalog.service';
+import { SearchPageComponent } from './pages/search-page/search-page.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { CatalogService } from './catalog.service';
     RegisterComponent,
     SearchBarComponent,
     ItemPageComponent,
+    SearchPageComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [RecordsService, UserService, AuthGuard, CatalogService],

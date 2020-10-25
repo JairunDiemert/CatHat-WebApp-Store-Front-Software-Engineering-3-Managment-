@@ -31,7 +31,7 @@ export class ItemPageComponent implements OnInit {
         }
       }
       else {
-        alert("This item could not be retried from the catalog.");
+        alert("This item could not be retrieved from the catalog.");
       }
     });
   }

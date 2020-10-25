@@ -11,7 +11,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser');
 const Catalog = require("./models/catalog");
-  
+
 
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -19,30 +19,30 @@ app.use(cookieParser());
 mongoose.Promise = Promise;
 
 app.get("/api/catalog", async (req, res) => {
-    
-    let catalog;
 
-    catalog = await Catalog.find({});
-  
-    if (!catalog) {
-      res.json({
-        success: false,
-        message: "Catalog is empty.",
-      });
-      return;
-    }
+  let catalog;
 
+  catalog = await Catalog.find({});
+
+  if (!catalog) {
     res.json({
-        success: true,
-        data: catalog
+      success: false,
+      message: "Catalog is empty.",
     });
+    return;
+  }
+
+  res.json({
+    success: true,
+    data: catalog
+  });
 });
 
 app.get("/api/item/:item", async (req, res) => {
   const itemID = req.params.item;
   let item;
 
-  if(req.params != undefined) {
+  if (req.params != undefined) {
     item = await Catalog.findOne({ _id: itemID });
   } else {
     return;
@@ -59,6 +59,31 @@ app.get("/api/item/:item", async (req, res) => {
   res.json({
     success: true,
     data: item
+  });
+});
+
+app.get("/api/search/:itemSearch", async (req, res) => {
+  const itemSearch = req.params.itemSearch;
+  let items;
+
+  if (req.params != undefined) {
+    items = await Catalog.find({title : {$regex: itemSearch, $options: 'i' }});
+    items.concat(await Catalog.find({description : {$regex: itemSearch, $options: 'i' }}));
+  } else {
+    return;
+  }
+
+  if (!items[0]) {
+    res.json({
+      status: false,
+      message: "Item does not exist",
+    });
+    return;
+  }
+
+  res.json({
+    success: true,
+    data: items
   });
 });
 

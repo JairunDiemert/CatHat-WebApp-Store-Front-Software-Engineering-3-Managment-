@@ -22,5 +22,9 @@ export class CatalogService {
   getItem(item) {
     return this.http.get<any>("/api/item/" + item);
   }
+
+  searchItem(item) {
+    return this.http.get<any>("/api/search/" + item);
+  }
   
 }

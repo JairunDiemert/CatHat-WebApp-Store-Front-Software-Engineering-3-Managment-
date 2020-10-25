@@ -29,3 +29,15 @@ exports.getCatalogItem = async (req, res) => {
             console.log(axiosError);
         });
 }
+
+exports.getSearch = async (req, res) => {
+    const itemSearch = req.params.item;
+    axios
+        .get("http://localhost:2468/api/search/" + itemSearch, {})
+        .then((axiosResponse) => {
+            res.json(axiosResponse.data);
+        })
+        .catch((axiosError) => {
+            console.log(axiosError);
+        });
+}
