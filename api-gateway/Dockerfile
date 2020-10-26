@@ -1,11 +1,9 @@
-FROM node:alpine
+FROM node:latest
 
 WORKDIR /api-gateway
 
 COPY . .
 
 RUN npm install
-
-EXPOSE 54321
 
 CMD [ "node", "api-index.js" ]
