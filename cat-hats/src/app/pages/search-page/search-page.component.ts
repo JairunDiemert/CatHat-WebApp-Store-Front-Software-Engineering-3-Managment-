@@ -11,16 +11,32 @@ import { ItemModel } from 'src/app/models/item-model';
 export class SearchPageComponent implements OnInit {
   public items : ItemModel[] = [];
 
+  public item = [];
+
   constructor(private route: ActivatedRoute, private Catalog : CatalogService) { 
     const itemsToDisplay = this.route.snapshot.paramMap.get('searchTerm');
     console.log(itemsToDisplay);
     this.Catalog.searchItem(itemsToDisplay).subscribe((data) => {
-      if(data.success){
-        alert("Found items");
+      if (data.success) {
+        alert("Found matching search items.");
         console.log(data.data);
+
+        this.item = data.data;
+        let searchItem = [];
+        this.item.forEach(item => {
+          searchItem.push({
+            itemName: item.title,
+            itemPrice: (item.price).toFixed(2),
+            itemID: item._id,
+            itemDescription: item.description,
+            itemQuantity: item.quantity,
+            itemImg : item.img
+          });
+        })
+        this.items = searchItem;
       }
       else {
-        alert("This item could not be retrieved from the catalog.");
+        alert("This item was not found in the catalog.");
       }
     });
   }
