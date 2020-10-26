@@ -29,7 +29,7 @@ To run our project:
 //Terminal 1
 
 cd cat-hats/
-dockebuild -t cat-hats:01 .
+docker build -t cat-hats:01 .
 docker run -it --name cat-hats-01 --network="host" cat-hats:01
 
 //Terminal 2
@@ -41,7 +41,7 @@ docker run -it --name api-gateway-01 --network="host" api-gateway:01
 //Terminal 3
 
 cd catalog-service/
-docke build -t catalog-service:01 .
+docker build -t catalog-service:01 .
 docker run -it --name catalog-service-01 -p2468:2468 catalog-service:01
 
 //Terminal 4
