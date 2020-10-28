@@ -4,48 +4,15 @@
 
 To run our project:
 
-<b>Turn on Service</b>
+<b>Turn on Services</b>
 
-1. cd into our user-service folder
-2. run npm install
-3. node index.js
+1. cd into our SEM_GROUP_2 folder
+2. run docker-compose up -d
 
-<b>Turn on Gateway</b>
+<b>Use Services</b>
 
-1. cd into our api-gateway folder
-2. run npm install
-3. node api-index.js
+1. Go to localhost:4200
 
-<b>Then Turn on Client</b>
+<b>Turn off Services</b>
 
-1. cd into our cat-hats folder
-2. run npm install
-3. ng serve or npm start
-4. Go to localhost:4200
-
-////////////////////////
-//To Run with Docker
-
-//Terminal 1
-
-cd cat-hats/
-docker build -t cat-hats:01 .
-docker run -it --name cat-hats-01 --network="host" cat-hats:01
-
-//Terminal 2
-
-cd api-gateway/
-docker build -t api-gateway:01 .
-docker run -it --name api-gateway-01 --network="host" api-gateway:01
-
-//Terminal 3
-
-cd catalog-service/
-docker build -t catalog-service:01 .
-docker run -it --name catalog-service-01 -p2468:2468 catalog-service:01
-
-//Terminal 4
-
-cd user-service/
-docker build -t user-service:01 .
-docker run -it --name user-service-01 -p12345:12345 user-service:01
+1. run docker-compose down

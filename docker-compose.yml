@@ -1,0 +1,22 @@
+version: "3.5"
+
+services:
+  cat-hats:
+    build: ./cat-hats
+    image: cat-hats:01
+    network_mode: "host"
+
+  api-gateway:
+    build: ./api-gateway
+    image: api-gateway:01
+    network_mode: "host"
+
+  user-service:
+    build: ./user-service
+    image: user-service:01
+    network_mode: "host"
+
+  catalog-service:
+    build: ./catalog-service
+    image: catalog-service:01
+    network_mode: "host"
