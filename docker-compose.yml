@@ -3,20 +3,24 @@ version: "3.5"
 services:
   cat-hats:
     build: ./cat-hats
-    image: cat-hats:01
     network_mode: "host"
+    volumes:
+      - ./cat-hats:/cat-hats
 
   api-gateway:
     build: ./api-gateway
-    image: api-gateway:01
     network_mode: "host"
+    volumes:
+      - ./api-gateway:/api-gateway
 
   user-service:
     build: ./user-service
-    image: user-service:01
     network_mode: "host"
+    volumes:
+      - ./user-service:/user-service
 
   catalog-service:
     build: ./catalog-service
-    image: catalog-service:01
     network_mode: "host"
+    volumes:
+      - ./catalog-service:/catalog-service

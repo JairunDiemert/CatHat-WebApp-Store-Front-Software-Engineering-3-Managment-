@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const session = require("express-session");
 const bodyParser = require("body-parser");
-const cookieParser = require('cookie-parser');
+const cookieParser = require("cookie-parser");
 const User = require("./models/users");
 
 const { Mongoose } = require("mongoose");
@@ -10,9 +10,14 @@ const mongoose = require("mongoose");
 const connectionString =
   "mongodb+srv://madcatter:madcatter@cluster0.gjo41.mongodb.net/angulardb?retryWrites=true&w=majority";
 const connector = mongoose
-  .connect(connectionString, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
-  .then(() => console.log("Mongoose connection to Users MongoDB succesfully established!"));
-
+  .connect(connectionString, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true,
+  })
+  .then(() =>
+    console.log("Mongoose connection to Users MongoDB succesfully established!")
+  );
 
 app.use(
   //session cookie for reloading and open/closing
@@ -20,7 +25,7 @@ app.use(
     secret: "cathat",
     cookie: {},
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
   })
 );
 
@@ -35,7 +40,7 @@ app.get("/api/user/:email", async (req, res) => {
   let user;
   let apiToken;
 
-  if(req.body.token != undefined) {
+  if (req.body.token != undefined) {
     user = await User.findOne({ apiToken: req.body.token });
   } else {
     user = await User.findOne({ email: userEmail });
@@ -57,7 +62,7 @@ app.get("/api/user/:email", async (req, res) => {
     password: user.password,
     name: user.name,
     address: user.address,
-    apiToken: user._id
+    apiToken: user._id,
   });
 });
 
@@ -66,7 +71,10 @@ app.post("/api/user/:email", async (req, res) => {
   let apiToken = req.body.token;
 
   //if using token, pass through api token
-  if((req.body.token != undefined) && mongoose.Types.ObjectId.isValid(apiToken)) {
+  if (
+    req.body.token != undefined &&
+    mongoose.Types.ObjectId.isValid(apiToken)
+  ) {
     user = await User.findById(apiToken);
   } else {
     user = await User.findOne({ email: req.body.oldEmail });
@@ -97,9 +105,8 @@ app.post("/api/user/:email", async (req, res) => {
 
   res.json({
     success: true,
-    apiToken
+    apiToken,
   });
-
 });
 
 app.post("/api/login", async (req, res) => {
@@ -111,12 +118,15 @@ app.post("/api/login", async (req, res) => {
   console.log("Token sent into login from api: ", req.body.token);
 
   //retrieve user by token or regular info
-  if((req.body.token != undefined) && mongoose.Types.ObjectId.isValid(apiToken))  {
+  if (
+    req.body.token != undefined &&
+    mongoose.Types.ObjectId.isValid(apiToken)
+  ) {
     user = await User.findById(apiToken);
   } else {
     user = await User.findOne({ email, password });
   }
-  
+
   if (!user) {
     res.json({
       success: false,
@@ -126,7 +136,7 @@ app.post("/api/login", async (req, res) => {
     //json object created with success value
     res.json({
       success: true,
-      apiToken: user._id
+      apiToken: user._id,
     });
   }
 });
@@ -149,7 +159,7 @@ app.post("/api/register", async (req, res) => {
     name,
     email,
     address,
-    password
+    password,
   });
 
   //set apiToken to ObjectID
@@ -157,11 +167,11 @@ app.post("/api/register", async (req, res) => {
 
   const result = await user.save();
   console.log("New user successfully saved: ", result);
-  
+
   res.json({
     success: true,
     message: "Welcome!",
-    apiToken
+    apiToken,
   });
 });
 
