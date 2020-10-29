@@ -6,6 +6,4 @@ COPY . .
 
 RUN npm install
 
-EXPOSE 12345
-
-CMD [ "node", "user-index.js" ]
+CMD npm run start

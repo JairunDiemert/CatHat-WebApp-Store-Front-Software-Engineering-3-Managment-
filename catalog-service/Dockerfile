@@ -6,6 +6,4 @@ COPY . .
 
 RUN npm install
 
-EXPOSE 2468
-
-CMD [ "node", "catalog-index.js" ]
+CMD npm run start
