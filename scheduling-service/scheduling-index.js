@@ -53,7 +53,7 @@ app.post("/api/addschedule", async (req, res) => {
 
   res.json({
     success: true,
-    message: "Welcome!",
+    message: "Schedule added!",
     apiToken,
   });
 });

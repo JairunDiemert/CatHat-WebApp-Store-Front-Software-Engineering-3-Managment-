@@ -11,20 +11,24 @@ import { HomeTESTComponent } from "./home-test/home-test.component";
 import { AuthGuard } from "./auth.guard";
 import { LogoutComponent } from "./logout/logout.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
-import { RegisterComponent } from "./register/register.component";
-import { ItemPageComponent } from './pages/item-page/item-page.component';
-import { SearchBarComponent } from './modules/search-bar/search-bar.component';
-import { SearchPageComponent } from './pages/search-page/search-page.component';
+import { ItemPageComponent } from "./pages/item-page/item-page.component";
+import { SearchBarComponent } from "./modules/search-bar/search-bar.component";
+import { SearchPageComponent } from "./pages/search-page/search-page.component";
+import { ScheduleComponent } from "./pages/schedule-page/schedule.component";
 
 const routes: Routes = [
   { path: "", component: HomePageComponent },
   { path: "catalog", component: CatalogPageComponent },
-  { path: "catalog/:item", component: ItemPageComponent},
+  { path: "catalog/:item", component: ItemPageComponent },
   { path: "cart", component: CartPageComponent },
-  { path: "profile", component: ProfilePageComponent, canActivate: [AuthGuard], },
+  {
+    path: "profile",
+    component: ProfilePageComponent,
+    canActivate: [AuthGuard],
+  },
   { path: "register", component: RegisterPageComponent },
   { path: "records", component: RecordsPageComponent },
-  { path: "search/:searchTerm", component: SearchPageComponent},
+  { path: "search/:searchTerm", component: SearchPageComponent },
   { path: "login", component: LoginComponent },
   { path: "logout", component: LogoutComponent },
   { path: "home-test", component: HomeTESTComponent },
@@ -33,7 +37,7 @@ const routes: Routes = [
     component: DashboardComponent,
     canActivate: [AuthGuard],
   },
-  { path: "register-test", component: RegisterComponent },
+  { path: "schedule", component: ScheduleComponent },
   { path: "**", redirectTo: "" },
 ];
 
