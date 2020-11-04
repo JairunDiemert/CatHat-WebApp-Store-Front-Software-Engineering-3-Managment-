@@ -12,34 +12,22 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  registerUser(event) {
+  addSchedule(event) {
     event.preventDefault();
-    const errors = [];
     const target = event.target;
-    const username = target.querySelector("#username").value;
-    const name = target.querySelector("#name").value;
-    const email = target.querySelector("#email").value;
-    const address = target.querySelector("#address").value;
-    const password = target.querySelector("#password").value;
-    const cpassword = target.querySelector("#cpassword").value;
+    const scheduleDate = target.querySelector("#scheduleDate").value;
+    const userEmail = target.querySelector("#userEmail").value;
+    const catalogTitle = target.querySelector("#catalogTitle").value;
 
-    if (password != cpassword) {
-      errors.push("Passwords do not match");
-    }
+    this.auth
+      .addSchedule(scheduleDate, userEmail, catalogTitle)
+      .subscribe((data) => {
+        console.log(data);
+        if (data.success) {
+          this.router.navigate(["home"]);
+        }
+      });
 
-    //more validation ie. if this else that..
-
-    if (errors.length == 0) {
-      this.auth
-        .registerUser(username, name, email, address, password)
-        .subscribe((data) => {
-          console.log(data);
-          if (data.success) {
-            this.router.navigate(["dashboard"]);
-          }
-        });
-    }
-
-    console.log(username, password);
+    console.log(scheduleDate, userEmail, catalogTitle);
   }
 }

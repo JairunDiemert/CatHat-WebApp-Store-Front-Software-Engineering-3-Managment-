@@ -9,6 +9,11 @@ interface registerResponse {
   message: string;
 }
 
+interface addScheduleResponse {
+  success: boolean;
+  message: string;
+}
+
 @Injectable({
   providedIn: "root",
 })
@@ -36,10 +41,10 @@ export class AuthService {
   getCookie(cookieName) {
     var name = cookieName + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
+    var ca = decodedCookie.split(";");
+    for (var i = 0; i < ca.length; i++) {
       var c = ca[i];
-      while (c.charAt(0) == ' ') {
+      while (c.charAt(0) == " ") {
         c = c.substring(1);
       }
       if (c.indexOf(name) == 0) {
@@ -50,28 +55,30 @@ export class AuthService {
   }
 
   //method handling login
-  getUserDetails= (email, password) => { //forced binding
+  getUserDetails = (email, password) => {
+    //forced binding
     localStorage.setItem("email", email);
 
     //declare string containing cookie name
     let cookieName = "authToken";
-    let token = this.getCookie(cookieName).toString(); 
+    let token = this.getCookie(cookieName).toString();
 
     console.log("Token found in browser when logging in: ", token);
 
     //checks if token is set by getting cookie storing the token
-    if(token != "") {
+    if (token != "") {
       return this.http.post<any>("/api/login", {
-        token
+        token,
       });
-    } else { //checks if cookie set in document.cookie
+    } else {
+      //checks if cookie set in document.cookie
       ///post these details to API server, will return user information if correct
       return this.http.post<any>("/api/login", {
         email,
         password,
       });
     }
-  }
+  };
 
   registerUser(username, name, email, address, password) {
     return this.http.post<registerResponse>("/api/register", {
@@ -80,6 +87,14 @@ export class AuthService {
       email,
       address,
       password,
+    });
+  }
+
+  addSchedule(scheduleDate, userEmail, catalogTitle) {
+    return this.http.post<addScheduleResponse>("/api/addschedule", {
+      scheduleDate,
+      userEmail,
+      catalogTitle,
     });
   }
 

@@ -36,4 +36,26 @@ app.use(cookieParser());
 
 mongoose.Promise = Promise;
 
+app.post("/api/addschedule", async (req, res) => {
+  const { scheduleDate, userEmail, catalogTitle } = req.body;
+
+  const schedule = new Schedule({
+    scheduleDate,
+    userEmail,
+    catalogTitle,
+  });
+
+  //set apiToken to ObjectID
+  const apiToken = schedule._id;
+
+  const result = await schedule.save();
+  console.log("New schedule successfully saved: ", result);
+
+  res.json({
+    success: true,
+    message: "Welcome!",
+    apiToken,
+  });
+});
+
 app.listen(34567, () => console.log("Server listening at 34567."));
