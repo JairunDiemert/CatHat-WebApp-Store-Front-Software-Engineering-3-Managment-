@@ -24,3 +24,9 @@ services:
     network_mode: "host"
     volumes:
       - ./catalog-service:/catalog-service
+
+  scheduling-service:
+    build: ./scheduling-service
+    network_mode: "host"
+    volumes:
+      - ./scheduling-service:/scheduling-service
