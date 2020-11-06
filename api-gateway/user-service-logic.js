@@ -43,6 +43,20 @@ exports.userByEmail = async (req, res) => {
         });
 }
 
+exports.getCart = async (req, res) => {
+    const userEmail = req.params.email;
+    const token = req.params.token;
+    axios
+        .get("http://localhost:12345/api/cart/" + userEmail + "/" + token, {})
+        .then((axiosResponse) => {
+            res.cookie("authToken", axiosResponse.data.apiToken);
+            res.json(axiosResponse.data);
+        })
+        .catch((axiosError) => {
+            console.log(axiosError);
+        });
+}
+
 exports.updateUser = async (req, res) => {
 
     //jsonPayload containing request sent from client post in updateUser method

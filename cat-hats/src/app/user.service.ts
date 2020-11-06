@@ -9,6 +9,12 @@ interface myData {
   status: boolean;
 }
 
+interface userCart {
+  cart: [];
+  total: number;
+  success: boolean;
+}
+
 interface isLoggedIn {
   status: boolean;
 }
@@ -29,6 +35,14 @@ export class UserService {
 
   getData() {
     return this.http.get<myData>("/api/data");
+  }
+
+  getCart(email) {
+
+    let cookieName = "authToken";
+    let token: String = this.auth.getCookie(cookieName); 
+
+    return this.http.get<userCart>("/api/cart/" + email + "/" + token);
   }
 
   updateUser= (oldEmail, username, name, email, address, password) => {

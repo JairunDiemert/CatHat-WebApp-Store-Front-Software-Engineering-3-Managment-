@@ -42,17 +42,17 @@
                 </tr>
               </thead>
               <tbody>
+                <!--connects to cart-item.component.html view-->
                 <tr
                   *ngFor="let item of cart_Items"
                   app-cart-item
                   [items]="item"
                 >
-                  <!--connects to cart-item.component.html view-->
                 </tr>
               </tbody>
             </table>
             <p class="text-center">
-              <a href="#" class="btn btn-primary">Proceed to Checkout</a>
+              <a href="#" class="btn btn-primary">Schedule Shipment</a>
             </p>
           </div>
         </div>

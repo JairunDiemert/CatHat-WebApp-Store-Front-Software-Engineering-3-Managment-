@@ -33,6 +33,10 @@ app.get("/api/user/:email", async (req, res) => {
   userService.userByEmail(req, res);
 });
 
+app.get("/api/cart/:email/:token", async (req, res) => {
+  userService.getCart(req, res);
+});
+
 app.get("/api/catalog", async (req, res) => {
   catalogService.getCatalog(req, res);
 });

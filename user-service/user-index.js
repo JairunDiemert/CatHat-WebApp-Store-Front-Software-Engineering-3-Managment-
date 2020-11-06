@@ -34,6 +34,35 @@ app.use(cookieParser());
 
 mongoose.Promise = Promise;
 
+app.get("/api/cart/:email/:token", async (req, res) => {
+  const userEmail = req.params.email;
+  const token = req.params.token;
+
+  let user;
+  let apiToken;
+
+  if (req.body.token != undefined) {
+    user = await User.findOne({ apiToken: token });
+  } else {
+    user = await User.findOne({ email: userEmail });
+  }
+
+  if (!user) {
+    res.json({
+      success: false,
+      message: "Cart not retrieved. User not found.",
+    });
+    return;
+  }
+
+  res.json({
+    success: true,
+    cart: user.cart,
+    total: user.total,
+    apiToken: user._id,
+  });
+});
+
 app.get("/api/user/:email", async (req, res) => {
   const userEmail = req.params.email;
 
