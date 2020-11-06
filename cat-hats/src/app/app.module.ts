@@ -23,11 +23,11 @@ import { AuthGuard } from "./auth.guard";
 import { UserService } from "./user.service";
 import { LogoutComponent } from "./logout/logout.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
-import { RegisterComponent } from "./register/register.component";
-import { SearchBarComponent } from './modules/search-bar/search-bar.component';
-import { ItemPageComponent } from './pages/item-page/item-page.component';
-import { CatalogService } from './catalog.service';
-import { SearchPageComponent } from './pages/search-page/search-page.component';
+import { SearchBarComponent } from "./modules/search-bar/search-bar.component";
+import { ItemPageComponent } from "./pages/item-page/item-page.component";
+import { CatalogService } from "./catalog.service";
+import { SearchPageComponent } from "./pages/search-page/search-page.component";
+import { ScheduleComponent } from "./pages/schedule-page/schedule.component";
 
 @NgModule({
   declarations: [
@@ -47,10 +47,10 @@ import { SearchPageComponent } from './pages/search-page/search-page.component';
     HomeTESTComponent,
     LogoutComponent,
     DashboardComponent,
-    RegisterComponent,
     SearchBarComponent,
     ItemPageComponent,
     SearchPageComponent,
+    ScheduleComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [RecordsService, UserService, AuthGuard, CatalogService],

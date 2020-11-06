@@ -1,13 +1,13 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { AuthService } from "../auth.service";
+import { AuthService } from "../../auth.service";
 
 @Component({
-  selector: "app-register",
-  templateUrl: "./register.component.html",
-  styleUrls: ["./register.component.css"],
+  selector: "app-schedule",
+  templateUrl: "./schedule.component.html",
+  styleUrls: ["./schedule.component.css"],
 })
-export class RegisterComponent implements OnInit {
+export class ScheduleComponent implements OnInit {
   constructor(private auth: AuthService, private router: Router) {}
 
   ngOnInit(): void {}
@@ -24,8 +24,9 @@ export class RegisterComponent implements OnInit {
       .subscribe((data) => {
         console.log(data);
         if (data.success) {
-          this.router.navigate(["home"]);
+          this.router.navigate(["schedule"]);
         }
+        window.alert(data.message);
       });
 
     console.log(scheduleDate, userEmail, catalogTitle);
