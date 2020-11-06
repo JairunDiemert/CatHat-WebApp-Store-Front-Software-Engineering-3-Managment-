@@ -11,13 +11,13 @@
                 </div>
                 <div class="column">
                     <div class="card" style="width: 50rem;">
-                        <div class="card-body">
+                        <div class="card-body" (click)="handleClick()">
                             <h5 class="card-title">{{ item.itemName }}</h5>
                             <hr>
                             <p class="card-price">$ {{ item.itemPrice }}</p>
                             <p class="card-text">{{ item.itemDescription }}</p>
                             <hr>
-                            <a href="/catalog" class="btn btn-primary">Add To Cart</a>
+                            <button (click)="handleClick()" class="btn btn-primary">Add To Cart</button>
                         </div>
                     </div>
                 </div>

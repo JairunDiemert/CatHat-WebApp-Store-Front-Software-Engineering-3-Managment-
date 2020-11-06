@@ -8,6 +8,6 @@
     <h5 class="card-title">{{ items.itemName }}</h5>
     <p class="card-price">$ {{ items.itemPrice }}</p>
     <p class="card-text">{{ items.itemDescription }}</p>
-    <a href="/catalog" class="btn btn-primary">Add To Cart</a>
+    <button (click)="handleClick()" class="btn btn-primary">View Item Details</button>
   </div>
 </div>
