@@ -20,15 +20,19 @@ exports.getCatalog = async (req, res) => {
 
 exports.getCatalogItem = async (req, res) => {
     const item = req.params.item;
-    axios
-        .get("http://localhost:2468/api/item/" + item, {})
+    const data = await getCatalogItemByID(item);
+    res.json(data);
+}
+
+function getCatalogItemByID(itemID) {
+    return axios
+        .get("http://localhost:2468/api/item/" + itemID, {})
         .then((axiosResponse) => {
-            res.json(axiosResponse.data);
-        })
-        .catch((axiosError) => {
-            console.log(axiosError);
+            return axiosResponse.data;
         });
 }
+
+exports.getCatalogItemByID = getCatalogItemByID;
 
 exports.getSearch = async (req, res) => {
     const itemSearch = req.params.item;

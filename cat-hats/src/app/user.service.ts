@@ -45,6 +45,16 @@ export class UserService {
     return this.http.get<userCart>("/api/cart/" + email + "/" + token);
   }
 
+  addCartItem=(itemID, email)=>
+  {
+    let cookieName = "authToken";
+    let token = this.auth.getCookie(cookieName); 
+
+    return this.http.post<any>("/api/cart/" + email + "/" + token, {
+      itemID
+    }); 
+  }
+
   updateUser= (oldEmail, username, name, email, address, password) => {
     
     let cookieName = "authToken";

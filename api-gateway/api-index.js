@@ -54,6 +54,10 @@ app.post("/api/user/:email", async (req, res) => {
   userService.updateUser(req, res);
 });
 
+app.post("/api/cart/:email/:token", async (req, res) => {
+  userService.addCartItem(req, res);
+});
+
 //connect getUserDetails with user service login protocol
 app.post("/api/login", async (req, res) => {
   userService.getUserDetails(req, res);

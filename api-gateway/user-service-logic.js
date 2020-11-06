@@ -3,6 +3,7 @@ const app = require('express')();
 const session = require("express-session");
 const bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser');
+let catalogService = require("./catalog-service-logic");
 
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -48,6 +49,27 @@ exports.getCart = async (req, res) => {
     const token = req.params.token;
     axios
         .get("http://localhost:12345/api/cart/" + userEmail + "/" + token, {})
+        .then((axiosResponse) => {
+            res.cookie("authToken", axiosResponse.data.apiToken);
+            res.json(axiosResponse.data);
+        })
+        .catch((axiosError) => {
+            console.log(axiosError);
+        });
+}
+
+exports.addCartItem = async (req, res) => {
+    let jsonPayload = {
+        email: req.params.email,
+        token: req.params.token,
+        itemID: req.body.itemID
+    };
+    
+    let cartItem = await catalogService.getCatalogItemByID(jsonPayload.itemID);
+    console.log(cartItem);
+    
+    axios
+        .post("http://localhost:12345/api/cart/:email/:token", jsonPayload)
         .then((axiosResponse) => {
             res.cookie("authToken", axiosResponse.data.apiToken);
             res.json(axiosResponse.data);

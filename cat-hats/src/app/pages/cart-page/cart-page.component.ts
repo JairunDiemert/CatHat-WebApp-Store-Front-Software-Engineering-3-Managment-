@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { AuthService } from "src/app/auth.service";
 import { UserService } from "src/app/user.service";
+import { ActivatedRoute } from '@angular/router';
 import { customerModel } from "src/app/models/customer-model";
 import { ItemModel } from "src/app/models/item-model";
 
@@ -19,8 +20,15 @@ export class CartPageComponent implements OnInit {
 
   public cart_Total;
 
-  constructor(private Auth: AuthService, private User: UserService) {
+  constructor(private Auth: AuthService, private User: UserService, private activatedRoute: ActivatedRoute) {
+    
+  }
+
+  displayCart()
+  {
     let email: String = localStorage.getItem("email");
+
+    //this.user.addCartItem(this.item).subscribe((data) => {
 
     this.User.getCart(email).subscribe((data) => {
       if (data.success) {
@@ -44,5 +52,20 @@ export class CartPageComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if(this.activatedRoute.snapshot.url.length > 1)
+    {
+      const itemToDisplay = this.activatedRoute.snapshot.paramMap.get('item');
+
+      let email: String = localStorage.getItem("email");
+
+      this.User.addCartItem(itemToDisplay, email).subscribe((data) => {
+        this.displayCart();
+      });
+    }
+    else
+    {
+      this.displayCart();
+    }
+  }
 }

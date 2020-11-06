@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CatalogService } from 'src/app/catalog.service';
+import { UserService } from 'src/app/user.service';
 import { ItemModel } from 'src/app/models/item-model';
 import { Router } from '@angular/router';
 
@@ -18,7 +19,7 @@ export class ItemPageComponent implements OnInit {
     itemQuantity : 0,
     itemImg : "./../../../assets/Hat_200x200.png"
   };
-  constructor(private activatedRoute: ActivatedRoute, private router: Router, private Catalog : CatalogService) { 
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, private Catalog : CatalogService, private user: UserService) { 
     const itemToDisplay = this.activatedRoute.snapshot.paramMap.get('item');
     this.Catalog.getItem(itemToDisplay).subscribe((data) => {
       if(data.success){
@@ -39,8 +40,7 @@ export class ItemPageComponent implements OnInit {
 
   ngOnInit(): void {}
   
-  handleClick(){
-    this.router.navigate(['cart/']);
+  handleClick() {
+      this.router.navigate(['cart/' + this.item.itemID]);
   }
-  
 }

@@ -22,6 +22,11 @@ const routes: Routes = [
   { path: "catalog/:item", component: ItemPageComponent },
   { path: "cart", component: CartPageComponent },
   {
+    path: "cart/:item",
+    component: CartPageComponent,
+    canActivate: [AuthGuard],
+  },
+  {
     path: "profile",
     component: ProfilePageComponent,
     canActivate: [AuthGuard],
