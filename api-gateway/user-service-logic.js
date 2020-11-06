@@ -67,15 +67,19 @@ exports.addCartItem = async (req, res) => {
     
     let cartItem = await catalogService.getCatalogItemByID(jsonPayload.itemID);
     console.log(cartItem);
-    
+
+    const url = "http://localhost:12345/api/cart/" + jsonPayload.email + "/" + jsonPayload.token;
+    console.log(url);
+
     axios
-        .post("http://localhost:12345/api/cart/:email/:token", jsonPayload)
+        .post(url, {cartItem: cartItem.data})
         .then((axiosResponse) => {
+
             res.cookie("authToken", axiosResponse.data.apiToken);
             res.json(axiosResponse.data);
         })
         .catch((axiosError) => {
-            console.log(axiosError);
+            console.log(axiosError.response);
         });
 }
 

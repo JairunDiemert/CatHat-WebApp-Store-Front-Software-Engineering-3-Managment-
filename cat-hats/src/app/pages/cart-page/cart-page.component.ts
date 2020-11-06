@@ -35,15 +35,20 @@ export class CartPageComponent implements OnInit {
         this.cart_Total = data.total;
         this.list = data.cart;
         let initialList = [];
-        this.list.forEach(item => {
-          initialList.push({
-            itemName: item.title,
-            itemPrice: (item.price).toFixed(2),
-            itemID: item._id,
-            itemDescription: item.description,
-            itemQuantity: item.quantity,
-            itemImg : item.img
-          });
+      
+          this.list.forEach(item => {
+            if(item)
+            {
+              initialList.push({
+              itemName: item.title,
+              itemPrice: (item.price).toFixed(2),
+              itemID: item._id,
+              itemDescription: item.description,
+              itemQuantity: item.quantity,
+              itemImg : item.img
+              
+              });
+          }
         })
         this.cart_Items = initialList;
       } else {
@@ -60,7 +65,10 @@ export class CartPageComponent implements OnInit {
       let email: String = localStorage.getItem("email");
 
       this.User.addCartItem(itemToDisplay, email).subscribe((data) => {
+        console.log("Added cart item.");
         this.displayCart();
+      }, (error) => {
+        console.log(error);
       });
     }
     else
