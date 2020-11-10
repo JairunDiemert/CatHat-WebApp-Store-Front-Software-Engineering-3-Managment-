@@ -8,11 +8,11 @@
 /bazel-out
 
 # dependencies
-/cat-hats/node_modules/
-/api-gateway/node_modules/
-/user-service/node_modules/
-/catalog-service/node_modules/
-/scheduling-service/node-modules/
+#/cat-hats/node_modules/
+#/api-gateway/node_modules/
+#/user-service/node_modules/
+#/catalog-service/node_modules/
+#/scheduling-service/node-modules/
 
 # profiling files
 chrome-profiler-events*.json
