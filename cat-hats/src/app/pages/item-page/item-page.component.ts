@@ -45,6 +45,18 @@ export class ItemPageComponent implements OnInit {
   ngOnInit(): void {}
 
   handleClick() {
+    this.Catalog.getItem(this.item.itemID).subscribe((data) => {
+      if (data.success) {
+        this.item = {
+          itemName: data.data.title,
+          itemPrice: data.data.price.toFixed(2),
+          itemID: data.data._id,
+          itemDescription: data.data.description,
+          itemQuantity: data.data.quantity,
+          itemImg: data.data.img,
+        };
+      }
+    });
     if (this.item.itemQuantity > 0) {
       this.router.navigate(["cart/" + this.item.itemID]);
     } else {
