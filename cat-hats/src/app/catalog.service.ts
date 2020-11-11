@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { catchError, tap } from "rxjs/operators";
+import { AuthService } from "./auth.service";
 
 interface catalogResponse {
   success: boolean;
@@ -9,11 +10,10 @@ interface catalogResponse {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class CatalogService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private auth: AuthService) {}
 
   getCatalog() {
     return this.http.get<any>("/api/catalog");
@@ -26,5 +26,10 @@ export class CatalogService {
   searchItem(item) {
     return this.http.get<any>("/api/search/" + item);
   }
-  
+
+  updateItemQuantity(id) {
+    return this.http.post<any>("/api/itemQuanity/", {
+      id,
+    });
+  }
 }

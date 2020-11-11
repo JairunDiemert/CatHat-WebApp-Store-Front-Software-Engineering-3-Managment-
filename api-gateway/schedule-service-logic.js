@@ -19,7 +19,7 @@ exports.addSchedule = async (req, res) => {
   axios
     .post("http://localhost:34567/api/addschedule", jsonPayload)
     .then((axiosResponse) => {
-      console.log(axiosResponse);
+      //console.log(axiosResponse);
       res.cookie("authToken", axiosResponse.data.apiToken);
       res.json(axiosResponse.data);
     })

@@ -3,15 +3,22 @@ const mongoose = require("mongoose");
 const connectionString =
   "mongodb+srv://madcatter:madcatter@cluster0.gjo41.mongodb.net/angulardb?retryWrites=true&w=majority";
 const connector = mongoose
-  .connect(connectionString, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
-  .then(() => console.log("Mongoose connection to Catalogs MongoDB successfully established!"));
+  .connect(connectionString, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true,
+  })
+  .then(() =>
+    console.log(
+      "Mongoose connection to Catalogs MongoDB successfully established!"
+    )
+  );
 
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-const cookieParser = require('cookie-parser');
+const cookieParser = require("cookie-parser");
 const Catalog = require("./models/catalog");
-
 
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -19,7 +26,6 @@ app.use(cookieParser());
 mongoose.Promise = Promise;
 
 app.get("/api/catalog", async (req, res) => {
-
   let catalog;
 
   catalog = await Catalog.find({});
@@ -34,7 +40,7 @@ app.get("/api/catalog", async (req, res) => {
 
   res.json({
     success: true,
-    data: catalog
+    data: catalog,
   });
 });
 
@@ -58,7 +64,7 @@ app.get("/api/item/:item", async (req, res) => {
 
   res.json({
     success: true,
-    data: item
+    data: item,
   });
 });
 
@@ -67,8 +73,12 @@ app.get("/api/search/:itemSearch", async (req, res) => {
   let items;
 
   if (req.params != undefined) {
-    items = await Catalog.find({title : {$regex: itemSearch, $options: 'i' }});
-    items.concat(await Catalog.find({description : {$regex: itemSearch, $options: 'i' }}));
+    items = await Catalog.find({
+      title: { $regex: itemSearch, $options: "i" },
+    });
+    items.concat(
+      await Catalog.find({ description: { $regex: itemSearch, $options: "i" } })
+    );
   } else {
     return;
   }
@@ -83,7 +93,35 @@ app.get("/api/search/:itemSearch", async (req, res) => {
 
   res.json({
     success: true,
-    data: items
+    data: items,
+  });
+});
+
+app.post("/api/updateQuantity", async (req, res) => {
+  let item;
+
+  item = await Catalog.findById(req.body.itemID);
+  //console.log(req.body.id);
+
+  if (!item) {
+    res.json({
+      success: false,
+      message: "item not found",
+    });
+    return;
+  }
+
+  await Catalog.updateOne(
+    { _id: req.body.itemID },
+    {
+      $set: {
+        quantity: item.quantity - 1,
+      },
+    }
+  );
+
+  res.json({
+    success: true,
   });
 });
 

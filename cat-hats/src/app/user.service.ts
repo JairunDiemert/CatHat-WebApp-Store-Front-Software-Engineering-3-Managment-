@@ -38,32 +38,35 @@ export class UserService {
   }
 
   getCart(email) {
-
     let cookieName = "authToken";
-    let token: String = this.auth.getCookie(cookieName); 
+    let token: String = this.auth.getCookie(cookieName);
 
     return this.http.get<userCart>("/api/cart/" + email + "/" + token);
   }
 
-  addCartItem=(itemID, email)=>
-  {
+  addCartItem = (itemID, email) => {
     let cookieName = "authToken";
-    let token = this.auth.getCookie(cookieName); 
+    let token = this.auth.getCookie(cookieName);
 
     return this.http.post<any>("/api/cart/" + email + "/" + token, {
-      itemID
-    }); 
-  }
+      itemID,
+    });
+  };
 
-  updateUser= (oldEmail, username, name, email, address, password) => {
-    
+  updateUser = (oldEmail, username, name, email, address, password) => {
     let cookieName = "authToken";
-    let token = this.auth.getCookie(cookieName); 
+    let token = this.auth.getCookie(cookieName);
 
     return this.http.post<totalStatus>("/api/user/:email", {
-      oldEmail, username, name, email, address, password, token
-    }); 
-  }
+      oldEmail,
+      username,
+      name,
+      email,
+      address,
+      password,
+      token,
+    });
+  };
 
   updateTotal(value) {
     return this.http.post<totalStatus>("/api/total", {

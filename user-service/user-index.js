@@ -63,15 +63,15 @@ app.get("/api/cart/:email/:token", async (req, res) => {
   });
 });
 
-app.post("/api/cart/:email/:token", async (req,res) => {
+app.post("/api/cart/:email/:token", async (req, res) => {
   console.log("Add cart item in user service.");
-  
+
   let userEmail = req.params.email;
   let apiToken = req.params.token;
   let cartItem = req.body.cartItem;
   let user;
 
-  console.log(cartItem);
+  //console.log(cartItem);
 
   if (
     req.body.token != undefined &&
@@ -82,7 +82,7 @@ app.post("/api/cart/:email/:token", async (req,res) => {
     user = await User.findOne({ email: userEmail });
   }
 
-  console.log("User found to add cart item to: ", user);
+  //console.log("User found to add cart item to: ", user);
 
   if (!user) {
     res.json({
@@ -97,7 +97,7 @@ app.post("/api/cart/:email/:token", async (req,res) => {
     {
       $set: {
         //array destructuring
-        cart: [...user.cart, cartItem]
+        cart: [...user.cart, cartItem],
       },
     }
   );
@@ -107,7 +107,6 @@ app.post("/api/cart/:email/:token", async (req,res) => {
     apiToken,
   });
 });
-
 
 app.get("/api/user/:email", async (req, res) => {
   const userEmail = req.params.email;
@@ -273,7 +272,7 @@ app.get("/api/data", async (req, res) => {
 });
 
 app.post("/api/total", async (req, res) => {
-  console.log(req.body.value);
+  //console.log(req.body.value);
   const user = await User.findOne({ email: req.session.user });
   if (!user) {
     res.json({
