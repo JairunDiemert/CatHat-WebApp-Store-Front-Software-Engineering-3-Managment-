@@ -63,8 +63,55 @@ app.get("/api/cart/:email/:token", async (req, res) => {
   });
 });
 
-app.post("/api/cart/:email/:token", async (req, res) => {
+app.post("/api/cart/delete/:email/:token", async (req, res) => {
   console.log("Add cart item in user service.");
+
+  let userEmail = req.params.email;
+  let apiToken = req.params.token;
+  let cartItem = req.body.cartItem;
+  let user;
+
+  //console.log(cartItem);
+
+  if (
+    req.body.token != undefined &&
+    mongoose.Types.ObjectId.isValid(apiToken)
+  ) {
+    user = await User.findById(apiToken);
+  } else {
+    user = await User.findOne({ email: userEmail });
+  }
+
+  //console.log("User found to add cart item to: ", user);
+
+  if (!user) {
+    res.json({
+      success: false,
+      message: "Invalid user!",
+    });
+    return;
+  }
+
+  user.cart = user.cart.filter((item) => item._id != cartItem._id);
+  console.log(user.cart);
+  await User.updateOne(
+    { email: userEmail },
+    {
+      $set: {
+        //array destructuring
+        cart: [...user.cart],
+      },
+    }
+  );
+
+  res.json({
+    success: true,
+    apiToken,
+  });
+});
+
+app.post("/api/cart/:email/:token", async (req, res) => {
+  //console.log("Add cart item in user service.");
 
   let userEmail = req.params.email;
   let apiToken = req.params.token;

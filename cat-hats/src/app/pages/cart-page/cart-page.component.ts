@@ -4,7 +4,7 @@ import { UserService } from "src/app/user.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { customerModel } from "src/app/models/customer-model";
 import { ItemModel } from "src/app/models/item-model";
-import { NgForm } from '@angular/forms';
+import { NgForm } from "@angular/forms";
 
 @Component({
   selector: "app-cart-page",
@@ -82,17 +82,17 @@ export class CartPageComponent implements OnInit {
 
       let email: String = localStorage.getItem("email");
 
-      this.user.addCartItem(itemToDisplay, email).subscribe(
-        (data) => {
-          console.log("Added cart item in cart page.");
-          this.displayCart();
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-      this.router.navigateByUrl("/", { skipLocationChange: true }).then(() => {
-        this.router.navigate(["/cart"]);
+      this.user.addCartItem(itemToDisplay, email).subscribe((data) => {
+        console.log("Added cart item in cart page.");
+        this.displayCart();
+        this.router.navigateByUrl("/", { skipLocationChange: true }).then(
+          () => {
+            this.router.navigate(["/cart"]);
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
       });
     } else {
       this.displayCart();

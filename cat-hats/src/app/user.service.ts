@@ -53,6 +53,15 @@ export class UserService {
     });
   };
 
+  deleteCartItem = (itemID, email) => {
+    let cookieName = "authToken";
+    let token = this.auth.getCookie(cookieName);
+
+    return this.http.post<any>("/api/cart/delete/" + email + "/" + token, {
+      itemID,
+    });
+  };
+
   updateUser = (oldEmail, username, name, email, address, password) => {
     let cookieName = "authToken";
     let token = this.auth.getCookie(cookieName);

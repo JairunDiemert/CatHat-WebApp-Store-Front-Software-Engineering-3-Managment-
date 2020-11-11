@@ -57,6 +57,34 @@ exports.getCart = async (req, res) => {
     });
 };
 
+exports.deleteCartItem = async (req, res) => {
+  let jsonPayload = {
+    email: req.params.email,
+    token: req.params.token,
+    itemID: req.body.itemID,
+  };
+
+  let cartItem = await catalogService.getCatalogItemByID(jsonPayload.itemID);
+  //console.log(cartItem);
+
+  const url =
+    "http://localhost:12345/api/cart/delete/" +
+    jsonPayload.email +
+    "/" +
+    jsonPayload.token;
+  console.log(url);
+
+  axios
+    .post(url, { cartItem: cartItem.data })
+    .then((axiosResponse) => {
+      res.cookie("authToken", axiosResponse.data.apiToken);
+      res.json(axiosResponse.data);
+    })
+    .catch((axiosError) => {
+      console.log(axiosError.response);
+    });
+};
+
 exports.addCartItem = async (req, res) => {
   let jsonPayload = {
     email: req.params.email,

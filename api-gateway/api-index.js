@@ -64,6 +64,11 @@ app.post("/api/cart/:email/:token", async (req, res) => {
   catalogService.updateQuantity(req, res);
 });
 
+app.post("/api/cart/delete/:email/:token", async (req, res) => {
+  userService.deleteCartItem(req, res);
+  //catalogService.updateQuantity(req, res);
+});
+
 //connect getUserDetails with user service login protocol
 app.post("/api/login", async (req, res) => {
   userService.getUserDetails(req, res);

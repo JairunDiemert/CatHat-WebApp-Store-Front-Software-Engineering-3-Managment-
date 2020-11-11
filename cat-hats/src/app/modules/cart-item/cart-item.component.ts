@@ -2,6 +2,9 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { ItemModel } from "src/app/models/item-model";
 import { customerModel } from "src/app/models/customer-model";
+import { CatalogService } from "src/app/catalog.service";
+import { UserService } from "src/app/user.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "[app-cart-item]",
@@ -11,7 +14,25 @@ import { customerModel } from "src/app/models/customer-model";
 export class CartItemComponent implements OnInit {
   @Input() public items: ItemModel;
 
-  constructor() {}
+  constructor(
+    private Catalog: CatalogService,
+    private user: UserService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {}
+
+  handleClick() {
+    let email: String = localStorage.getItem("email");
+    this.user.deleteCartItem(this.items.itemID, email).subscribe((data) => {
+      this.router.navigateByUrl("/", { skipLocationChange: true }).then(
+        () => {
+          this.router.navigate(["/cart"]);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    });
+  }
 }
