@@ -91,11 +91,25 @@ export class AuthService {
   }
 
   addSchedule(scheduleDate, userEmail, catalogTitle) {
-    return this.http.post<addScheduleResponse>("/api/addschedule", {
-      scheduleDate,
-      userEmail,
-      catalogTitle,
-    });
+    let cookieName = "authToken";
+    let token = this.getCookie(cookieName).toString();
+
+    console.log("Token found in browser for shipment schedule: ", token);
+
+    if (token != "") {
+      return this.http.post<addScheduleResponse>("/api/addschedule", {
+        scheduleDate,
+        userEmail,
+        catalogTitle,
+        token
+      });
+    } else {
+      return this.http.post<addScheduleResponse>("/api/addschedule", {
+        scheduleDate,
+        userEmail,
+        catalogTitle,
+      });
+    }
   }
 
   getUser(email) {

@@ -51,12 +51,34 @@
                 </tr>
               </tbody>
             </table>
-            <p class="text-center">
-              <a href="#" class="btn btn-primary">Schedule Shipment</a>
-            </p>
           </div>
         </div>
       </div>
+    </div>
+    <div class="container">
+      <form (submit)="addSchedule($event)">
+        <div class="row">
+          <div class="col-lg-12 p-5 bg-white rounded shadow-lg mb-4">
+            <div class="p-5 text-center">
+              <input
+                type="text"
+                autocomplete="off"
+                placeholder="Schedule Date (00/00/0000)"
+                id="scheduleDate"
+              />
+            </div>
+            <div class="text-center">
+              <button 
+                type="submit"
+                id = "submit"
+                class="btn btn-primary py-2 font-weight-bold"
+                >
+                Schedule Shipment
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
     </div>
   </main>
 </body>
