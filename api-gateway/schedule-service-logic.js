@@ -11,6 +11,7 @@ exports.addSchedule = async (req, res) => {
   let jsonPayload;
 
   jsonPayload = {
+    token: req.body.token,
     scheduleDate: req.body.scheduleDate,
     userEmail: req.body.userEmail,
     catalogTitle: req.body.catalogTitle,
@@ -19,7 +20,7 @@ exports.addSchedule = async (req, res) => {
   axios
     .post("http://localhost:34567/api/addschedule", jsonPayload)
     .then((axiosResponse) => {
-      //console.log(axiosResponse);
+      console.log("Return to api from schedule service.");
       res.cookie("authToken", axiosResponse.data.apiToken);
       res.json(axiosResponse.data);
     })
