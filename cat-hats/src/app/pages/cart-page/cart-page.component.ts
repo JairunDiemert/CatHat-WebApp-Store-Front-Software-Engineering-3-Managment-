@@ -4,6 +4,7 @@ import { UserService } from "src/app/user.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { customerModel } from "src/app/models/customer-model";
 import { ItemModel } from "src/app/models/item-model";
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: "app-cart-page",
@@ -21,18 +22,34 @@ export class CartPageComponent implements OnInit {
   public cart_Total;
 
   constructor(
-    private Auth: AuthService,
-    private User: UserService,
+    private auth: AuthService,
+    private user: UserService,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {}
 
+  addSchedule(event) {
+    event.preventDefault();
+    const target = event.target;
+    const scheduleDate = target.querySelector("#scheduleDate").value;
+    const userEmail: String = localStorage.getItem("email");
+    const catalogTitle = this.cart_Items[0].itemName;
+
+    this.auth
+      .addSchedule(scheduleDate, userEmail, catalogTitle)
+      .subscribe((data) => {
+        console.log(data);
+        if (data.success) {
+          this.router.navigate(["schedule"]);
+        }
+        window.alert(data.message);
+      });
+  }
+
   displayCart() {
     let email: String = localStorage.getItem("email");
 
-    //this.user.addCartItem(this.item).subscribe((data) => {
-
-    this.User.getCart(email).subscribe((data) => {
+    this.user.getCart(email).subscribe((data) => {
       if (data.success) {
         this.cart_Total = data.total;
         this.list = data.cart;
@@ -65,9 +82,9 @@ export class CartPageComponent implements OnInit {
 
       let email: String = localStorage.getItem("email");
 
-      this.User.addCartItem(itemToDisplay, email).subscribe(
+      this.user.addCartItem(itemToDisplay, email).subscribe(
         (data) => {
-          console.log("Added cart item.");
+          console.log("Added cart item in cart page.");
           this.displayCart();
         },
         (error) => {
