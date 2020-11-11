@@ -51,7 +51,7 @@ app.get("/api/search/:item", async (req, res) => {
 
 app.post("/api/itemQuanity/", async (req, res) => {
   console.log("hi");
-  catalogService.updateQuantity(req, res);
+  catalogService.updateQuantityDown(req, res);
 });
 
 //connect updateUser method with matching POST in user service
@@ -61,12 +61,12 @@ app.post("/api/user/:email", async (req, res) => {
 
 app.post("/api/cart/:email/:token", async (req, res) => {
   userService.addCartItem(req, res);
-  catalogService.updateQuantity(req, res);
+  catalogService.updateQuantityDown(req, res);
 });
 
 app.post("/api/cart/delete/:email/:token", async (req, res) => {
   userService.deleteCartItem(req, res);
-  //catalogService.updateQuantity(req, res);
+  catalogService.updateQuantityUp(req, res);
 });
 
 //connect getUserDetails with user service login protocol

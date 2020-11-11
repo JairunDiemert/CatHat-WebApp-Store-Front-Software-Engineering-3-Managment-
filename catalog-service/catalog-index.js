@@ -111,14 +111,25 @@ app.post("/api/updateQuantity", async (req, res) => {
     return;
   }
 
-  await Catalog.updateOne(
-    { _id: req.body.itemID },
-    {
-      $set: {
-        quantity: item.quantity - 1,
-      },
-    }
-  );
+  if (req.body.direction === 1) {
+    await Catalog.updateOne(
+      { _id: req.body.itemID },
+      {
+        $set: {
+          quantity: item.quantity + 1,
+        },
+      }
+    );
+  } else {
+    await Catalog.updateOne(
+      { _id: req.body.itemID },
+      {
+        $set: {
+          quantity: item.quantity - 1,
+        },
+      }
+    );
+  }
 
   res.json({
     success: true,

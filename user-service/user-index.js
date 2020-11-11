@@ -92,8 +92,10 @@ app.post("/api/cart/delete/:email/:token", async (req, res) => {
     return;
   }
 
-  user.cart = user.cart.filter((item) => item._id != cartItem._id);
-  console.log(user.cart);
+  let itemToDelete = user.cart.find((item) => item._id == cartItem._id);
+  itemToDelete._id = 0;
+  user.cart = user.cart.filter((item) => item._id != 0);
+
   await User.updateOne(
     { email: userEmail },
     {

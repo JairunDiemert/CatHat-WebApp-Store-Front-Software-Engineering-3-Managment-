@@ -7,11 +7,37 @@ const cookieParser = require("cookie-parser");
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-exports.updateQuantity = async (req, res) => {
+exports.updateQuantityDown = async (req, res) => {
   let jsonPayload = {
     email: req.params.email,
     token: req.params.token,
     itemID: req.body.itemID,
+    direction: -1,
+  };
+
+  //axios to make http request to user service
+  axios
+    .post("http://localhost:2468/api/updateQuantity", jsonPayload)
+
+    //axiosResponse: json payload returned from user service
+    .then((axiosResponse) => {
+      res.cookie("authToken", axiosResponse.data.apiToken);
+
+      //sends json request back to calling client
+      res.json(axiosResponse.data);
+    })
+    //catch calls errors with sending or receiving request
+    .catch((axiosError) => {
+      console.log(axiosError);
+    });
+};
+
+exports.updateQuantityUp = async (req, res) => {
+  let jsonPayload = {
+    email: req.params.email,
+    token: req.params.token,
+    itemID: req.body.itemID,
+    direction: 1,
   };
 
   //axios to make http request to user service
