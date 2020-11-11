@@ -22,13 +22,9 @@
 <td class="align-middle text-center">
   <strong>${{ items.itemPrice }}</strong>
 </td>
-<td class="align-middle text-center">
-  <strong>{{ items.itemQuantity }}</strong>
-</td>
+
 <td class="align-middle text-center">
   <strong
-    ><span
-      >${{ items.itemPrice * items.itemQuantity | number: "1.2-2" }}</span
-    ></strong
+    ><span>${{ items.itemPrice * 1 | number: "1.2-2" }}</span></strong
   >
 </td>

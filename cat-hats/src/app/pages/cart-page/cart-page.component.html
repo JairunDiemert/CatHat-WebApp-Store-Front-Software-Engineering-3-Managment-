@@ -29,11 +29,7 @@
                       Price
                     </div>
                   </th>
-                  <th scope="col" class="border-0 bg-light">
-                    <div class="py-2 text-uppercase align-middle text-center">
-                      Quantity
-                    </div>
-                  </th>
+
                   <th scope="col" class="border-0 bg-light">
                     <div class="py-2 text-uppercase align-middle text-center">
                       Subtotal
@@ -47,8 +43,7 @@
                   *ngFor="let item of cart_Items"
                   app-cart-item
                   [items]="item"
-                >
-                </tr>
+                ></tr>
               </tbody>
             </table>
           </div>
@@ -68,11 +63,11 @@
               />
             </div>
             <div class="text-center">
-              <button 
+              <button
                 type="submit"
-                id = "submit"
+                id="submit"
                 class="btn btn-primary py-2 font-weight-bold"
-                >
+              >
                 Schedule Shipment
               </button>
             </div>
