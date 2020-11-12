@@ -90,7 +90,7 @@ export class AuthService {
     });
   }
 
-  addSchedule(scheduleDate, userEmail, catalogTitle) {
+  addSchedule(scheduleDate, userEmail, shippingCart) {
     let cookieName = "authToken";
     let token = this.getCookie(cookieName).toString();
 
@@ -100,14 +100,14 @@ export class AuthService {
       return this.http.post<addScheduleResponse>("/api/addschedule", {
         scheduleDate,
         userEmail,
-        catalogTitle,
+        shippingCart,
         token
       });
     } else {
       return this.http.post<addScheduleResponse>("/api/addschedule", {
         scheduleDate,
         userEmail,
-        catalogTitle,
+        shippingCart,
       });
     }
   }

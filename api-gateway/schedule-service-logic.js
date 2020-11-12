@@ -14,7 +14,7 @@ exports.addSchedule = async (req, res) => {
     token: req.body.token,
     scheduleDate: req.body.scheduleDate,
     userEmail: req.body.userEmail,
-    catalogTitle: req.body.catalogTitle,
+    shippingCart: req.body.shippingCart,
   };
 
   axios
