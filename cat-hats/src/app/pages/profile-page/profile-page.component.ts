@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
+import { Router } from "@angular/router";
 import { AuthService } from "src/app/auth.service";
 import { customerModel } from "src/app/models/customer-model";
 import { UserService } from "src/app/user.service";
@@ -19,7 +20,11 @@ export class ProfilePageComponent implements OnInit {
     address: "null",
     password: "null",
   };
-  constructor(private Auth: AuthService, private user: UserService) {
+  constructor(
+    private Auth: AuthService,
+    private user: UserService,
+    private router: Router
+  ) {
     let email: String = localStorage.getItem("email");
     this.Auth.getUser(email).subscribe((data) => {
       this.customer.username = data.username;
@@ -33,6 +38,10 @@ export class ProfilePageComponent implements OnInit {
   profileShow: Boolean = true;
 
   ngOnInit(): void {}
+
+  historyReroute() {
+    this.router.navigate(["/history"]);
+  }
 
   editProfileClick() {
     this.profileShow = false;

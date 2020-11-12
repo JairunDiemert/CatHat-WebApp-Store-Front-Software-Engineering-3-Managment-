@@ -15,6 +15,7 @@ import { ItemPageComponent } from "./pages/item-page/item-page.component";
 import { SearchBarComponent } from "./modules/search-bar/search-bar.component";
 import { SearchPageComponent } from "./pages/search-page/search-page.component";
 import { ScheduleComponent } from "./pages/schedule-page/schedule.component";
+import { HistoryPageComponent } from "./pages/history-page/history-page.component";
 
 const routes: Routes = [
   { path: "", component: HomePageComponent },
@@ -43,6 +44,11 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   { path: "schedule", component: ScheduleComponent },
+  {
+    path: "history",
+    component: HistoryPageComponent,
+    canActivate: [AuthGuard],
+  },
   { path: "**", redirectTo: "" },
 ];
 
