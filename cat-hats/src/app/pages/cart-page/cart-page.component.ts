@@ -32,11 +32,12 @@ export class CartPageComponent implements OnInit {
     event.preventDefault();
     const target = event.target;
     const scheduleDate = target.querySelector("#scheduleDate").value;
-    const userEmail: String = localStorage.getItem("email");
-    const catalogTitle = this.cart_Items[0].itemName;
+    const userEmail = localStorage.getItem("email");
+    //const catalogTitle = this.cart_Items[0].itemName;
+    const shippingCart = this.cart_Items;
 
     this.auth
-      .addSchedule(scheduleDate, userEmail, catalogTitle)
+      .addSchedule(scheduleDate, userEmail, shippingCart)
       .subscribe((data) => {
         console.log(data);
         if (data.success) {

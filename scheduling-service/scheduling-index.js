@@ -37,16 +37,16 @@ app.use(cookieParser());
 mongoose.Promise = Promise;
 
 app.post("/api/addschedule", async (req, res) => {
-  const { scheduleDate, userEmail, catalogTitle } = req.body;
+  const { scheduleDate, userEmail, shippingCart, token } = req.body;
 
   const schedule = new Schedule({
     scheduleDate,
     userEmail,
-    catalogTitle,
+    shippingCart,
   });
 
   //set apiToken to ObjectID
-  const apiToken = schedule._id;
+  //const apiToken = schedule._id;
 
   const result = await schedule.save();
   console.log("New schedule successfully saved: ", result);
@@ -54,7 +54,7 @@ app.post("/api/addschedule", async (req, res) => {
   res.json({
     success: true,
     message: "Schedule added!",
-    apiToken,
+    token,
   });
 });
 
