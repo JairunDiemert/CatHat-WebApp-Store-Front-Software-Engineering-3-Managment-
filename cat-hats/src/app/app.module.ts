@@ -29,6 +29,7 @@ import { CatalogService } from "./catalog.service";
 import { SearchPageComponent } from "./pages/search-page/search-page.component";
 import { ScheduleComponent } from "./pages/schedule-page/schedule.component";
 import { HistoryPageComponent } from './pages/history-page/history-page.component';
+import { HistoryItemComponent } from './modules/history-item/history-item.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { HistoryPageComponent } from './pages/history-page/history-page.componen
     SearchPageComponent,
     ScheduleComponent,
     HistoryPageComponent,
+    HistoryItemComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [RecordsService, UserService, AuthGuard, CatalogService],

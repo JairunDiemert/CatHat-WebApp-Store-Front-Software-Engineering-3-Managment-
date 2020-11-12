@@ -37,12 +37,9 @@
                 </tr>
               </thead>
               <tbody>
-                <!--connects to cart-item.component.html view-->
-                <!-- <tr
-                  *ngFor="let item of cart_Items"
-                  app-cart-item
-                  [items]="item"
-                ></tr> -->
+                <tr *ngFor="let item of historyList">
+                  <app-history-item [items]="item"></app-history-item>
+                </tr>
               </tbody>
             </table>
           </div>
