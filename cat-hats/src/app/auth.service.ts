@@ -9,11 +9,6 @@ interface registerResponse {
   message: string;
 }
 
-interface addScheduleResponse {
-  success: boolean;
-  message: string;
-}
-
 @Injectable({
   providedIn: "root",
 })
@@ -88,28 +83,6 @@ export class AuthService {
       address,
       password,
     });
-  }
-
-  addSchedule(scheduleDate, userEmail, shippingCart) {
-    let cookieName = "authToken";
-    let token = this.getCookie(cookieName).toString();
-
-    console.log("Token found in browser for shipment schedule: ", token);
-
-    if (token != "") {
-      return this.http.post<addScheduleResponse>("/api/addschedule", {
-        scheduleDate,
-        userEmail,
-        shippingCart,
-        token
-      });
-    } else {
-      return this.http.post<addScheduleResponse>("/api/addschedule", {
-        scheduleDate,
-        userEmail,
-        shippingCart,
-      });
-    }
   }
 
   getUser(email) {

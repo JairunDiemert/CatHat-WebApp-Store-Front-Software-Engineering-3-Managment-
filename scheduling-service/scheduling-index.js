@@ -1,8 +1,6 @@
 const express = require("express");
 const app = express();
-const session = require("express-session");
 const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
 const Schedule = require("./models/schedule");
 
 const { Mongoose } = require("mongoose");
@@ -21,18 +19,7 @@ const connector = mongoose
     )
   );
 
-app.use(
-  //session cookie for reloading and open/closing
-  session({
-    secret: "cathat",
-    cookie: {},
-    resave: true,
-    saveUninitialized: true,
-  })
-);
-
 app.use(bodyParser.json());
-app.use(cookieParser());
 
 mongoose.Promise = Promise;
 
@@ -40,13 +27,11 @@ app.post("/api/addschedule", async (req, res) => {
   const { scheduleDate, userEmail, shippingCart, token } = req.body;
 
   const schedule = new Schedule({
+    token,
     scheduleDate,
     userEmail,
     shippingCart,
   });
-
-  //set apiToken to ObjectID
-  //const apiToken = schedule._id;
 
   const result = await schedule.save();
   console.log("New schedule successfully saved: ", result);
@@ -55,6 +40,30 @@ app.post("/api/addschedule", async (req, res) => {
     success: true,
     message: "Schedule added!",
     token,
+  });
+});
+
+app.get("/api/getschedule/:token", async (req, res) => {
+  const token = req.params.token;
+
+  let schedule;
+
+  if (token != undefined) {
+    schedule = await Schedule.find({ token: token });
+  }
+
+  if (!schedule) {
+    res.json({
+      success: false,
+      message: `No schedule found.`,
+    });
+    return;
+  }
+
+  res.json({
+    success: true,
+    message: "Schedule found.",
+    schedule: schedule,
   });
 });
 

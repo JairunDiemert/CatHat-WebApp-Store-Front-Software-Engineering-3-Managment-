@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { ScheduleService } from "src/app/schedule.service";
 
 @Component({
   selector: "app-history-page",
@@ -7,7 +8,22 @@ import { Component, OnInit } from "@angular/core";
 })
 export class HistoryPageComponent implements OnInit {
   public historyList = [];
-  constructor() {}
+  constructor(private schedule: ScheduleService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.displayHistory();
+  }
+
+  displayHistory() {
+    this.schedule.getSchedule().subscribe((data) => {
+      if (data.success) {
+        this.historyList = data.schedule;
+        window.alert(data.message);
+      } else {
+        window.alert(
+          "No history to diplay. You may not have any history, or you may not be logged in."
+        );
+      }
+    });
+  }
 }

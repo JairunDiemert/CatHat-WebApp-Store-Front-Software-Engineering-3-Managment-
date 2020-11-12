@@ -83,4 +83,8 @@ app.post("/api/addschedule", async (req, res) => {
   scheduleService.addSchedule(req, res);
 });
 
+app.get("/api/getschedule/:token", async (req, res) => {
+  scheduleService.getSchedule(req, res);
+});
+
 app.listen(54321, () => console.log("API gateway server listening at 54321."));

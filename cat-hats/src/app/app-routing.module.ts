@@ -5,7 +5,6 @@ import { HomePageComponent } from "./pages/home-page/home-page.component";
 import { CartPageComponent } from "./pages/cart-page/cart-page.component";
 import { ProfilePageComponent } from "./pages/profile-page/profile-page.component";
 import { RegisterPageComponent } from "./pages/register-page/register-page.component";
-import { RecordsPageComponent } from "./pages/records-page/records-page.component";
 import { LoginComponent } from "./login/login.component";
 import { HomeTESTComponent } from "./home-test/home-test.component";
 import { AuthGuard } from "./auth.guard";
@@ -33,7 +32,6 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   { path: "register", component: RegisterPageComponent },
-  { path: "records", component: RecordsPageComponent },
   { path: "search/:searchTerm", component: SearchPageComponent },
   { path: "login", component: LoginComponent },
   { path: "logout", component: LogoutComponent },

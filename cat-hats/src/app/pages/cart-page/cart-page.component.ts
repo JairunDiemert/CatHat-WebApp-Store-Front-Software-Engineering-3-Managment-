@@ -1,10 +1,10 @@
 import { Component, OnInit } from "@angular/core";
-import { AuthService } from "src/app/auth.service";
 import { UserService } from "src/app/user.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { customerModel } from "src/app/models/customer-model";
 import { ItemModel } from "src/app/models/item-model";
 import { NgForm } from "@angular/forms";
+import { ScheduleService } from "src/app/schedule.service";
 
 @Component({
   selector: "app-cart-page",
@@ -22,7 +22,7 @@ export class CartPageComponent implements OnInit {
   public cart_Total;
 
   constructor(
-    private auth: AuthService,
+    private schedule: ScheduleService,
     private user: UserService,
     private activatedRoute: ActivatedRoute,
     private router: Router
@@ -36,12 +36,12 @@ export class CartPageComponent implements OnInit {
     //const catalogTitle = this.cart_Items[0].itemName;
     const shippingCart = this.cart_Items;
 
-    this.auth
+    this.schedule
       .addSchedule(scheduleDate, userEmail, shippingCart)
       .subscribe((data) => {
         console.log(data);
         if (data.success) {
-          this.router.navigate(["schedule"]);
+          this.router.navigate(["history"]);
         }
         window.alert(data.message);
       });

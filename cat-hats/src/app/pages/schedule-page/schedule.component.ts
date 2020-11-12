@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { AuthService } from "../../auth.service";
+import { ScheduleService } from "src/app/schedule.service";
 
 @Component({
   selector: "app-schedule",
@@ -8,7 +8,7 @@ import { AuthService } from "../../auth.service";
   styleUrls: ["./schedule.component.css"],
 })
 export class ScheduleComponent implements OnInit {
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor(private schedule: ScheduleService, private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -19,7 +19,7 @@ export class ScheduleComponent implements OnInit {
     const userEmail = target.querySelector("#userEmail").value;
     const catalogTitle = target.querySelector("#catalogTitle").value;
 
-    this.auth
+    this.schedule
       .addSchedule(scheduleDate, userEmail, catalogTitle)
       .subscribe((data) => {
         console.log(data);

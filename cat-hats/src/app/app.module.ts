@@ -15,8 +15,6 @@ import { ProfilePageComponent } from "./pages/profile-page/profile-page.componen
 import { LoginCardComponent } from "./modules/login-card/login-card.component";
 import { FormsModule } from "@angular/forms";
 import { RegisterPageComponent } from "./pages/register-page/register-page.component";
-import { RecordsPageComponent } from "./pages/records-page/records-page.component";
-import { RecordsService } from "./records.service";
 import { LoginComponent } from "./login/login.component";
 import { HomeTESTComponent } from "./home-test/home-test.component";
 import { AuthGuard } from "./auth.guard";
@@ -28,8 +26,8 @@ import { ItemPageComponent } from "./pages/item-page/item-page.component";
 import { CatalogService } from "./catalog.service";
 import { SearchPageComponent } from "./pages/search-page/search-page.component";
 import { ScheduleComponent } from "./pages/schedule-page/schedule.component";
-import { HistoryPageComponent } from './pages/history-page/history-page.component';
-import { HistoryItemComponent } from './modules/history-item/history-item.component';
+import { HistoryPageComponent } from "./pages/history-page/history-page.component";
+import { HistoryItemComponent } from "./modules/history-item/history-item.component";
 
 @NgModule({
   declarations: [
@@ -44,7 +42,6 @@ import { HistoryItemComponent } from './modules/history-item/history-item.compon
     ProfilePageComponent,
     LoginCardComponent,
     RegisterPageComponent,
-    RecordsPageComponent,
     LoginComponent,
     HomeTESTComponent,
     LogoutComponent,
@@ -57,7 +54,7 @@ import { HistoryItemComponent } from './modules/history-item/history-item.compon
     HistoryItemComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
-  providers: [RecordsService, UserService, AuthGuard, CatalogService],
+  providers: [UserService, AuthGuard, CatalogService],
 
   bootstrap: [AppComponent],
 })

@@ -1,11 +1,8 @@
 const axios = require("axios");
 const app = require("express")();
-const session = require("express-session");
 const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
 
 app.use(bodyParser.json());
-app.use(cookieParser());
 
 exports.addSchedule = async (req, res) => {
   let jsonPayload;
@@ -21,7 +18,19 @@ exports.addSchedule = async (req, res) => {
     .post("http://localhost:34567/api/addschedule", jsonPayload)
     .then((axiosResponse) => {
       console.log("Return to api from schedule service.");
-      res.cookie("authToken", axiosResponse.data.apiToken);
+      res.json(axiosResponse.data);
+    })
+    .catch((axiosError) => {
+      console.log(axiosError);
+    });
+};
+
+exports.getSchedule = async (req, res) => {
+  const token = req.params.token;
+  axios
+    .get("http://localhost:34567/api/getschedule/" + token, {})
+    .then((axiosResponse) => {
+      console.log("Return to api from schedule service.");
       res.json(axiosResponse.data);
     })
     .catch((axiosError) => {
