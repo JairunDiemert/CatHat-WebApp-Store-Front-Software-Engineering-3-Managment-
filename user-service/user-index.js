@@ -62,6 +62,40 @@ app.get("/api/cart/:email/:token", async (req, res) => {
   });
 });
 
+app.post("/api/cart/deleteAll", async (req, res) => {
+  let userEmail = req.body.userEmail;
+  let apiToken = req.body.token;
+  let user;
+
+  if (req.body.token != undefined) {
+    user = await User.findById(apiToken);
+  } else {
+    user = await User.findOne({ email: userEmail });
+  }
+
+  if (!user) {
+    res.json({
+      success: false,
+      message: "Invalid user!",
+    });
+    return;
+  }
+
+  await User.updateOne(
+    { email: userEmail },
+    {
+      $set: {
+        cart: [],
+      },
+    }
+  );
+
+  res.json({
+    success: true,
+    apiToken,
+  });
+});
+
 app.post("/api/cart/delete/:email/:token", async (req, res) => {
   console.log("Add cart item in user service.");
 

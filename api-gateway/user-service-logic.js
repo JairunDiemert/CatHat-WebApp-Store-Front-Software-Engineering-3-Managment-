@@ -52,17 +52,34 @@ exports.getCart = async (req, res) => {
   res.json(data);
 };
 
-
-function getCartByReq(userEmail, token) { 
+function getCartByReq(userEmail, token) {
   return axios
     .get("http://localhost:12345/api/cart/" + userEmail + "/" + token, {})
     .then((axiosResponse) => {
       return axiosResponse.data;
-    })
-};
+    });
+}
 
 exports.getCartByReq = getCartByReq;
 
+exports.deleteCart = async (req, res) => {
+  let jsonPayload = {
+    token: req.body.token,
+    userEmail: req.body.userEmail,
+  };
+
+  const url = "http://localhost:12345/api/cart/deleteAll/";
+
+  axios
+    .post(url, jsonPayload)
+    .then((axiosResponse) => {
+      res.cookie("authToken", axiosResponse.data.apiToken);
+      res.json(axiosResponse.data);
+    })
+    .catch((axiosError) => {
+      console.log(axiosError.response);
+    });
+};
 
 exports.deleteCartItem = async (req, res) => {
   let jsonPayload = {
