@@ -46,16 +46,23 @@ exports.userByEmail = async (req, res) => {
 exports.getCart = async (req, res) => {
   const userEmail = req.params.email;
   const token = req.params.token;
-  axios
+
+  const data = await getCartByReq(userEmail, token);
+  res.cookie("authToken", data.apiToken);
+  res.json(data);
+};
+
+
+function getCartByReq(userEmail, token) { 
+  return axios
     .get("http://localhost:12345/api/cart/" + userEmail + "/" + token, {})
     .then((axiosResponse) => {
-      res.cookie("authToken", axiosResponse.data.apiToken);
-      res.json(axiosResponse.data);
+      return axiosResponse.data;
     })
-    .catch((axiosError) => {
-      console.log(axiosError);
-    });
 };
+
+exports.getCartByReq = getCartByReq;
+
 
 exports.deleteCartItem = async (req, res) => {
   let jsonPayload = {
