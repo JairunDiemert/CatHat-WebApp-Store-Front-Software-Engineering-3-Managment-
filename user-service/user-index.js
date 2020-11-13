@@ -58,7 +58,6 @@ app.get("/api/cart/:email/:token", async (req, res) => {
   res.json({
     success: true,
     cart: user.cart,
-    total: user.total,
     apiToken: user._id,
   });
 });
