@@ -20,7 +20,7 @@ export class ScheduleComponent implements OnInit {
     const catalogTitle = target.querySelector("#catalogTitle").value;
 
     this.schedule
-      .addSchedule(scheduleDate, userEmail, catalogTitle)
+      .addSchedule(scheduleDate, userEmail)
       .subscribe((data) => {
         console.log(data);
         if (data.success) {

@@ -8,7 +8,7 @@ import { AuthService } from "./auth.service";
 export class ScheduleService {
   constructor(private http: HttpClient, private auth: AuthService) {}
 
-  addSchedule(scheduleDate, userEmail, shippingCart) {
+  addSchedule(scheduleDate, userEmail) {
     let cookieName = "authToken";
     let token = this.auth.getCookie(cookieName).toString();
 
@@ -18,15 +18,10 @@ export class ScheduleService {
       return this.http.post<any>("/api/addschedule", {
         scheduleDate,
         userEmail,
-        shippingCart,
         token,
       });
     } else {
-      return this.http.post<any>("/api/addschedule", {
-        scheduleDate,
-        userEmail,
-        shippingCart,
-      });
+      console.log("User token not authenticated in schedule.service.ts");
     }
   }
 
