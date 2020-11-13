@@ -24,7 +24,7 @@ app.use(bodyParser.json());
 mongoose.Promise = Promise;
 
 app.post("/api/addschedule", async (req, res) => {
-  const { scheduleDate, userEmail, shippingCart, token } = req.body;
+  const {  token, scheduleDate, userEmail, shippingCart } = req.body;
 
   const schedule = new Schedule({
     token,

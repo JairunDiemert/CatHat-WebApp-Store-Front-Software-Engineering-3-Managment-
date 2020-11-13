@@ -1,17 +1,22 @@
 const axios = require("axios");
 const app = require("express")();
 const bodyParser = require("body-parser");
+let userService = require("./user-service-logic");
 
 app.use(bodyParser.json());
 
 exports.addSchedule = async (req, res) => {
   let jsonPayload;
+  let userEmail = req.body.userEmail;
+  let token = req.body.token;
+
+  let cartFromUser = await userService.getCartByReq(userEmail, token);
 
   jsonPayload = {
     token: req.body.token,
     scheduleDate: req.body.scheduleDate,
     userEmail: req.body.userEmail,
-    shippingCart: req.body.shippingCart,
+    shippingCart: cartFromUser.cart,
   };
 
   axios
