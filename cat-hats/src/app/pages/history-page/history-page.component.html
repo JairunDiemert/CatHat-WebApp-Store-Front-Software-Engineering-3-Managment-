@@ -14,35 +14,9 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-12 p-5 bg-white rounded shadow-lg mb-4">
-          <!-- Shopping history table -->
-          <div class="table-responsive w-auto">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col" class="border-0 bg-light">
-                    <div class="py-2 text-uppercase align-middle text-center">
-                      Product
-                    </div>
-                  </th>
-                  <th scope="col" class="border-0 bg-light">
-                    <div class="py-2 text-uppercase align-middle text-center">
-                      Price
-                    </div>
-                  </th>
-                  <th scope="col" class="border-0 bg-light">
-                    <div class="py-2 text-uppercase align-middle text-center">
-                      Scheduled Ship Date
-                    </div>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let item of historyList">
-                  <app-history-item [items]="item"></app-history-item>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <tr class="card text-center" *ngFor="let item of historyList">
+            <app-history-card [orders]="item"></app-history-card>
+          </tr>
         </div>
       </div>
     </div>

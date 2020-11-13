@@ -7,7 +7,7 @@ import { ItemModel } from "src/app/models/item-model";
   styleUrls: ["./history-item.component.css"],
 })
 export class HistoryItemComponent implements OnInit {
-  @Input() public items;
+  @Input() public items: any;
   constructor() {}
 
   ngOnInit(): void {}

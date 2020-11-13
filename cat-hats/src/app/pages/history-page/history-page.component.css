@@ -2,9 +2,15 @@ h1 {
   font-family: "Alice", serif;
 }
 
-header {
+header,
+main {
   align-content: center;
   text-align: center;
+}
+
+.table {
+  align-items: center;
+  justify-content: center;
 }
 
 .header-img {

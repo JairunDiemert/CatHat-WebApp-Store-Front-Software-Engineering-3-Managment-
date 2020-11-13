@@ -28,6 +28,7 @@ import { SearchPageComponent } from "./pages/search-page/search-page.component";
 import { ScheduleComponent } from "./pages/schedule-page/schedule.component";
 import { HistoryPageComponent } from "./pages/history-page/history-page.component";
 import { HistoryItemComponent } from "./modules/history-item/history-item.component";
+import { HistoryCardComponent } from './modules/history-card/history-card.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { HistoryItemComponent } from "./modules/history-item/history-item.compon
     ScheduleComponent,
     HistoryPageComponent,
     HistoryItemComponent,
+    HistoryCardComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [UserService, AuthGuard, CatalogService],

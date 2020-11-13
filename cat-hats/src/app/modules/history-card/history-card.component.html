@@ -1,0 +1,9 @@
+<div class="card">
+  <h5 class="card-header">Order ID: {{ orders._id }}</h5>
+  <div class="card-body">
+    <h5 class="card-title">Schedule Date: {{ orders.scheduleDate }}</h5>
+    <div *ngFor="let item of orderList">
+      <app-history-item [items]="item"></app-history-item>
+    </div>
+  </div>
+</div>

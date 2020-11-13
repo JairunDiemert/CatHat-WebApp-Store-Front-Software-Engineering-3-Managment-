@@ -18,7 +18,6 @@ export class HistoryPageComponent implements OnInit {
     this.schedule.getSchedule().subscribe((data) => {
       if (data.success) {
         this.historyList = data.schedule;
-        window.alert(data.message);
       } else {
         window.alert(
           "No history to diplay. You may not have any history, or you may not be logged in."
