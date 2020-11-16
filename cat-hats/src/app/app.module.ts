@@ -15,10 +15,9 @@ import { ProfilePageComponent } from "./pages/profile-page/profile-page.componen
 import { LoginCardComponent } from "./modules/login-card/login-card.component";
 import { FormsModule } from "@angular/forms";
 import { RegisterPageComponent } from "./pages/register-page/register-page.component";
-import { LoginComponent } from "./login/login.component";
+import { LoginComponent } from "./pages/login/login.component";
 import { AuthGuard } from "./auth.guard";
 import { UserService } from "./user.service";
-import { LogoutComponent } from "./logout/logout.component";
 import { SearchBarComponent } from "./modules/search-bar/search-bar.component";
 import { ItemPageComponent } from "./pages/item-page/item-page.component";
 import { CatalogService } from "./catalog.service";
@@ -42,7 +41,6 @@ import { HistoryCardComponent } from "./modules/history-card/history-card.compon
     LoginCardComponent,
     RegisterPageComponent,
     LoginComponent,
-    LogoutComponent,
     SearchBarComponent,
     ItemPageComponent,
     SearchPageComponent,
