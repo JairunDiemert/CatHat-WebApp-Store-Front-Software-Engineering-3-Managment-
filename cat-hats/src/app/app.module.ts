@@ -16,11 +16,9 @@ import { LoginCardComponent } from "./modules/login-card/login-card.component";
 import { FormsModule } from "@angular/forms";
 import { RegisterPageComponent } from "./pages/register-page/register-page.component";
 import { LoginComponent } from "./login/login.component";
-import { HomeTESTComponent } from "./home-test/home-test.component";
 import { AuthGuard } from "./auth.guard";
 import { UserService } from "./user.service";
 import { LogoutComponent } from "./logout/logout.component";
-import { DashboardComponent } from "./dashboard/dashboard.component";
 import { SearchBarComponent } from "./modules/search-bar/search-bar.component";
 import { ItemPageComponent } from "./pages/item-page/item-page.component";
 import { CatalogService } from "./catalog.service";
@@ -28,7 +26,7 @@ import { SearchPageComponent } from "./pages/search-page/search-page.component";
 import { ScheduleComponent } from "./pages/schedule-page/schedule.component";
 import { HistoryPageComponent } from "./pages/history-page/history-page.component";
 import { HistoryItemComponent } from "./modules/history-item/history-item.component";
-import { HistoryCardComponent } from './modules/history-card/history-card.component';
+import { HistoryCardComponent } from "./modules/history-card/history-card.component";
 
 @NgModule({
   declarations: [
@@ -44,9 +42,7 @@ import { HistoryCardComponent } from './modules/history-card/history-card.compon
     LoginCardComponent,
     RegisterPageComponent,
     LoginComponent,
-    HomeTESTComponent,
     LogoutComponent,
-    DashboardComponent,
     SearchBarComponent,
     ItemPageComponent,
     SearchPageComponent,
