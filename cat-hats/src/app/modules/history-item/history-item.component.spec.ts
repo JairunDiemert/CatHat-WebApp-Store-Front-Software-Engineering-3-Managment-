@@ -1,16 +1,15 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { HistoryItemComponent } from './history-item.component';
+import { HistoryItemComponent } from "./history-item.component";
 
-describe('HistoryItemComponent', () => {
+describe("HistoryItemComponent", () => {
   let component: HistoryItemComponent;
   let fixture: ComponentFixture<HistoryItemComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HistoryItemComponent ]
-    })
-    .compileComponents();
+      declarations: [HistoryItemComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('HistoryItemComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

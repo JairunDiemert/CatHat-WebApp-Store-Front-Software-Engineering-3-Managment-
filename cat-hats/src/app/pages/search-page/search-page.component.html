@@ -1,33 +1,32 @@
 <div>
-    <header>
-      <img
-        class="header-img"
-        src="../../../assets/cats.png"
-        alt="cats walking across the page"
-      />
-      <h1 class="display-4">Cat Hat Catalog Search Results</h1>
-    </header>
-    <main>
-      <div class="pb-5">
-        <div class="container">
-          <div class="row">
+  <header>
+    <img
+      class="header-img"
+      src="../../../assets/cats.png"
+      alt="cats walking across the page"
+    />
+    <h1 class="display-4">Cat Hat Catalog Search Results</h1>
+  </header>
+  <main>
+    <div class="pb-5">
+      <div class="container">
+        <div class="row">
+          <div
+            id="items"
+            class="d-flex flex-wrap justify-content-start align-items-start p-5 bg-white rounded shadow-lg mb-5"
+          >
             <div
-              id="items"
-              class="d-flex flex-wrap justify-content-start align-items-start p-5 bg-white rounded shadow-lg mb-5"
+              class="item p-2 flex-fill bd-highlight"
+              *ngFor="let item of items"
             >
-              <div
-                class="item p-2 flex-fill bd-highlight"
-                *ngFor="let item of items"
-              >
-                <app-item-card [items]="item"></app-item-card>
-              </div>
+              <app-item-card [items]="item"></app-item-card>
             </div>
           </div>
         </div>
       </div>
-    </main>
-  </div>
-  <footer>
-    <app-footer></app-footer>
-  </footer>
-  
+    </div>
+  </main>
+</div>
+<footer>
+  <app-footer></app-footer>
+</footer>

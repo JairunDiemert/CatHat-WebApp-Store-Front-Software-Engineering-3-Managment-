@@ -1,4 +1,17 @@
 <form class="form-inline" (ngSubmit)="onSubmit(search)" #search="ngForm">
-    <input class="form-control mr-sm-2" name="searchTerm" type="search" placeholder="Search" aria-label="Search" ngModel>
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" [disabled]="!search.form.valid">Search</button>
+  <input
+    class="form-control mr-sm-2"
+    name="searchTerm"
+    type="search"
+    placeholder="Search"
+    aria-label="Search"
+    ngModel
+  />
+  <button
+    class="btn btn-outline-success my-2 my-sm-0"
+    type="submit"
+    [disabled]="!search.form.valid"
+  >
+    Search
+  </button>
 </form>

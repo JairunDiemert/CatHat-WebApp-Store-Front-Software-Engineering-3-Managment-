@@ -1,16 +1,15 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { HistoryPageComponent } from './history-page.component';
+import { HistoryPageComponent } from "./history-page.component";
 
-describe('HistoryPageComponent', () => {
+describe("HistoryPageComponent", () => {
   let component: HistoryPageComponent;
   let fixture: ComponentFixture<HistoryPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HistoryPageComponent ]
-    })
-    .compileComponents();
+      declarations: [HistoryPageComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('HistoryPageComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

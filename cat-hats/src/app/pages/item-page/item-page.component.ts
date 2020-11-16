@@ -19,6 +19,8 @@ export class ItemPageComponent implements OnInit {
     itemQuantity: 0,
     itemImg: "./../../../assets/Hat_200x200.png",
   };
+  public itemAvailable: Boolean = true;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
@@ -38,6 +40,11 @@ export class ItemPageComponent implements OnInit {
         };
       } else {
         alert("This item could not be retrieved from the catalog.");
+      }
+      if (this.item.itemQuantity > 0) {
+        this.itemAvailable = true;
+      } else {
+        this.itemAvailable = false;
       }
     });
   }

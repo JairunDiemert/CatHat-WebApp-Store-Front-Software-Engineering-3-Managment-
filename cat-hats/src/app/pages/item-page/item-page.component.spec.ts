@@ -1,16 +1,15 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ItemPageComponent } from './item-page.component';
+import { ItemPageComponent } from "./item-page.component";
 
-describe('ItemPageComponent', () => {
+describe("ItemPageComponent", () => {
   let component: ItemPageComponent;
   let fixture: ComponentFixture<ItemPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ItemPageComponent ]
-    })
-    .compileComponents();
+      declarations: [ItemPageComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('ItemPageComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

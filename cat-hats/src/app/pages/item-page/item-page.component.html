@@ -1,52 +1,66 @@
 <main>
-    <div class="pb-12">
-        <div class="container">
-            <div class="row d-flex justify-content-center">
-                <div class="column">
-                    <div class="card">
-                        <div class="card-body">
-                            <img src="{{ item.itemImg }}" class="card-img-top" alt="{{ item.itemName }}" />
-                        </div>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="card" style="width: 50rem;">
-                        <div class="card-body" (click)="handleClick()">
-                            <h5 class="card-title">{{ item.itemName }}</h5>
-                            <hr>
-                            <p class="card-price">$ {{ item.itemPrice }}</p>
-                            <p class="card-text">{{ item.itemDescription }}</p>
-                            <hr>
-                            <button (click)="handleClick()" class="btn btn-primary">Add To Cart</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="card card-outline-secondary my-4">
-                    <div class="card-header">
-                        Product Reviews
-                    </div>
-                    <div class="card-body">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore,
-                            similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat
-                            laborum.
-                            Sequi mollitia, necessitatibus quae sint natus.</p>
-                        <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-                        <hr>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore,
-                            similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat
-                            laborum.
-                            Sequi mollitia, necessitatibus quae sint natus.</p>
-                        <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-                        <hr>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore,
-                            similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat
-                            laborum.
-                            Sequi mollitia, necessitatibus quae sint natus.</p>
-                        <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-                        <hr>
-                    </div>
-                </div>
+  <div class="pb-12">
+    <div class="container">
+      <div class="row d-flex justify-content-center">
+        <div class="column">
+          <div class="card">
+            <div class="card-body">
+              <img
+                src="{{ item.itemImg }}"
+                class="card-img-top"
+                alt="{{ item.itemName }}"
+              />
             </div>
+          </div>
         </div>
+        <div class="column">
+          <div class="card" style="width: 50rem">
+            <div class="card-body" (click)="handleClick()">
+              <h5 class="card-title">{{ item.itemName }}</h5>
+              <hr />
+              <p class="card-price">$ {{ item.itemPrice }}</p>
+              <p class="card-text">{{ item.itemDescription }}</p>
+              <hr />
+              <button (click)="handleClick()" class="btn btn-primary">
+                Add To Cart
+              </button>
+              <p *ngIf="itemAvailable">
+                There are only {{ item.itemQuantity }} available.
+              </p>
+              <p *ngIf="!itemAvailable">SOLD OUT</p>
+            </div>
+          </div>
+        </div>
+        <div class="card card-outline-secondary my-4">
+          <div class="card-header">Product Reviews</div>
+          <div class="card-body">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et
+              enim aperiam inventore, similique necessitatibus neque non!
+              Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi
+              mollitia, necessitatibus quae sint natus.
+            </p>
+            <small class="text-muted">Posted by Anonymous on 3/1/17</small>
+            <hr />
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et
+              enim aperiam inventore, similique necessitatibus neque non!
+              Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi
+              mollitia, necessitatibus quae sint natus.
+            </p>
+            <small class="text-muted">Posted by Anonymous on 3/1/17</small>
+            <hr />
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et
+              enim aperiam inventore, similique necessitatibus neque non!
+              Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi
+              mollitia, necessitatibus quae sint natus.
+            </p>
+            <small class="text-muted">Posted by Anonymous on 3/1/17</small>
+            <hr />
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </main>

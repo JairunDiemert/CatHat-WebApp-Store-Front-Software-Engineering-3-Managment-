@@ -1,4 +1,8 @@
-<div class="card shadow-sm p-3 mb-5 bg-white rounded" style="width: 12rem" (click)="handleClick()">
+<div
+  class="card shadow-sm p-3 mb-5 bg-white rounded"
+  style="width: 12rem"
+  (click)="handleClick()"
+>
   <img
     src="{{ items.itemImg }}"
     class="card-img-top"
@@ -8,6 +12,8 @@
     <h5 class="card-title">{{ items.itemName }}</h5>
     <p class="card-price">$ {{ items.itemPrice }}</p>
     <p class="card-text">{{ items.itemDescription }}</p>
-    <button (click)="handleClick()" class="btn btn-primary">View Item Details</button>
+    <button (click)="handleClick()" class="btn btn-primary">
+      View Item Details
+    </button>
   </div>
 </div>
