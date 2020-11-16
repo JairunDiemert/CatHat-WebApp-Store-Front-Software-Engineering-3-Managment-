@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { ScheduleService } from "src/app/schedule.service";
+import { ScheduleService } from "src/app/services/schedule.service";
 
 @Component({
   selector: "app-schedule",
@@ -19,15 +19,12 @@ export class ScheduleComponent implements OnInit {
     const userEmail = target.querySelector("#userEmail").value;
     const catalogTitle = target.querySelector("#catalogTitle").value;
 
-    this.schedule
-      .addSchedule(scheduleDate, userEmail)
-      .subscribe((data) => {
-        console.log(data);
-        if (data.success) {
-          this.router.navigate(["schedule"]);
-        }
-        window.alert(data.message);
-      });
+    this.schedule.addSchedule(scheduleDate, userEmail).subscribe((data) => {
+      console.log(data);
+      if (data.success) {
+        this.router.navigate(["history"]);
+      }
+    });
 
     console.log(scheduleDate, userEmail, catalogTitle);
   }

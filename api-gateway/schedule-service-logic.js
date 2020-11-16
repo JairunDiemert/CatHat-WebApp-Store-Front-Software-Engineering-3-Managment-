@@ -9,13 +9,14 @@ exports.addSchedule = async (req, res) => {
   let jsonPayload;
   let userEmail = req.body.userEmail;
   let token = req.body.token;
+  let scheduleDate = req.body.scheduleDate;
 
   let cartFromUser = await userService.getCartByReq(userEmail, token);
 
   jsonPayload = {
-    token: req.body.token,
-    scheduleDate: req.body.scheduleDate,
-    userEmail: req.body.userEmail,
+    token: token,
+    scheduleDate: scheduleDate,
+    userEmail: userEmail,
     shippingCart: cartFromUser.cart,
   };
 

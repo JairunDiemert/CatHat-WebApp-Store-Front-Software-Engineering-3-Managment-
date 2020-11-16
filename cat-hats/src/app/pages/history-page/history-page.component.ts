@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ScheduleService } from "src/app/schedule.service";
+import { ScheduleService } from "src/app/services/schedule.service";
 
 @Component({
   selector: "app-history-page",

@@ -2,8 +2,8 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { ItemModel } from "src/app/models/item-model";
 import { customerModel } from "src/app/models/customer-model";
-import { CatalogService } from "src/app/catalog.service";
-import { UserService } from "src/app/user.service";
+import { CatalogService } from "src/app/services/catalog.service";
+import { UserService } from "src/app/services/user.service";
 import { Router } from "@angular/router";
 
 @Component({

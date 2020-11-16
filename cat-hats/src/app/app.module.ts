@@ -15,12 +15,12 @@ import { ProfilePageComponent } from "./pages/profile-page/profile-page.componen
 import { LoginCardComponent } from "./modules/login-card/login-card.component";
 import { FormsModule } from "@angular/forms";
 import { RegisterPageComponent } from "./pages/register-page/register-page.component";
-import { LoginComponent } from "./pages/login/login.component";
+import { LoginPageComponent } from "./pages/login-page/login-page.component";
 import { AuthGuard } from "./auth.guard";
-import { UserService } from "./user.service";
+import { UserService } from "./services/user.service";
 import { SearchBarComponent } from "./modules/search-bar/search-bar.component";
 import { ItemPageComponent } from "./pages/item-page/item-page.component";
-import { CatalogService } from "./catalog.service";
+import { CatalogService } from "./services/catalog.service";
 import { SearchPageComponent } from "./pages/search-page/search-page.component";
 import { ScheduleComponent } from "./pages/schedule-page/schedule.component";
 import { HistoryPageComponent } from "./pages/history-page/history-page.component";
@@ -40,7 +40,7 @@ import { HistoryCardComponent } from "./modules/history-card/history-card.compon
     ProfilePageComponent,
     LoginCardComponent,
     RegisterPageComponent,
-    LoginComponent,
+    LoginPageComponent,
     SearchBarComponent,
     ItemPageComponent,
     SearchPageComponent,

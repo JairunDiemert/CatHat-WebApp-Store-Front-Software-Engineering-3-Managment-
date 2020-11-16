@@ -1,10 +1,10 @@
 import { Component, OnInit } from "@angular/core";
-import { UserService } from "src/app/user.service";
+import { UserService } from "src/app/services/user.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { customerModel } from "src/app/models/customer-model";
 import { ItemModel } from "src/app/models/item-model";
 import { NgForm } from "@angular/forms";
-import { ScheduleService } from "src/app/schedule.service";
+import { ScheduleService } from "src/app/services/schedule.service";
 
 @Component({
   selector: "app-cart-page",
@@ -36,15 +36,17 @@ export class CartPageComponent implements OnInit {
     //const catalogTitle = this.cart_Items[0].itemName;
     //const shippingCart = this.cart_Items;
 
-    this.schedule
-      .addSchedule(scheduleDate, userEmail)
-      .subscribe((data) => {
-        console.log(data);
-        if (data.success) {
-          this.router.navigate(["history"]);
-        }
-        window.alert(data.message);
-      });
+    if (!scheduleDate) {
+      window.alert("Date field must not be blank");
+      return;
+    }
+
+    this.schedule.addSchedule(scheduleDate, userEmail).subscribe((data) => {
+      console.log(data);
+      if (data.success) {
+        this.router.navigate(["history"]);
+      }
+    });
   }
 
   displayCart() {

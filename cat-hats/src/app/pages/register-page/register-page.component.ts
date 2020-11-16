@@ -3,7 +3,7 @@ import { NgForm } from "@angular/forms";
 import { NgModel } from "@angular/forms";
 import { customerModel } from "src/app/models/customer-model";
 import { Router } from "@angular/router";
-import { AuthService } from "../../auth.service";
+import { AuthService } from "../../services/auth.service";
 
 @Component({
   selector: "app-register-page",
@@ -25,8 +25,7 @@ export class RegisterPageComponent implements OnInit {
 
   public cpassword: String = "";
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   registerUser(registerForm: NgForm) {
     const errors = [];

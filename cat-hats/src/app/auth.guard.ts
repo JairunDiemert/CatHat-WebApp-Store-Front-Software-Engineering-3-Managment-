@@ -6,8 +6,8 @@ import {
   UrlTree,
 } from "@angular/router";
 import { Observable } from "rxjs";
-import { AuthService } from "./auth.service";
-import { UserService } from "./user.service";
+import { AuthService } from "./services/auth.service";
+import { UserService } from "./services/user.service";
 import { Router } from "@angular/router";
 import { map } from "rxjs/operators";
 

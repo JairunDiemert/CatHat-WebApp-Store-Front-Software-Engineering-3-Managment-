@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { CatalogService } from "src/app/catalog.service";
-import { UserService } from "src/app/user.service";
+import { CatalogService } from "src/app/services/catalog.service";
+import { UserService } from "src/app/services/user.service";
 import { ItemModel } from "src/app/models/item-model";
 import { Router } from "@angular/router";
 

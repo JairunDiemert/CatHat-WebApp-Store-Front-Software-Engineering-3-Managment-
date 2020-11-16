@@ -5,7 +5,7 @@ import { HomePageComponent } from "./pages/home-page/home-page.component";
 import { CartPageComponent } from "./pages/cart-page/cart-page.component";
 import { ProfilePageComponent } from "./pages/profile-page/profile-page.component";
 import { RegisterPageComponent } from "./pages/register-page/register-page.component";
-import { LoginComponent } from "./pages/login/login.component";
+import { LoginPageComponent } from "./pages/login-page/login-page.component";
 import { AuthGuard } from "./auth.guard";
 import { ItemPageComponent } from "./pages/item-page/item-page.component";
 import { SearchBarComponent } from "./modules/search-bar/search-bar.component";
@@ -30,7 +30,7 @@ const routes: Routes = [
   },
   { path: "register", component: RegisterPageComponent },
   { path: "search/:searchTerm", component: SearchPageComponent },
-  { path: "login", component: LoginComponent },
+  { path: "login", component: LoginPageComponent },
   { path: "schedule", component: ScheduleComponent },
   {
     path: "history",

@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { customerModel } from "./models/customer-model";
+import { customerModel } from "../models/customer-model";
 import { catchError, tap } from "rxjs/operators";
 
 interface registerResponse {
