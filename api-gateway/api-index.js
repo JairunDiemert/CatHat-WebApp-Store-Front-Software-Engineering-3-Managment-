@@ -50,7 +50,6 @@ app.get("/api/search/:item", async (req, res) => {
 });
 
 app.post("/api/itemQuanity/", async (req, res) => {
-  console.log("hi");
   catalogService.updateQuantityDown(req, res);
 });
 
@@ -60,13 +59,15 @@ app.post("/api/user/:email", async (req, res) => {
 });
 
 app.post("/api/cart/:email/:token", async (req, res) => {
-  userService.addCartItem(req, res);
-  catalogService.updateQuantityDown(req, res);
+  userService
+    .addCartItem(req, res)
+    .then(catalogService.updateQuantityDown(req, res));
 });
 
 app.post("/api/cart/delete/:email/:token", async (req, res) => {
-  userService.deleteCartItem(req, res);
-  catalogService.updateQuantityUp(req, res);
+  userService
+    .deleteCartItem(req, res)
+    .then(catalogService.updateQuantityUp(req, res));
 });
 
 //connect getUserDetails with user service login protocol
@@ -80,8 +81,7 @@ app.post("/api/register", async (req, res) => {
 });
 
 app.post("/api/addschedule", async (req, res) => {
-  scheduleService.addSchedule(req, res);
-  userService.deleteCart(req, res);
+  scheduleService.addSchedule(req, res).then(userService.deleteCart(req, res));
 });
 
 app.get("/api/getschedule/:token", async (req, res) => {
