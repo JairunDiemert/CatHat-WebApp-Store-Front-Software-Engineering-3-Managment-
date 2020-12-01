@@ -13,6 +13,7 @@ exports.updateQuantityDown = async (req, res) => {
     token: req.params.token,
     itemID: req.body.itemID,
     direction: -1,
+    reqID: req.body.reqID,
   };
 
   //axios to make http request to user service
@@ -38,6 +39,7 @@ exports.updateQuantityUp = async (req, res) => {
     token: req.params.token,
     itemID: req.body.itemID,
     direction: 1,
+    reqID: req.body.reqID,
   };
 
   //axios to make http request to user service
@@ -58,8 +60,9 @@ exports.updateQuantityUp = async (req, res) => {
 };
 
 exports.getCatalog = async (req, res) => {
+  let reqID = req.params.reqID;
   axios
-    .get("http://localhost:2468/api/catalog", {})
+    .get("http://localhost:2468/api/catalog/" + reqID, {})
     .then((axiosResponse) => {
       res.json(axiosResponse.data);
     })
@@ -70,13 +73,14 @@ exports.getCatalog = async (req, res) => {
 
 exports.getCatalogItem = async (req, res) => {
   const item = req.params.item;
-  const data = await getCatalogItemByID(item);
+  let reqID = req.params.reqID;
+  const data = await getCatalogItemByID(item, reqID);
   res.json(data);
 };
 
-function getCatalogItemByID(itemID) {
+function getCatalogItemByID(itemID, reqID) {
   return axios
-    .get("http://localhost:2468/api/item/" + itemID, {})
+    .get("http://localhost:2468/api/item/" + itemID + "/" + reqID, {})
     .then((axiosResponse) => {
       return axiosResponse.data;
     });
@@ -86,8 +90,9 @@ exports.getCatalogItemByID = getCatalogItemByID;
 
 exports.getSearch = async (req, res) => {
   const itemSearch = req.params.item;
+  let reqID = req.params.reqID;
   axios
-    .get("http://localhost:2468/api/search/" + itemSearch, {})
+    .get("http://localhost:2468/api/search/" + itemSearch + "/" + reqID, {})
     .then((axiosResponse) => {
       res.json(axiosResponse.data);
     })

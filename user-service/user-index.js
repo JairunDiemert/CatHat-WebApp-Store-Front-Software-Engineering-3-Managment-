@@ -67,6 +67,7 @@ app.get("/api/cart/:email/:token/:reqID", async (req, res) => {
 app.post("/api/cart/deleteAll", async (req, res) => {
   let userEmail = req.body.userEmail;
   let apiToken = req.body.token;
+  let reqID = req.body.reqID;
   let user;
 
   if (req.body.token != undefined) {

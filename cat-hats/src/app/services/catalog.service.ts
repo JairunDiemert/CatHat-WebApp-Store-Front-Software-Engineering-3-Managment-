@@ -21,20 +21,25 @@ export class CatalogService {
   ) {}
 
   getCatalog() {
-    return this.http.get<any>("/api/catalog");
+    let reqID = this.reqService.createRequestID();
+    return this.http.get<any>("/api/catalog/" + reqID);
   }
 
   getItem(item) {
-    return this.http.get<any>("/api/item/" + item);
+    let reqID = this.reqService.createRequestID();
+    return this.http.get<any>("/api/item/" + item + "/" + reqID);
   }
 
   searchItem(item) {
-    return this.http.get<any>("/api/search/" + item);
+    let reqID = this.reqService.createRequestID();
+    return this.http.get<any>("/api/search/" + item + "/" + reqID);
   }
 
   updateItemQuantity(id) {
+    let reqID = this.reqService.createRequestID();
     return this.http.post<any>("/api/itemQuanity/", {
       id,
+      reqID,
     });
   }
 }

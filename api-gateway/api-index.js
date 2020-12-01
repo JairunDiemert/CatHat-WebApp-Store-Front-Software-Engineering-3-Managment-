@@ -37,15 +37,15 @@ app.get("/api/cart/:email/:token/:reqID", async (req, res) => {
   userService.getCart(req, res);
 });
 
-app.get("/api/catalog", async (req, res) => {
+app.get("/api/catalog/:reqID", async (req, res) => {
   catalogService.getCatalog(req, res);
 });
 
-app.get("/api/item/:item", async (req, res) => {
+app.get("/api/item/:item/:reqID", async (req, res) => {
   catalogService.getCatalogItem(req, res);
 });
 
-app.get("/api/search/:item", async (req, res) => {
+app.get("/api/search/:item/:reqID", async (req, res) => {
   catalogService.getSearch(req, res);
 });
 

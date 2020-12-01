@@ -76,6 +76,7 @@ exports.deleteCart = async (req, res) => {
   let jsonPayload = {
     token: req.body.token,
     userEmail: req.body.userEmail,
+    reqID: req.body.reqID,
   };
 
   const url = "http://localhost:12345/api/cart/deleteAll/";

@@ -25,8 +25,9 @@ app.use(cookieParser());
 
 mongoose.Promise = Promise;
 
-app.get("/api/catalog", async (req, res) => {
+app.get("/api/catalog/:reqID", async (req, res) => {
   let catalog;
+  let reqID = req.params.reqID;
 
   catalog = await Catalog.find({});
 
@@ -44,8 +45,9 @@ app.get("/api/catalog", async (req, res) => {
   });
 });
 
-app.get("/api/item/:item", async (req, res) => {
+app.get("/api/item/:item/:reqID", async (req, res) => {
   const itemID = req.params.item;
+  let reqID = req.params.reqID;
   let item;
 
   if (req.params != undefined) {
@@ -68,8 +70,9 @@ app.get("/api/item/:item", async (req, res) => {
   });
 });
 
-app.get("/api/search/:itemSearch", async (req, res) => {
+app.get("/api/search/:itemSearch/:reqID", async (req, res) => {
   const itemSearch = req.params.itemSearch;
+  let reqID = req.params.reqID;
   let items;
 
   if (req.params != undefined) {
@@ -99,7 +102,7 @@ app.get("/api/search/:itemSearch", async (req, res) => {
 
 app.post("/api/updateQuantity", async (req, res) => {
   let item;
-
+  let reqID = req.body.reqID;
   item = await Catalog.findById(req.body.itemID);
   //console.log(req.body.id);
 
