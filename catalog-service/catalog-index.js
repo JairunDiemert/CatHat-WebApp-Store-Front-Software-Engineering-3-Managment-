@@ -29,12 +29,17 @@ app.get("/api/catalog/:reqID", async (req, res) => {
   let catalog;
   let reqID = req.params.reqID;
 
+  let date = new Date();
+  let num = Math.floor(Math.random() * 100 + 1);
+  let resID = date + num;
+
   catalog = await Catalog.find({});
 
   if (!catalog) {
     res.json({
       success: false,
       message: "Catalog is empty.",
+      responseID: resID,
     });
     return;
   }
@@ -42,6 +47,7 @@ app.get("/api/catalog/:reqID", async (req, res) => {
   res.json({
     success: true,
     data: catalog,
+    responseID: resID,
   });
 });
 
@@ -49,6 +55,10 @@ app.get("/api/item/:item/:reqID", async (req, res) => {
   const itemID = req.params.item;
   let reqID = req.params.reqID;
   let item;
+
+  let date = new Date();
+  let num = Math.floor(Math.random() * 100 + 1);
+  let resID = date + num;
 
   if (req.params != undefined) {
     item = await Catalog.findOne({ _id: itemID });
@@ -60,6 +70,7 @@ app.get("/api/item/:item/:reqID", async (req, res) => {
     res.json({
       status: false,
       message: "Item does not exist",
+      responseID: resID,
     });
     return;
   }
@@ -67,6 +78,7 @@ app.get("/api/item/:item/:reqID", async (req, res) => {
   res.json({
     success: true,
     data: item,
+    responseID: resID,
   });
 });
 
@@ -74,6 +86,10 @@ app.get("/api/search/:itemSearch/:reqID", async (req, res) => {
   const itemSearch = req.params.itemSearch;
   let reqID = req.params.reqID;
   let items;
+
+  let date = new Date();
+  let num = Math.floor(Math.random() * 100 + 1);
+  let resID = date + num;
 
   if (req.params != undefined) {
     items = await Catalog.find({
@@ -90,6 +106,7 @@ app.get("/api/search/:itemSearch/:reqID", async (req, res) => {
     res.json({
       status: false,
       message: "Item does not exist",
+      responseID: resID,
     });
     return;
   }
@@ -97,6 +114,7 @@ app.get("/api/search/:itemSearch/:reqID", async (req, res) => {
   res.json({
     success: true,
     data: items,
+    responseID: resID,
   });
 });
 
@@ -106,10 +124,15 @@ app.post("/api/updateQuantity", async (req, res) => {
   item = await Catalog.findById(req.body.itemID);
   //console.log(req.body.id);
 
+  let date = new Date();
+  let num = Math.floor(Math.random() * 100 + 1);
+  let resID = date + num;
+
   if (!item) {
     res.json({
       success: false,
       message: "item not found",
+      responseID: resID,
     });
     return;
   }
@@ -136,6 +159,7 @@ app.post("/api/updateQuantity", async (req, res) => {
 
   res.json({
     success: true,
+    responseID: resID,
   });
 });
 

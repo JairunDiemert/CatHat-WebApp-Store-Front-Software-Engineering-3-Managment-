@@ -39,6 +39,10 @@ app.get("/api/cart/:email/:token/:reqID", async (req, res) => {
   const token = req.params.token;
   let reqID = req.params.reqID;
 
+  let date = new Date();
+  let num = Math.floor(Math.random() * 100 + 1);
+  let resID = date + num;
+
   let user;
   let apiToken;
 
@@ -52,6 +56,7 @@ app.get("/api/cart/:email/:token/:reqID", async (req, res) => {
     res.json({
       success: false,
       message: "Cart not retrieved. User not found.",
+      responseID: resID,
     });
     return;
   }
@@ -60,15 +65,19 @@ app.get("/api/cart/:email/:token/:reqID", async (req, res) => {
     success: true,
     cart: user.cart,
     apiToken: user._id,
+    responseID: resID,
   });
 });
 
-//////////////////////////////////////
 app.post("/api/cart/deleteAll", async (req, res) => {
   let userEmail = req.body.userEmail;
   let apiToken = req.body.token;
   let reqID = req.body.reqID;
   let user;
+
+  let date = new Date();
+  let num = Math.floor(Math.random() * 100 + 1);
+  let resID = date + num;
 
   if (req.body.token != undefined) {
     user = await User.findById(apiToken);
@@ -80,6 +89,7 @@ app.post("/api/cart/deleteAll", async (req, res) => {
     res.json({
       success: false,
       message: "Invalid user!",
+      responseID: resID,
     });
     return;
   }
@@ -96,6 +106,7 @@ app.post("/api/cart/deleteAll", async (req, res) => {
   res.json({
     success: true,
     apiToken,
+    responseID: resID,
   });
 });
 
@@ -105,6 +116,10 @@ app.post("/api/cart/delete/:email/:token/:reqID", async (req, res) => {
   let apiToken = req.params.token;
   let cartItem = req.body.cartItem;
   let user;
+
+  let date = new Date();
+  let num = Math.floor(Math.random() * 100 + 1);
+  let resID = date + num;
 
   //console.log(cartItem);
 
@@ -123,6 +138,7 @@ app.post("/api/cart/delete/:email/:token/:reqID", async (req, res) => {
     res.json({
       success: false,
       message: "Invalid user!",
+      responseID: resID,
     });
     return;
   }
@@ -144,6 +160,7 @@ app.post("/api/cart/delete/:email/:token/:reqID", async (req, res) => {
   res.json({
     success: true,
     apiToken,
+    responseID: resID,
   });
 });
 
@@ -156,6 +173,10 @@ app.post("/api/cart/:email/:token", async (req, res) => {
   let reqID = req.body.reqID;
 
   let user;
+
+  let date = new Date();
+  let num = Math.floor(Math.random() * 100 + 1);
+  let resID = date + num;
 
   //console.log(cartItem);
 
@@ -174,6 +195,7 @@ app.post("/api/cart/:email/:token", async (req, res) => {
     res.json({
       success: false,
       message: "Invalid user!",
+      responseID: resID,
     });
     return;
   }
@@ -191,6 +213,7 @@ app.post("/api/cart/:email/:token", async (req, res) => {
   res.json({
     success: true,
     apiToken,
+    responseID: resID,
   });
 });
 
@@ -200,6 +223,10 @@ app.get("/api/user/:email/:reqID", async (req, res) => {
 
   let user;
   let apiToken;
+
+  let date = new Date();
+  let num = Math.floor(Math.random() * 100 + 1);
+  let resID = date + num;
 
   if (req.body.token != undefined) {
     user = await User.findOne({ apiToken: req.body.token });
@@ -211,6 +238,7 @@ app.get("/api/user/:email/:reqID", async (req, res) => {
     res.json({
       status: false,
       message: "User was deleted.",
+      responseID: resID,
     });
     return;
   }
@@ -224,6 +252,7 @@ app.get("/api/user/:email/:reqID", async (req, res) => {
     name: user.name,
     address: user.address,
     apiToken: user._id,
+    responseID: resID,
   });
 });
 
@@ -231,6 +260,10 @@ app.post("/api/user/:email", async (req, res) => {
   let user;
   let apiToken = req.body.token;
   let reqID = req.body.reqID;
+
+  let date = new Date();
+  let num = Math.floor(Math.random() * 100 + 1);
+  let resID = date + num;
 
   //if using token, pass through api token
   if (
@@ -248,6 +281,7 @@ app.post("/api/user/:email", async (req, res) => {
     res.json({
       success: false,
       message: "Invalid user!",
+      responseID: resID,
     });
     return;
   }
@@ -268,6 +302,7 @@ app.post("/api/user/:email", async (req, res) => {
   res.json({
     success: true,
     apiToken,
+    responseID: resID,
   });
 });
 
@@ -277,6 +312,10 @@ app.post("/api/login", async (req, res) => {
   let user;
   let apiToken = req.body.token;
   let reqID = req.body.reqID;
+
+  let date = new Date();
+  let num = Math.floor(Math.random() * 100 + 1);
+  let resID = date + num;
 
   console.log("Token sent into login from api: ", req.body.token);
 
@@ -294,17 +333,23 @@ app.post("/api/login", async (req, res) => {
     res.json({
       success: false,
       message: "Incorrect credentials.",
+      responseID: resID,
     });
   } else {
     //json object created with success value
     res.json({
       success: true,
       apiToken: user._id,
+      responseID: resID,
     });
   }
 });
 
 app.post("/api/register", async (req, res) => {
+  let date = new Date();
+  let num = Math.floor(Math.random() * 100 + 1);
+  let resID = date + num;
+
   const { username, name, email, address, password, reqID } = req.body;
 
   const existingUser = await User.findOne({ email });
@@ -313,6 +358,7 @@ app.post("/api/register", async (req, res) => {
     res.json({
       success: false,
       message: "Email already in use.",
+      responseID: resID,
     });
     return;
   }
@@ -335,16 +381,22 @@ app.post("/api/register", async (req, res) => {
     success: true,
     message: "Welcome!",
     apiToken,
+    responseID: resID,
   });
 });
 
 app.get("/api/data", async (req, res) => {
   const user = await User.findOne({ email: req.session.user });
 
+  let date = new Date();
+  let num = Math.floor(Math.random() * 100 + 1);
+  let resID = date + num;
+
   if (!user) {
     res.json({
       status: false,
       message: "User was deleted.",
+      responseID: resID,
     });
     return;
   }
@@ -357,16 +409,22 @@ app.get("/api/data", async (req, res) => {
     password: user.password,
     name: user.name,
     address: user.address,
+    responseID: resID,
   });
 });
 
 app.post("/api/total", async (req, res) => {
+  let date = new Date();
+  let num = Math.floor(Math.random() * 100 + 1);
+  let resID = date + num;
+
   //console.log(req.body.value);
   const user = await User.findOne({ email: req.session.user });
   if (!user) {
     res.json({
       success: false,
       message: "Invalid user!",
+      responseID: resID,
     });
     return;
   }
@@ -377,6 +435,7 @@ app.post("/api/total", async (req, res) => {
   );
   res.json({
     success: true,
+    responseID: resID,
   });
 });
 

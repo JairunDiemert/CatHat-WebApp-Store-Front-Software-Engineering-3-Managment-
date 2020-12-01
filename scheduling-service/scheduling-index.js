@@ -26,6 +26,10 @@ mongoose.Promise = Promise;
 app.post("/api/addschedule", async (req, res) => {
   const { token, scheduleDate, userEmail, shippingCart, reqID } = req.body;
 
+  let date = new Date();
+  let num = Math.floor(Math.random() * 100 + 1);
+  let resID = date + num;
+
   const schedule = new Schedule({
     token,
     scheduleDate,
@@ -40,12 +44,17 @@ app.post("/api/addschedule", async (req, res) => {
     success: true,
     message: "Schedule added!",
     token,
+    responseID: resID,
   });
 });
 
 app.get("/api/getschedule/:token/:reqID", async (req, res) => {
   const token = req.params.token;
   const reqID = req.params.reqID;
+
+  let date = new Date();
+  let num = Math.floor(Math.random() * 100 + 1);
+  let resID = date + num;
 
   let schedule;
 
@@ -57,6 +66,7 @@ app.get("/api/getschedule/:token/:reqID", async (req, res) => {
     res.json({
       success: false,
       message: `No schedule found.`,
+      responseID: resID,
     });
     return;
   }
@@ -65,6 +75,7 @@ app.get("/api/getschedule/:token/:reqID", async (req, res) => {
     success: true,
     message: "Schedule found.",
     schedule: schedule,
+    responseID: resID,
   });
 });
 
