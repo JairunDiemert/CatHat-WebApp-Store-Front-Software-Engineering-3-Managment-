@@ -19,8 +19,6 @@ export class CartPageComponent implements OnInit {
 
   public list = [];
 
-  public cart_Total;
-
   constructor(
     private schedule: ScheduleService,
     private user: UserService,
@@ -33,20 +31,16 @@ export class CartPageComponent implements OnInit {
     const target = event.target;
     const scheduleDate = target.querySelector("#scheduleDate").value;
     const userEmail = localStorage.getItem("email");
-    //const catalogTitle = this.cart_Items[0].itemName;
-    //const shippingCart = this.cart_Items;
 
-    if (!scheduleDate) {
-      window.alert("Date field must not be blank");
-      return;
-    }
-
-    this.schedule.addSchedule(scheduleDate, userEmail).subscribe((data) => {
-      console.log(data);
-      if (data.success) {
-        this.router.navigate(["history"]);
-      }
-    });
+    this.schedule
+      .addSchedule(scheduleDate, userEmail)
+      .subscribe((data) => {
+        console.log(data);
+        if (data.success) {
+          this.router.navigate(["history"]);
+        }
+        window.alert(data.message);
+      });
   }
 
   displayCart() {
@@ -54,7 +48,6 @@ export class CartPageComponent implements OnInit {
 
     this.user.getCart(email).subscribe((data) => {
       if (data.success) {
-        this.cart_Total = data.total;
         this.list = data.cart;
         let initialList = [];
 
