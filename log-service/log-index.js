@@ -14,13 +14,11 @@ const connector = mongoose
     useUnifiedTopology: true,
   })
   .then(() =>
-    console.log(
-      "Mongoose connection to Log MongoDB succesfully established!"
-    )
+    console.log("Mongoose connection to Log MongoDB succesfully established!")
   );
 
 app.use(bodyParser.json());
 
 mongoose.Promise = Promise;
 
-app.listen(98765, () => console.log("Server listening at 98765."));
+app.listen(65535, () => console.log("Server listening at 65535."));

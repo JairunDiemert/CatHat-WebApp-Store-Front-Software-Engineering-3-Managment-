@@ -3284,82 +3284,83 @@
         });
         (function () {
           (typeof ngJitMode === "undefined" || ngJitMode) &&
-            _angular_core__WEBPACK_IMPORTED_MODULE_1__[
-              "ɵɵsetNgModuleScope"
-            ](AppModule, {
-              declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"],
-                _pages_catalog_page_catalog_page_component__WEBPACK_IMPORTED_MODULE_5__[
-                  "CatalogPageComponent"
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵsetNgModuleScope"](
+              AppModule,
+              {
+                declarations: [
+                  _app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"],
+                  _pages_catalog_page_catalog_page_component__WEBPACK_IMPORTED_MODULE_5__[
+                    "CatalogPageComponent"
+                  ],
+                  _modules_item_card_item_card_component__WEBPACK_IMPORTED_MODULE_6__[
+                    "ItemCardComponent"
+                  ],
+                  _pages_home_page_home_page_component__WEBPACK_IMPORTED_MODULE_7__[
+                    "HomePageComponent"
+                  ],
+                  _pages_cart_page_cart_page_component__WEBPACK_IMPORTED_MODULE_8__[
+                    "CartPageComponent"
+                  ],
+                  _modules_nav_bar_nav_bar_component__WEBPACK_IMPORTED_MODULE_9__[
+                    "NavBarComponent"
+                  ],
+                  _modules_cart_item_cart_item_component__WEBPACK_IMPORTED_MODULE_10__[
+                    "CartItemComponent"
+                  ],
+                  _modules_footer_footer_component__WEBPACK_IMPORTED_MODULE_11__[
+                    "FooterComponent"
+                  ],
+                  _pages_profile_page_profile_page_component__WEBPACK_IMPORTED_MODULE_12__[
+                    "ProfilePageComponent"
+                  ],
+                  _modules_login_card_login_card_component__WEBPACK_IMPORTED_MODULE_13__[
+                    "LoginCardComponent"
+                  ],
+                  _pages_register_page_register_page_component__WEBPACK_IMPORTED_MODULE_15__[
+                    "RegisterPageComponent"
+                  ],
+                  _pages_records_page_records_page_component__WEBPACK_IMPORTED_MODULE_16__[
+                    "RecordsPageComponent"
+                  ],
+                  _login_login_component__WEBPACK_IMPORTED_MODULE_18__[
+                    "LoginComponent"
+                  ],
+                  _home_test_home_test_component__WEBPACK_IMPORTED_MODULE_19__[
+                    "HomeTESTComponent"
+                  ],
+                  _logout_logout_component__WEBPACK_IMPORTED_MODULE_22__[
+                    "LogoutComponent"
+                  ],
+                  _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_23__[
+                    "DashboardComponent"
+                  ],
+                  _register_register_component__WEBPACK_IMPORTED_MODULE_24__[
+                    "RegisterComponent"
+                  ],
+                  _modules_search_bar_search_bar_component__WEBPACK_IMPORTED_MODULE_25__[
+                    "SearchBarComponent"
+                  ],
+                  _pages_item_page_item_page_component__WEBPACK_IMPORTED_MODULE_26__[
+                    "ItemPageComponent"
+                  ],
+                  _pages_search_page_search_page_component__WEBPACK_IMPORTED_MODULE_28__[
+                    "SearchPageComponent"
+                  ],
                 ],
-                _modules_item_card_item_card_component__WEBPACK_IMPORTED_MODULE_6__[
-                  "ItemCardComponent"
+                imports: [
+                  _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__[
+                    "BrowserModule"
+                  ],
+                  _app_routing_module__WEBPACK_IMPORTED_MODULE_2__[
+                    "AppRoutingModule"
+                  ],
+                  _angular_common_http__WEBPACK_IMPORTED_MODULE_4__[
+                    "HttpClientModule"
+                  ],
+                  _angular_forms__WEBPACK_IMPORTED_MODULE_14__["FormsModule"],
                 ],
-                _pages_home_page_home_page_component__WEBPACK_IMPORTED_MODULE_7__[
-                  "HomePageComponent"
-                ],
-                _pages_cart_page_cart_page_component__WEBPACK_IMPORTED_MODULE_8__[
-                  "CartPageComponent"
-                ],
-                _modules_nav_bar_nav_bar_component__WEBPACK_IMPORTED_MODULE_9__[
-                  "NavBarComponent"
-                ],
-                _modules_cart_item_cart_item_component__WEBPACK_IMPORTED_MODULE_10__[
-                  "CartItemComponent"
-                ],
-                _modules_footer_footer_component__WEBPACK_IMPORTED_MODULE_11__[
-                  "FooterComponent"
-                ],
-                _pages_profile_page_profile_page_component__WEBPACK_IMPORTED_MODULE_12__[
-                  "ProfilePageComponent"
-                ],
-                _modules_login_card_login_card_component__WEBPACK_IMPORTED_MODULE_13__[
-                  "LoginCardComponent"
-                ],
-                _pages_register_page_register_page_component__WEBPACK_IMPORTED_MODULE_15__[
-                  "RegisterPageComponent"
-                ],
-                _pages_records_page_records_page_component__WEBPACK_IMPORTED_MODULE_16__[
-                  "RecordsPageComponent"
-                ],
-                _login_login_component__WEBPACK_IMPORTED_MODULE_18__[
-                  "LoginComponent"
-                ],
-                _home_test_home_test_component__WEBPACK_IMPORTED_MODULE_19__[
-                  "HomeTESTComponent"
-                ],
-                _logout_logout_component__WEBPACK_IMPORTED_MODULE_22__[
-                  "LogoutComponent"
-                ],
-                _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_23__[
-                  "DashboardComponent"
-                ],
-                _register_register_component__WEBPACK_IMPORTED_MODULE_24__[
-                  "RegisterComponent"
-                ],
-                _modules_search_bar_search_bar_component__WEBPACK_IMPORTED_MODULE_25__[
-                  "SearchBarComponent"
-                ],
-                _pages_item_page_item_page_component__WEBPACK_IMPORTED_MODULE_26__[
-                  "ItemPageComponent"
-                ],
-                _pages_search_page_search_page_component__WEBPACK_IMPORTED_MODULE_28__[
-                  "SearchPageComponent"
-                ],
-              ],
-              imports: [
-                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__[
-                  "BrowserModule"
-                ],
-                _app_routing_module__WEBPACK_IMPORTED_MODULE_2__[
-                  "AppRoutingModule"
-                ],
-                _angular_common_http__WEBPACK_IMPORTED_MODULE_4__[
-                  "HttpClientModule"
-                ],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_14__["FormsModule"],
-              ],
-            });
+              }
+            );
         })();
         /*@__PURE__*/ (function () {
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](
@@ -5496,16 +5497,17 @@
         });
         (function () {
           (typeof ngJitMode === "undefined" || ngJitMode) &&
-            _angular_core__WEBPACK_IMPORTED_MODULE_0__[
-              "ɵɵsetNgModuleScope"
-            ](AppRoutingModule, {
-              imports: [
-                _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"],
-              ],
-              exports: [
-                _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"],
-              ],
-            });
+            _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsetNgModuleScope"](
+              AppRoutingModule,
+              {
+                imports: [
+                  _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"],
+                ],
+                exports: [
+                  _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"],
+                ],
+              }
+            );
         })();
         /*@__PURE__*/ (function () {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](

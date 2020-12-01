@@ -30,3 +30,9 @@ services:
     network_mode: "host"
     volumes:
       - ./scheduling-service:/scheduling-service
+
+  log-service:
+    build: ./log-service
+    network_mode: "host"
+    volumes:
+      - ./log-service:/log-service
