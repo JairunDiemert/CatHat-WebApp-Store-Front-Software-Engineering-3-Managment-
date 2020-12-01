@@ -20,11 +20,11 @@ app.use(
   })
 );
 
-app.get("/api/isloggedin", (req, res) => {
+app.get("/api/isloggedin/:reqID", (req, res) => {
   userService.isLoggedIn(req, res);
 });
 
-app.get("/api/logout", (req, res) => {
+app.get("/api/logout/:reqID", (req, res) => {
   userService.logout(req, res);
 });
 
@@ -33,7 +33,7 @@ app.get("/api/user/:email", async (req, res) => {
   userService.userByEmail(req, res);
 });
 
-app.get("/api/cart/:email/:token", async (req, res) => {
+app.get("/api/cart/:email/:token/:reqID", async (req, res) => {
   userService.getCart(req, res);
 });
 

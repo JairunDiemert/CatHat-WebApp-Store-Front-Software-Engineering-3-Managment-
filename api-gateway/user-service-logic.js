@@ -46,15 +46,24 @@ exports.userByEmail = async (req, res) => {
 exports.getCart = async (req, res) => {
   const userEmail = req.params.email;
   const token = req.params.token;
+  let reqID = req.params.reqID;
 
-  const data = await getCartByReq(userEmail, token);
+  const data = await getCartByReq(userEmail, token, reqID);
   res.cookie("authToken", data.apiToken);
   res.json(data);
 };
 
-function getCartByReq(userEmail, token) {
+function getCartByReq(userEmail, token, reqID) {
   return axios
-    .get("http://localhost:12345/api/cart/" + userEmail + "/" + token, {})
+    .get(
+      "http://localhost:12345/api/cart/" +
+        userEmail +
+        "/" +
+        token +
+        "/" +
+        reqID,
+      {}
+    )
     .then((axiosResponse) => {
       return axiosResponse.data;
     });
@@ -86,6 +95,7 @@ exports.deleteCartItem = async (req, res) => {
     email: req.params.email,
     token: req.params.token,
     itemID: req.body.itemID,
+    reqID: req.body.reqID,
   };
 
   let cartItem = await catalogService.getCatalogItemByID(jsonPayload.itemID);
@@ -95,8 +105,10 @@ exports.deleteCartItem = async (req, res) => {
     "http://localhost:12345/api/cart/delete/" +
     jsonPayload.email +
     "/" +
-    jsonPayload.token;
-  console.log(url);
+    jsonPayload.token +
+    "/" +
+    jsonPayload.reqID;
+  // console.log(url);
 
   axios
     .post(url, { cartItem: cartItem.data })
@@ -114,6 +126,7 @@ exports.addCartItem = async (req, res) => {
     email: req.params.email,
     token: req.params.token,
     itemID: req.body.itemID,
+    reqID: req.body.reqID,
   };
 
   let cartItem = await catalogService.getCatalogItemByID(jsonPayload.itemID);
@@ -124,10 +137,10 @@ exports.addCartItem = async (req, res) => {
     jsonPayload.email +
     "/" +
     jsonPayload.token;
-  console.log(url);
+  // console.log(url);
 
   axios
-    .post(url, { cartItem: cartItem.data })
+    .post(url, { cartItem: cartItem.data, reqID: jsonPayload.reqID })
     .then((axiosResponse) => {
       res.cookie("authToken", axiosResponse.data.apiToken);
       res.json(axiosResponse.data);
@@ -147,6 +160,7 @@ exports.updateUser = async (req, res) => {
     address: req.body.address,
     password: req.body.password,
     token: req.body.token,
+    reqID: req.body.reqID,
   };
 
   //axios to make http request to user service

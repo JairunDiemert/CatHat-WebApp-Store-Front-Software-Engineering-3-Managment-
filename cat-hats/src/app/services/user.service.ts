@@ -45,31 +45,39 @@ export class UserService {
   getCart(email) {
     let cookieName = "authToken";
     let token: String = this.auth.getCookie(cookieName);
+    let reqID = this.reqService.createRequestID();
 
-    return this.http.get<userCart>("/api/cart/" + email + "/" + token);
+    return this.http.get<userCart>(
+      "/api/cart/" + email + "/" + token + "/" + reqID
+    );
   }
 
   addCartItem = (itemID, email) => {
     let cookieName = "authToken";
     let token = this.auth.getCookie(cookieName);
+    let reqID = this.reqService.createRequestID();
 
     return this.http.post<any>("/api/cart/" + email + "/" + token, {
       itemID,
+      reqID,
     });
   };
 
   deleteCartItem = (itemID, email) => {
     let cookieName = "authToken";
     let token = this.auth.getCookie(cookieName);
+    let reqID = this.reqService.createRequestID();
 
     return this.http.post<any>("/api/cart/delete/" + email + "/" + token, {
       itemID,
+      reqID,
     });
   };
 
   updateUser = (oldEmail, username, name, email, address, password) => {
     let cookieName = "authToken";
     let token = this.auth.getCookie(cookieName);
+    let reqID = this.reqService.createRequestID();
 
     return this.http.post<totalStatus>("/api/user/:email", {
       oldEmail,
@@ -79,6 +87,7 @@ export class UserService {
       address,
       password,
       token,
+      reqID,
     });
   };
 
@@ -89,11 +98,13 @@ export class UserService {
   }
 
   isLoggedIn(): Observable<isLoggedIn> {
-    return this.http.get<isLoggedIn>("/api/isloggedin");
+    let reqID = this.reqService.createRequestID();
+    return this.http.get<isLoggedIn>("/api/isloggedin/" + reqID);
   }
 
   logout() {
     localStorage.setItem("loggedIn", "false");
-    return this.http.get<logoutStatus>("/api/logout");
+    let reqID = this.reqService.createRequestID();
+    return this.http.get<logoutStatus>("/api/logout/" + reqID);
   }
 }

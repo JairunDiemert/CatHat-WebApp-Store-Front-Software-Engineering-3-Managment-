@@ -34,9 +34,10 @@ app.use(cookieParser());
 
 mongoose.Promise = Promise;
 
-app.get("/api/cart/:email/:token", async (req, res) => {
+app.get("/api/cart/:email/:token/:reqID", async (req, res) => {
   const userEmail = req.params.email;
   const token = req.params.token;
+  let reqID = req.params.reqID;
 
   let user;
   let apiToken;
@@ -96,9 +97,8 @@ app.post("/api/cart/deleteAll", async (req, res) => {
   });
 });
 
-app.post("/api/cart/delete/:email/:token", async (req, res) => {
-  console.log("Add cart item in user service.");
-
+app.post("/api/cart/delete/:email/:token/:reqID", async (req, res) => {
+  let reqID = req.params.reqID;
   let userEmail = req.params.email;
   let apiToken = req.params.token;
   let cartItem = req.body.cartItem;
@@ -151,6 +151,8 @@ app.post("/api/cart/:email/:token", async (req, res) => {
   let userEmail = req.params.email;
   let apiToken = req.params.token;
   let cartItem = req.body.cartItem;
+  let reqID = req.body.reqID;
+
   let user;
 
   //console.log(cartItem);
@@ -236,7 +238,7 @@ app.post("/api/user/:email", async (req, res) => {
     user = await User.findOne({ email: req.body.oldEmail });
   }
 
-  console.log("User found for profile update: ", user);
+  // console.log("User found for profile update: ", user);
 
   if (!user) {
     res.json({
