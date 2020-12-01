@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { customerModel } from "../models/customer-model";
 import { catchError, tap } from "rxjs/operators";
+import { RequestService } from "./request.service";
 
 interface registerResponse {
   success: boolean;
@@ -14,7 +15,7 @@ interface registerResponse {
 })
 export class AuthService {
   loggedInStatus = false;
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private reqService: RequestService) {}
 
   setLoggedIn(value: boolean) {
     this.loggedInStatus = value;

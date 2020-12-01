@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { catchError, tap } from "rxjs/operators";
 import { AuthService } from "./auth.service";
+import { RequestService } from "./request.service";
 
 interface catalogResponse {
   success: boolean;
@@ -13,7 +14,11 @@ interface catalogResponse {
   providedIn: "root",
 })
 export class CatalogService {
-  constructor(private http: HttpClient, private auth: AuthService) {}
+  constructor(
+    private http: HttpClient,
+    private auth: AuthService,
+    private reqService: RequestService
+  ) {}
 
   getCatalog() {
     return this.http.get<any>("/api/catalog");

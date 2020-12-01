@@ -1,12 +1,17 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { AuthService } from "./auth.service";
+import { RequestService } from "./request.service";
 
 @Injectable({
   providedIn: "root",
 })
 export class ScheduleService {
-  constructor(private http: HttpClient, private auth: AuthService) {}
+  constructor(
+    private http: HttpClient,
+    private auth: AuthService,
+    private reqService: RequestService
+  ) {}
 
   addSchedule(scheduleDate, userEmail) {
     let cookieName = "authToken";

@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { AuthService } from "src/app/services/auth.service";
+import { RequestService } from "./request.service";
 
 interface myData {
   email: string;
@@ -31,7 +32,11 @@ interface totalStatus {
   providedIn: "root",
 })
 export class UserService {
-  constructor(private auth: AuthService, private http: HttpClient) {}
+  constructor(
+    private auth: AuthService,
+    private http: HttpClient,
+    private reqService: RequestService
+  ) {}
 
   getData() {
     return this.http.get<myData>("/api/data");
