@@ -54,6 +54,7 @@ export class AuthService {
   getUserDetails = (email, password) => {
     //forced binding
     localStorage.setItem("email", email);
+    let reqID = this.reqService.createRequestID();
 
     //declare string containing cookie name
     let cookieName = "authToken";
@@ -65,6 +66,7 @@ export class AuthService {
     if (token != "") {
       return this.http.post<any>("/api/login", {
         token,
+        reqID,
       });
     } else {
       //checks if cookie set in document.cookie
@@ -72,21 +74,25 @@ export class AuthService {
       return this.http.post<any>("/api/login", {
         email,
         password,
+        reqID,
       });
     }
   };
 
   registerUser(username, name, email, address, password) {
+    let reqID = this.reqService.createRequestID();
     return this.http.post<registerResponse>("/api/register", {
       username,
       name,
       email,
       address,
       password,
+      reqID,
     });
   }
 
   getUser(email) {
-    return this.http.get<any>("/api/user/" + email);
+    let reqID = this.reqService.createRequestID();
+    return this.http.get<any>("/api/user/" + email + "/" + reqID);
   }
 }

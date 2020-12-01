@@ -63,6 +63,7 @@ app.get("/api/cart/:email/:token/:reqID", async (req, res) => {
   });
 });
 
+//////////////////////////////////////
 app.post("/api/cart/deleteAll", async (req, res) => {
   let userEmail = req.body.userEmail;
   let apiToken = req.body.token;
@@ -192,8 +193,9 @@ app.post("/api/cart/:email/:token", async (req, res) => {
   });
 });
 
-app.get("/api/user/:email", async (req, res) => {
+app.get("/api/user/:email/:reqID", async (req, res) => {
   const userEmail = req.params.email;
+  let reqID = req.params.reqID;
 
   let user;
   let apiToken;
@@ -227,6 +229,7 @@ app.get("/api/user/:email", async (req, res) => {
 app.post("/api/user/:email", async (req, res) => {
   let user;
   let apiToken = req.body.token;
+  let reqID = req.body.reqID;
 
   //if using token, pass through api token
   if (
@@ -272,6 +275,7 @@ app.post("/api/login", async (req, res) => {
 
   let user;
   let apiToken = req.body.token;
+  let reqID = req.body.reqID;
 
   console.log("Token sent into login from api: ", req.body.token);
 
@@ -300,7 +304,7 @@ app.post("/api/login", async (req, res) => {
 });
 
 app.post("/api/register", async (req, res) => {
-  const { username, name, email, address, password } = req.body;
+  const { username, name, email, address, password, reqID } = req.body;
 
   const existingUser = await User.findOne({ email });
 

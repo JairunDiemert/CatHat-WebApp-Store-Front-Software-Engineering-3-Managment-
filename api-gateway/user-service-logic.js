@@ -26,10 +26,11 @@ exports.logout = (req, res) => {
 
 exports.userByEmail = async (req, res) => {
   const userEmail = req.params.email;
+  let reqID = req.params.reqID;
 
   //axios to make http request to user service
   axios
-    .get("http://localhost:12345/api/user/" + userEmail, {})
+    .get("http://localhost:12345/api/user/" + userEmail + "/" + reqID, {})
     //axiosResponse: json payload returned from user service
     .then((axiosResponse) => {
       res.cookie("authToken", axiosResponse.data.apiToken);
@@ -185,9 +186,13 @@ exports.getUserDetails = async (req, res) => {
 
   //checks if token retrieved from browser on client side for login usage, else login with email and password
   if (req.body.token != undefined) {
-    jsonPayload = { token: req.body.token };
+    jsonPayload = { token: req.body.token, reqID: req.body.reqID };
   } else {
-    jsonPayload = { email: req.body.email, password: req.body.password };
+    jsonPayload = {
+      email: req.body.email,
+      password: req.body.password,
+      reqID: req.body.reqID,
+    };
   }
 
   //passes json payload to endpoint in user service
@@ -219,6 +224,7 @@ exports.register = async (req, res) => {
     email: req.body.email,
     address: req.body.address,
     password: req.body.password,
+    reqID: req.body.reqID,
   };
 
   axios

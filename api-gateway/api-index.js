@@ -29,7 +29,7 @@ app.get("/api/logout/:reqID", (req, res) => {
 });
 
 //connect client method with matching protocol in user service
-app.get("/api/user/:email", async (req, res) => {
+app.get("/api/user/:email/:reqID", async (req, res) => {
   userService.userByEmail(req, res);
 });
 
