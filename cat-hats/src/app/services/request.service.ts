@@ -8,7 +8,7 @@ export class RequestService {
 
   createRequestID() {
     let userEmail = localStorage.getItem("email");
-    let date = new Date().getTime();
+    let date = new Date();
     return userEmail + date;
   }
 }

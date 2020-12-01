@@ -84,7 +84,7 @@ app.post("/api/addschedule", async (req, res) => {
   scheduleService.addSchedule(req, res).then(userService.deleteCart(req, res));
 });
 
-app.get("/api/getschedule/:token", async (req, res) => {
+app.get("/api/getschedule/:token/:reqID", async (req, res) => {
   scheduleService.getSchedule(req, res);
 });
 

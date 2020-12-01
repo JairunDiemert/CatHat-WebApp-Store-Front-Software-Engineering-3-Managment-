@@ -10,6 +10,7 @@ exports.addSchedule = async (req, res) => {
   let userEmail = req.body.userEmail;
   let token = req.body.token;
   let scheduleDate = req.body.scheduleDate;
+  let reqID = req.body.reqID;
 
   let cartFromUser = await userService.getCartByReq(userEmail, token);
 
@@ -18,23 +19,26 @@ exports.addSchedule = async (req, res) => {
     scheduleDate: scheduleDate,
     userEmail: userEmail,
     shippingCart: cartFromUser.cart,
+    reqID: reqID,
   };
 
   axios
     .post("http://localhost:34567/api/addschedule", jsonPayload)
     .then((axiosResponse) => {
-      console.log("Return to api from schedule service.");
+      // console.log("Return to api from schedule service.");
       res.json(axiosResponse.data);
     })
     .catch((axiosError) => {
-      console.log(axiosError);
+      // console.log(axiosError);
     });
 };
 
 exports.getSchedule = async (req, res) => {
   const token = req.params.token;
+  const reqID = req.params.reqID;
+
   axios
-    .get("http://localhost:34567/api/getschedule/" + token, {})
+    .get("http://localhost:34567/api/getschedule/" + token + "/" + reqID, {})
     .then((axiosResponse) => {
       console.log("Return to api from schedule service.");
       res.json(axiosResponse.data);

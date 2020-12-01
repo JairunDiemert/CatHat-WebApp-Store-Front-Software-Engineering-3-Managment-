@@ -24,7 +24,7 @@ app.use(bodyParser.json());
 mongoose.Promise = Promise;
 
 app.post("/api/addschedule", async (req, res) => {
-  const { token, scheduleDate, userEmail, shippingCart } = req.body;
+  const { token, scheduleDate, userEmail, shippingCart, reqID } = req.body;
 
   const schedule = new Schedule({
     token,
@@ -34,7 +34,7 @@ app.post("/api/addschedule", async (req, res) => {
   });
 
   const result = await schedule.save();
-  console.log("New schedule successfully saved: ", result);
+  // console.log("New schedule successfully saved: ", result);
 
   res.json({
     success: true,
@@ -43,8 +43,9 @@ app.post("/api/addschedule", async (req, res) => {
   });
 });
 
-app.get("/api/getschedule/:token", async (req, res) => {
+app.get("/api/getschedule/:token/:reqID", async (req, res) => {
   const token = req.params.token;
+  const reqID = req.params.reqID;
 
   let schedule;
 
