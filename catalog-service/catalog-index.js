@@ -39,7 +39,7 @@ app.get("/api/catalog/:reqID", async (req, res) => {
     res.json({
       success: false,
       message: "Catalog is empty.",
-      responseID: resID,
+      resID: resID,
     });
     return;
   }
@@ -47,7 +47,7 @@ app.get("/api/catalog/:reqID", async (req, res) => {
   res.json({
     success: true,
     data: catalog,
-    responseID: resID,
+    resID: resID,
   });
 });
 
@@ -70,7 +70,7 @@ app.get("/api/item/:item/:reqID", async (req, res) => {
     res.json({
       status: false,
       message: "Item does not exist",
-      responseID: resID,
+      resID: resID,
     });
     return;
   }
@@ -78,7 +78,7 @@ app.get("/api/item/:item/:reqID", async (req, res) => {
   res.json({
     success: true,
     data: item,
-    responseID: resID,
+    resID: resID,
   });
 });
 
@@ -106,7 +106,7 @@ app.get("/api/search/:itemSearch/:reqID", async (req, res) => {
     res.json({
       status: false,
       message: "Item does not exist",
-      responseID: resID,
+      resID: resID,
     });
     return;
   }
@@ -114,7 +114,7 @@ app.get("/api/search/:itemSearch/:reqID", async (req, res) => {
   res.json({
     success: true,
     data: items,
-    responseID: resID,
+    resID: resID,
   });
 });
 
@@ -132,7 +132,7 @@ app.post("/api/updateQuantity", async (req, res) => {
     res.json({
       success: false,
       message: "item not found",
-      responseID: resID,
+      resID: resID,
     });
     return;
   }
@@ -159,7 +159,7 @@ app.post("/api/updateQuantity", async (req, res) => {
 
   res.json({
     success: true,
-    responseID: resID,
+    resID: resID,
   });
 });
 

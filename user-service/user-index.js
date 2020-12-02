@@ -56,7 +56,7 @@ app.get("/api/cart/:email/:token/:reqID", async (req, res) => {
     res.json({
       success: false,
       message: "Cart not retrieved. User not found.",
-      responseID: resID,
+      resID: resID,
     });
     return;
   }
@@ -65,7 +65,7 @@ app.get("/api/cart/:email/:token/:reqID", async (req, res) => {
     success: true,
     cart: user.cart,
     apiToken: user._id,
-    responseID: resID,
+    resID: resID,
   });
 });
 
@@ -89,7 +89,7 @@ app.post("/api/cart/deleteAll", async (req, res) => {
     res.json({
       success: false,
       message: "Invalid user!",
-      responseID: resID,
+      resID: resID,
     });
     return;
   }
@@ -106,7 +106,7 @@ app.post("/api/cart/deleteAll", async (req, res) => {
   res.json({
     success: true,
     apiToken,
-    responseID: resID,
+    resID: resID,
   });
 });
 
@@ -138,7 +138,7 @@ app.post("/api/cart/delete/:email/:token/:reqID", async (req, res) => {
     res.json({
       success: false,
       message: "Invalid user!",
-      responseID: resID,
+      resID: resID,
     });
     return;
   }
@@ -160,7 +160,7 @@ app.post("/api/cart/delete/:email/:token/:reqID", async (req, res) => {
   res.json({
     success: true,
     apiToken,
-    responseID: resID,
+    resID: resID,
   });
 });
 
@@ -195,7 +195,7 @@ app.post("/api/cart/:email/:token", async (req, res) => {
     res.json({
       success: false,
       message: "Invalid user!",
-      responseID: resID,
+      resID: resID,
     });
     return;
   }
@@ -213,7 +213,7 @@ app.post("/api/cart/:email/:token", async (req, res) => {
   res.json({
     success: true,
     apiToken,
-    responseID: resID,
+    resID: resID,
   });
 });
 
@@ -238,7 +238,7 @@ app.get("/api/user/:email/:reqID", async (req, res) => {
     res.json({
       status: false,
       message: "User was deleted.",
-      responseID: resID,
+      resID: resID,
     });
     return;
   }
@@ -252,7 +252,7 @@ app.get("/api/user/:email/:reqID", async (req, res) => {
     name: user.name,
     address: user.address,
     apiToken: user._id,
-    responseID: resID,
+    resID: resID,
   });
 });
 
@@ -281,7 +281,7 @@ app.post("/api/user/:email", async (req, res) => {
     res.json({
       success: false,
       message: "Invalid user!",
-      responseID: resID,
+      resID: resID,
     });
     return;
   }
@@ -302,7 +302,7 @@ app.post("/api/user/:email", async (req, res) => {
   res.json({
     success: true,
     apiToken,
-    responseID: resID,
+    resID: resID,
   });
 });
 
@@ -333,14 +333,14 @@ app.post("/api/login", async (req, res) => {
     res.json({
       success: false,
       message: "Incorrect credentials.",
-      responseID: resID,
+      resID: resID,
     });
   } else {
     //json object created with success value
     res.json({
       success: true,
       apiToken: user._id,
-      responseID: resID,
+      resID: resID,
     });
   }
 });
@@ -358,7 +358,7 @@ app.post("/api/register", async (req, res) => {
     res.json({
       success: false,
       message: "Email already in use.",
-      responseID: resID,
+      resID: resID,
     });
     return;
   }
@@ -381,7 +381,7 @@ app.post("/api/register", async (req, res) => {
     success: true,
     message: "Welcome!",
     apiToken,
-    responseID: resID,
+    resID: resID,
   });
 });
 
@@ -396,7 +396,7 @@ app.get("/api/data", async (req, res) => {
     res.json({
       status: false,
       message: "User was deleted.",
-      responseID: resID,
+      resID: resID,
     });
     return;
   }
@@ -409,7 +409,7 @@ app.get("/api/data", async (req, res) => {
     password: user.password,
     name: user.name,
     address: user.address,
-    responseID: resID,
+    resID: resID,
   });
 });
 
@@ -424,7 +424,7 @@ app.post("/api/total", async (req, res) => {
     res.json({
       success: false,
       message: "Invalid user!",
-      responseID: resID,
+      resID: resID,
     });
     return;
   }
@@ -435,7 +435,7 @@ app.post("/api/total", async (req, res) => {
   );
   res.json({
     success: true,
-    responseID: resID,
+    resID: resID,
   });
 });
 

@@ -44,7 +44,7 @@ app.post("/api/addschedule", async (req, res) => {
     success: true,
     message: "Schedule added!",
     token,
-    responseID: resID,
+    resID: resID,
   });
 });
 
@@ -66,7 +66,7 @@ app.get("/api/getschedule/:token/:reqID", async (req, res) => {
     res.json({
       success: false,
       message: `No schedule found.`,
-      responseID: resID,
+      resID: resID,
     });
     return;
   }
@@ -75,7 +75,7 @@ app.get("/api/getschedule/:token/:reqID", async (req, res) => {
     success: true,
     message: "Schedule found.",
     schedule: schedule,
-    responseID: resID,
+    resID: resID,
   });
 });
 
