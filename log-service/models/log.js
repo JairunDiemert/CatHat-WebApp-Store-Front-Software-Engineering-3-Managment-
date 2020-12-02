@@ -6,6 +6,7 @@ const LogSchema = new mongoose.Schema({
   routeName: { type: String, required: true },
   reqID: { type: String },
   resID: { type: String },
+  outcome: { type: String },
 });
 
 const Log = mongoose.model("Log", LogSchema);

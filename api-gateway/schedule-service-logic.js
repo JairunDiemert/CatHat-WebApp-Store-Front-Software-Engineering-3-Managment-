@@ -2,28 +2,29 @@ const axios = require("axios");
 const app = require("express")();
 const bodyParser = require("body-parser");
 let userService = require("./user-service-logic");
+let logService = require("./log-service-logic");
 
 app.use(bodyParser.json());
 
 exports.addSchedule = async (req, res) => {
-  let jsonPayload;
-  let userEmail = req.body.userEmail;
-  let token = req.body.token;
-  let scheduleDate = req.body.scheduleDate;
-  let reqID = req.body.reqID;
+  const { scheduleDate, userEmail, token } = req.body;
 
   let cartFromUser = await userService.getCartByReq(userEmail, token);
 
-  jsonPayload = {
-    token: token,
+  let jsonPayload = {
     scheduleDate: scheduleDate,
     userEmail: userEmail,
+    token: token,
     shippingCart: cartFromUser.cart,
-    reqID: reqID,
   };
+
+  req.body.time = Date();
+  req.body.outcome = req.body.sendingService + "success";
+  req.body.sendingService = "api-gateway";
 
   axios
     .post("http://localhost:34567/api/addschedule", jsonPayload)
+    .then(logService.addLog(req, res))
     .then((axiosResponse) => {
       // console.log("Return to api from schedule service.");
       res.json(axiosResponse.data);

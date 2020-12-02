@@ -6,6 +6,7 @@ const cookieParser = require("cookie-parser");
 let userService = require("./user-service-logic");
 let catalogService = require("./catalog-service-logic");
 let scheduleService = require("./schedule-service-logic");
+let logService = require("./log-service-logic");
 
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -81,7 +82,11 @@ app.post("/api/register", async (req, res) => {
 });
 
 app.post("/api/addschedule", async (req, res) => {
-  scheduleService.addSchedule(req, res).then(userService.deleteCart(req, res));
+  logService
+    .addLog(req, res)
+    .then(scheduleService.addSchedule(req, res))
+    .then(userService.deleteCart(req, res))
+    .then(logService.addLog(req, res));
 });
 
 app.get("/api/getschedule/:token/:reqID", async (req, res) => {

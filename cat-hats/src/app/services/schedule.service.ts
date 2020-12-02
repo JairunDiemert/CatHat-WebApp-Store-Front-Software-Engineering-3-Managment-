@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { send } from "process";
 import { AuthService } from "./auth.service";
 import { RequestService } from "./request.service";
 
@@ -16,7 +17,13 @@ export class ScheduleService {
   addSchedule(scheduleDate, userEmail) {
     let cookieName = "authToken";
     let token = this.auth.getCookie(cookieName).toString();
+    //log data below
+    let time = Date();
+    let sendingService = "schedule.service";
+    let routeName = "/api/addschedule";
+    let resID = "not yet assigned";
     let reqID = this.reqService.createRequestID();
+    let outcome = "not yet assigned";
 
     console.log("Token found in browser for shipment schedule: ", token);
 
@@ -25,7 +32,13 @@ export class ScheduleService {
         scheduleDate,
         userEmail,
         token,
+        //log data below
+        time,
+        sendingService,
+        routeName,
+        resID,
         reqID,
+        outcome,
       });
     } else {
       console.log("User token not authenticated in schedule.service.ts");
