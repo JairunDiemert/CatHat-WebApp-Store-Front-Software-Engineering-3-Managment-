@@ -6,34 +6,39 @@ services:
     network_mode: "host"
     volumes:
       - ./cat-hats:/cat-hats
+      - ./log-library:/cat-hats/log-library
 
   api-gateway:
     build: ./api-gateway
     network_mode: "host"
     volumes:
       - ./api-gateway:/api-gateway
-      - ./log-library:/cat-hats
+      - ./log-library:/api-gateway/log-library
 
   user-service:
     build: ./user-service
     network_mode: "host"
     volumes:
       - ./user-service:/user-service
+      - ./log-library:/user-service/log-library
 
   catalog-service:
     build: ./catalog-service
     network_mode: "host"
     volumes:
       - ./catalog-service:/catalog-service
+      - ./log-library:/catalog-service/log-library
 
   scheduling-service:
     build: ./scheduling-service
     network_mode: "host"
     volumes:
       - ./scheduling-service:/scheduling-service
+      - ./log-library:/scheduling-service/log-library
 
   log-service:
     build: ./log-service
     network_mode: "host"
     volumes:
       - ./log-service:/log-service
+      - ./log-library:/log-service/log-library

@@ -2,7 +2,6 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const Schedule = require("./models/schedule");
-let logService = require("./log-service-logic");
 
 const { Mongoose } = require("mongoose");
 const mongoose = require("mongoose");
@@ -35,7 +34,7 @@ app.post("/api/addschedule", async (req, res) => {
   });
 
   const result = await schedule.save();
-  // console.log("New schedule successfully saved: ", result);
+
   if (result) {
     let date = new Date();
     let num = Math.floor(Math.random() * 100 + 1);
@@ -45,11 +44,6 @@ app.post("/api/addschedule", async (req, res) => {
       success: true,
       message: "Schedule added!",
       token: token,
-      time: Date(),
-      outcome: req.body.sendingService + "success",
-      sendingService: "scheduling-index",
-      routeName: req.body.routeName,
-      reqID: req.body.reqID,
       resID: resID,
     });
   } else {
@@ -57,11 +51,6 @@ app.post("/api/addschedule", async (req, res) => {
       success: false,
       message: "Schedule not added!",
       token: token,
-      time: Date(),
-      outcome: req.body.sendingService + "fail",
-      sendingService: "scheduling-index",
-      routeName: req.body.routeName,
-      reqID: req.body.reqID,
       resID: resID,
     });
   }

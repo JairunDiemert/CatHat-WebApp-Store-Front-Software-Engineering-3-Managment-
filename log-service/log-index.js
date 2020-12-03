@@ -57,4 +57,4 @@ app.get("/", async (req, res) => {
 app.listen(65535, () => console.log("Server listening at 65535."));
 
 //this command in terminal will post a log to te database
-//curl -d '{"time":"12/02/2020:09:08AM", "sendingService":"user-service", "routeName":"addlog", "reqID":"time+ID"}' -H "Content-Type: application/json" -X POST http://localhost:65535/addlog
+//curl -d '{"scheduleDate":"12/02/2020:09:08AM", "userEmail":"email@email.com", "token":"5f83be08846d0d305dee174d", "reqID":"time+ID", "time":"TODAY"}' -H "Content-Type: application/json" -X POST http://localhost:54321/api/addschedule
