@@ -2,7 +2,7 @@ FROM node:latest
 
 WORKDIR /api-gateway
 
-COPY . .
+COPY . . 
 
 RUN npm install
 

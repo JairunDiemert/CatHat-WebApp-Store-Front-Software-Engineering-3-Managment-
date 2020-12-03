@@ -12,6 +12,7 @@ services:
     network_mode: "host"
     volumes:
       - ./api-gateway:/api-gateway
+      - ./log-library:/cat-hats
 
   user-service:
     build: ./user-service

@@ -7,6 +7,7 @@ let userService = require("./user-service-logic");
 let catalogService = require("./catalog-service-logic");
 let scheduleService = require("./schedule-service-logic");
 let logService = require("./log-service-logic");
+let logging = require("./log-library/logging-library");
 
 app.use(bodyParser.json());
 app.use(cookieParser());
