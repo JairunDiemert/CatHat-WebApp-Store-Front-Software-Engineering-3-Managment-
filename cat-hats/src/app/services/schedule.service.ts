@@ -3,6 +3,8 @@ import { Injectable } from "@angular/core";
 import { send } from "process";
 import { AuthService } from "./auth.service";
 import { RequestService } from "./request.service";
+//this looks broken but the dockerfile can access the library through this routing
+import { logging } from "../../../log-library/logging-library";
 
 @Injectable({
   providedIn: "root",
