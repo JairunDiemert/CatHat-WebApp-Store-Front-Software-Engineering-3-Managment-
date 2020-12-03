@@ -4,6 +4,9 @@ import { Observable } from "rxjs";
 import { AuthService } from "src/app/services/auth.service";
 import { RequestService } from "./request.service";
 
+//this looks broken but the dockerfile can access the library through this routing
+import { logging } from "../../../log-library/logging-library";
+
 interface myData {
   email: string;
   total: string;
