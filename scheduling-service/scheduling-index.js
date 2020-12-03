@@ -19,6 +19,8 @@ const connector = mongoose
     )
   );
 
+let logging = require("./log-library/logging-library");
+
 app.use(bodyParser.json());
 
 mongoose.Promise = Promise;

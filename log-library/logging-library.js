@@ -1,4 +1,3 @@
-const http = require("http");
 const axios = require("axios");
 
 exports.createLog = async (

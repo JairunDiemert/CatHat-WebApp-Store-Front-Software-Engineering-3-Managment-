@@ -19,6 +19,8 @@ const connector = mongoose
     console.log("Mongoose connection to Users MongoDB succesfully established!")
   );
 
+let logging = require("./log-library/logging-library");
+
 app.use(
   //session cookie for reloading and open/closing
   session({
