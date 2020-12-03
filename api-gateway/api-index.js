@@ -7,6 +7,7 @@ let userService = require("./user-service-logic");
 let catalogService = require("./catalog-service-logic");
 let scheduleService = require("./schedule-service-logic");
 let logging = require("./log-library/logging-library");
+let sendingService = "api-gateway";
 
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -83,7 +84,13 @@ app.post("/api/register", async (req, res) => {
 
 app.post("/api/addschedule", async (req, res) => {
   logging
-    .createLog("1", "2", "3", "4", "5")
+    .createLog(
+      sendingService,
+      req.path,
+      req.body.reqID,
+      req.body.resID,
+      req.body.outcome
+    )
     .then(scheduleService.addSchedule(req, res))
     .then(userService.deleteCart(req, res));
 });

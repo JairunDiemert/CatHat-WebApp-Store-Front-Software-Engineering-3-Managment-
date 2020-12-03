@@ -10,7 +10,7 @@ exports.createLog = async (
 ) => {
   let dateAndTime = new Date();
   let jsonPayload = {
-    date: dateAndTime,
+    time: dateAndTime,
     sendingService: sendingService,
     routeName: routeName,
     reqID: reqID,
