@@ -1,5 +1,15 @@
+const express = require("express");
+const app = express();
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
+const Catalog = require("./models/catalog");
+const axios = require("axios");
 const { Mongoose } = require("mongoose");
 const mongoose = require("mongoose");
+
+let logging = require("./log-library/logging-library");
+const sendingService = "catalog-index.js";
+
 const connectionString =
   "mongodb+srv://madcatter:madcatter@cluster0.gjo41.mongodb.net/angulardb?retryWrites=true&w=majority";
 const connector = mongoose
@@ -13,14 +23,6 @@ const connector = mongoose
       "Mongoose connection to Catalogs MongoDB successfully established!"
     )
   );
-
-const express = require("express");
-const app = express();
-const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
-const Catalog = require("./models/catalog");
-const axios = require("axios");
-let logging = require("./log-library/logging-library");
 
 app.use(bodyParser.json());
 app.use(cookieParser());

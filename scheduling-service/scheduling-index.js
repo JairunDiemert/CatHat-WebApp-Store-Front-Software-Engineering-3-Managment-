@@ -2,9 +2,12 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const Schedule = require("./models/schedule");
-
 const { Mongoose } = require("mongoose");
 const mongoose = require("mongoose");
+
+let logging = require("./log-library/logging-library");
+const sendingService = "scheduling-index.js";
+
 const connectionString =
   "mongodb+srv://madcatter:madcatter@cluster0.gjo41.mongodb.net/angulardb?retryWrites=true&w=majority";
 const connector = mongoose
@@ -18,8 +21,6 @@ const connector = mongoose
       "Mongoose connection to Scheduling MongoDB succesfully established!"
     )
   );
-
-let logging = require("./log-library/logging-library");
 
 app.use(bodyParser.json());
 
@@ -35,6 +36,14 @@ app.use(function (req, res, next) {
 });
 
 app.post("/api/addschedule", async (req, res) => {
+  logging.createLog(
+    sendingService,
+    "/api/addschedule",
+    reqID,
+    "N/A",
+    sendingService + " addSchedule()" + " Called"
+  );
+
   const { token, scheduleDate, userEmail, shippingCart } = req.body;
 
   const schedule = new Schedule({

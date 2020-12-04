@@ -6,7 +6,6 @@ const cookieParser = require("cookie-parser");
 let userService = require("./user-service-logic");
 let catalogService = require("./catalog-service-logic");
 let scheduleService = require("./schedule-service-logic");
-let sendingService = "api-gateway";
 
 app.use(bodyParser.json());
 app.use(cookieParser());

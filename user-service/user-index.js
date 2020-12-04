@@ -4,9 +4,12 @@ const session = require("express-session");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const User = require("./models/users");
-
 const { Mongoose } = require("mongoose");
 const mongoose = require("mongoose");
+
+let logging = require("./log-library/logging-library");
+const sendingService = "user-index.js";
+
 const connectionString =
   "mongodb+srv://madcatter:madcatter@cluster0.gjo41.mongodb.net/angulardb?retryWrites=true&w=majority";
 const connector = mongoose
@@ -18,8 +21,6 @@ const connector = mongoose
   .then(() =>
     console.log("Mongoose connection to Users MongoDB succesfully established!")
   );
-
-let logging = require("./log-library/logging-library");
 
 app.use(
   //session cookie for reloading and open/closing

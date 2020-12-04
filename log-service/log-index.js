@@ -2,9 +2,9 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const Log = require("./models/log");
-
 const { Mongoose } = require("mongoose");
 const mongoose = require("mongoose");
+
 const connectionString =
   "mongodb+srv://madcatter:madcatter@cluster0.gjo41.mongodb.net/angulardb?retryWrites=true&w=majority";
 const connector = mongoose
