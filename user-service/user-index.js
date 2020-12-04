@@ -257,7 +257,6 @@ app.get("/api/user/:email/:reqID", async (req, res) => {
   res.json({
     status: true,
     email: user.email,
-    total: user.total,
     username: user.username,
     password: user.password,
     name: user.name,
@@ -392,60 +391,6 @@ app.post("/api/register", async (req, res) => {
     success: true,
     message: "Welcome!",
     apiToken,
-    resID: resID,
-  });
-});
-
-app.get("/api/data", async (req, res) => {
-  const user = await User.findOne({ email: req.session.user });
-
-  let date = new Date();
-  let num = Math.floor(Math.random() * 100 + 1);
-  let resID = date + num;
-
-  if (!user) {
-    res.json({
-      status: false,
-      message: "User was deleted.",
-      resID: resID,
-    });
-    return;
-  }
-
-  res.json({
-    status: true,
-    email: req.session.user,
-    total: user.total,
-    username: user.username,
-    password: user.password,
-    name: user.name,
-    address: user.address,
-    resID: resID,
-  });
-});
-
-app.post("/api/total", async (req, res) => {
-  let date = new Date();
-  let num = Math.floor(Math.random() * 100 + 1);
-  let resID = date + num;
-
-  //console.log(req.body.value);
-  const user = await User.findOne({ email: req.session.user });
-  if (!user) {
-    res.json({
-      success: false,
-      message: "Invalid user!",
-      resID: resID,
-    });
-    return;
-  }
-
-  await User.update(
-    { email: req.session.user },
-    { $set: { total: req.body.value } }
-  );
-  res.json({
-    success: true,
     resID: resID,
   });
 });

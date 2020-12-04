@@ -7,12 +7,6 @@ import { RequestService } from "./request.service";
 let logging = require("../../../log-library/logging-library");
 const sendingService = "user.service.ts";
 
-interface myData {
-  email: string;
-  total: string;
-  status: boolean;
-}
-
 interface userCart {
   cart: [];
   total: number;
@@ -27,10 +21,6 @@ interface logoutStatus {
   success: boolean;
 }
 
-interface totalStatus {
-  success: boolean;
-}
-
 @Injectable({
   providedIn: "root",
 })
@@ -40,10 +30,6 @@ export class UserService {
     private http: HttpClient,
     private reqService: RequestService
   ) {}
-
-  getData() {
-    return this.http.get<myData>("/api/data");
-  }
 
   getCart(email) {
     let cookieName = "authToken";
@@ -82,7 +68,7 @@ export class UserService {
     let token = this.auth.getCookie(cookieName);
     let reqID = this.reqService.createRequestID();
 
-    return this.http.post<totalStatus>("/api/user/:email", {
+    return this.http.post<any>("/api/user/:email", {
       oldEmail,
       username,
       name,
@@ -93,12 +79,6 @@ export class UserService {
       reqID,
     });
   };
-
-  updateTotal(value) {
-    return this.http.post<totalStatus>("/api/total", {
-      value,
-    });
-  }
 
   isLoggedIn(): Observable<isLoggedIn> {
     let reqID = this.reqService.createRequestID();

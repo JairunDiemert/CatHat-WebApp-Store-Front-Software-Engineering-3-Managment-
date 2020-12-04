@@ -6,7 +6,6 @@ const UserSchema = new mongoose.Schema({
   name: { type: String, default: "Jane Doe" },
   address: { type: String, default: "1234 Lane" },
   username: { type: String, default: "janedoe" },
-  total: { type: String, default: "You have no total" },
   cart: [mongoose.Schema.Types.Mixed],
 });
 
