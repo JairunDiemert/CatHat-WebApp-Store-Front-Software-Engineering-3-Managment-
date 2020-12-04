@@ -26,7 +26,7 @@ exports.logout = (req, res) => {
 
 exports.userByEmail = async (req, res) => {
   const userEmail = req.params.email;
-  let reqID = req.params.reqID;
+  const reqID = req.params.reqID;
 
   //axios to make http request to user service
   axios
@@ -47,7 +47,7 @@ exports.userByEmail = async (req, res) => {
 exports.getCart = async (req, res) => {
   const userEmail = req.params.email;
   const token = req.params.token;
-  let reqID = req.params.reqID;
+  const reqID = req.params.reqID;
 
   const data = await getCartByReq(userEmail, token, reqID);
   res.cookie("authToken", data.apiToken);

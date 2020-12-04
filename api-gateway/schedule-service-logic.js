@@ -15,6 +15,7 @@ exports.addSchedule = async (req, res) => {
     userEmail: userEmail,
     token: token,
     shippingCart: cartFromUser.cart,
+    reqID: reqID,
   };
 
   axios

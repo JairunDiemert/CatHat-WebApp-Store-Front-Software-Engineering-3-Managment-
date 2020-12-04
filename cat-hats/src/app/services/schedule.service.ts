@@ -19,7 +19,7 @@ export class ScheduleService {
   addSchedule(scheduleDate, userEmail) {
     let cookieName = "authToken";
     let token = this.auth.getCookie(cookieName).toString();
-    let reqID = this.reqService.createRequestID();
+    const reqID = this.reqService.createRequestID();
 
     console.log("Token found in browser for shipment schedule: ", token);
     logging.createLog(
@@ -45,7 +45,7 @@ export class ScheduleService {
   getSchedule() {
     let cookieName = "authToken";
     let token: String = this.auth.getCookie(cookieName);
-    let reqID = this.reqService.createRequestID();
+    const reqID = this.reqService.createRequestID();
 
     logging.createLog(
       sendingService,

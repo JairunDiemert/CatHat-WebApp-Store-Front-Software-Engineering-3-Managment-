@@ -96,7 +96,7 @@ app.get("/api/getschedule/:token/:reqID", async (req, res) => {
 
   let date = new Date();
   let num = Math.floor(Math.random() * 100 + 1);
-  let resID = date + num;
+  const resID = date + num;
 
   let schedule;
 

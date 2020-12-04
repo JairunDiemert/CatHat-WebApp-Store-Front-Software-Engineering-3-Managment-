@@ -60,7 +60,7 @@ exports.updateQuantityUp = async (req, res) => {
 };
 
 exports.getCatalog = async (req, res) => {
-  let reqID = req.params.reqID;
+  const reqID = req.params.reqID;
   axios
     .get("http://localhost:2468/api/catalog/" + reqID, {})
     .then((axiosResponse) => {
@@ -73,7 +73,7 @@ exports.getCatalog = async (req, res) => {
 
 exports.getCatalogItem = async (req, res) => {
   const item = req.params.item;
-  let reqID = req.params.reqID;
+  const reqID = req.params.reqID;
   const data = await getCatalogItemByID(item, reqID);
   res.json(data);
 };
@@ -90,7 +90,7 @@ exports.getCatalogItemByID = getCatalogItemByID;
 
 exports.getSearch = async (req, res) => {
   const itemSearch = req.params.item;
-  let reqID = req.params.reqID;
+  const reqID = req.params.reqID;
   axios
     .get("http://localhost:2468/api/search/" + itemSearch + "/" + reqID, {})
     .then((axiosResponse) => {

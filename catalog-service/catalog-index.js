@@ -40,11 +40,11 @@ app.use(function (req, res, next) {
 
 app.get("/api/catalog/:reqID", async (req, res) => {
   let catalog;
-  let reqID = req.params.reqID;
+  const reqID = req.params.reqID;
 
   let date = new Date();
   let num = Math.floor(Math.random() * 100 + 1);
-  let resID = date + num;
+  const resID = date + num;
 
   catalog = await Catalog.find({});
 
@@ -66,12 +66,12 @@ app.get("/api/catalog/:reqID", async (req, res) => {
 
 app.get("/api/item/:item/:reqID", async (req, res) => {
   const itemID = req.params.item;
-  let reqID = req.params.reqID;
+  const reqID = req.params.reqID;
   let item;
 
   let date = new Date();
   let num = Math.floor(Math.random() * 100 + 1);
-  let resID = date + num;
+  const resID = date + num;
 
   if (req.params != undefined) {
     item = await Catalog.findOne({ _id: itemID });
@@ -97,12 +97,12 @@ app.get("/api/item/:item/:reqID", async (req, res) => {
 
 app.get("/api/search/:itemSearch/:reqID", async (req, res) => {
   const itemSearch = req.params.itemSearch;
-  let reqID = req.params.reqID;
+  const reqID = req.params.reqID;
   let items;
 
   let date = new Date();
   let num = Math.floor(Math.random() * 100 + 1);
-  let resID = date + num;
+  const resID = date + num;
 
   if (req.params != undefined) {
     items = await Catalog.find({
@@ -133,13 +133,13 @@ app.get("/api/search/:itemSearch/:reqID", async (req, res) => {
 
 app.post("/api/updateQuantity", async (req, res) => {
   let item;
-  let reqID = req.body.reqID;
+  const reqID = req.body.reqID;
   item = await Catalog.findById(req.body.itemID);
   //console.log(req.body.id);
 
   let date = new Date();
   let num = Math.floor(Math.random() * 100 + 1);
-  let resID = date + num;
+  const resID = date + num;
 
   if (!item) {
     res.json({

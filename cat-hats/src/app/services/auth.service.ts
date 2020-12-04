@@ -57,7 +57,7 @@ export class AuthService {
   getUserDetails = (email, password) => {
     //forced binding
     localStorage.setItem("email", email);
-    let reqID = this.reqService.createRequestID();
+    const reqID = this.reqService.createRequestID();
 
     //declare string containing cookie name
     let cookieName = "authToken";
@@ -100,7 +100,7 @@ export class AuthService {
   };
 
   registerUser(username, name, email, address, password) {
-    let reqID = this.reqService.createRequestID();
+    const reqID = this.reqService.createRequestID();
 
     logging.createLog(
       sendingService,
@@ -121,7 +121,7 @@ export class AuthService {
   }
 
   getUser(email) {
-    let reqID = this.reqService.createRequestID();
+    const reqID = this.reqService.createRequestID();
 
     logging.createLog(
       sendingService,

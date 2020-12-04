@@ -34,7 +34,7 @@ export class UserService {
   getCart(email) {
     let cookieName = "authToken";
     let token: String = this.auth.getCookie(cookieName);
-    let reqID = this.reqService.createRequestID();
+    const reqID = this.reqService.createRequestID();
 
     logging.createLog(
       sendingService,
@@ -52,7 +52,7 @@ export class UserService {
   addCartItem = (itemID, email) => {
     let cookieName = "authToken";
     let token = this.auth.getCookie(cookieName);
-    let reqID = this.reqService.createRequestID();
+    const reqID = this.reqService.createRequestID();
 
     logging.createLog(
       sendingService,
@@ -71,7 +71,7 @@ export class UserService {
   deleteCartItem = (itemID, email) => {
     let cookieName = "authToken";
     let token = this.auth.getCookie(cookieName);
-    let reqID = this.reqService.createRequestID();
+    const reqID = this.reqService.createRequestID();
 
     logging.createLog(
       sendingService,
@@ -90,7 +90,7 @@ export class UserService {
   updateUser = (oldEmail, username, name, email, address, password) => {
     let cookieName = "authToken";
     let token = this.auth.getCookie(cookieName);
-    let reqID = this.reqService.createRequestID();
+    const reqID = this.reqService.createRequestID();
 
     logging.createLog(
       sendingService,
@@ -113,7 +113,7 @@ export class UserService {
   };
 
   isLoggedIn(): Observable<isLoggedIn> {
-    let reqID = this.reqService.createRequestID();
+    const reqID = this.reqService.createRequestID();
 
     logging.createLog(
       sendingService,
@@ -128,7 +128,7 @@ export class UserService {
 
   logout() {
     localStorage.setItem("loggedIn", "false");
-    let reqID = this.reqService.createRequestID();
+    const reqID = this.reqService.createRequestID();
 
     logging.createLog(
       sendingService,

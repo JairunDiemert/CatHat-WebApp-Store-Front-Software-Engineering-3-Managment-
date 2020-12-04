@@ -49,11 +49,11 @@ app.use(function (req, res, next) {
 app.get("/api/cart/:email/:token/:reqID", async (req, res) => {
   const userEmail = req.params.email;
   const token = req.params.token;
-  let reqID = req.params.reqID;
+  const reqID = req.params.reqID;
 
   let date = new Date();
   let num = Math.floor(Math.random() * 100 + 1);
-  let resID = date + num;
+  const resID = date + num;
 
   let user;
   let apiToken;
@@ -84,12 +84,12 @@ app.get("/api/cart/:email/:token/:reqID", async (req, res) => {
 app.post("/api/cart/deleteAll", async (req, res) => {
   let userEmail = req.body.userEmail;
   let apiToken = req.body.token;
-  let reqID = req.body.reqID;
+  const reqID = req.body.reqID;
   let user;
 
   let date = new Date();
   let num = Math.floor(Math.random() * 100 + 1);
-  let resID = date + num;
+  const resID = date + num;
 
   if (req.body.token != undefined) {
     user = await User.findById(apiToken);
@@ -123,7 +123,7 @@ app.post("/api/cart/deleteAll", async (req, res) => {
 });
 
 app.post("/api/cart/delete/:email/:token/:reqID", async (req, res) => {
-  let reqID = req.params.reqID;
+  const reqID = req.params.reqID;
   let userEmail = req.params.email;
   let apiToken = req.params.token;
   let cartItem = req.body.cartItem;
@@ -131,7 +131,7 @@ app.post("/api/cart/delete/:email/:token/:reqID", async (req, res) => {
 
   let date = new Date();
   let num = Math.floor(Math.random() * 100 + 1);
-  let resID = date + num;
+  const resID = date + num;
 
   //console.log(cartItem);
 
@@ -182,13 +182,13 @@ app.post("/api/cart/:email/:token", async (req, res) => {
   let userEmail = req.params.email;
   let apiToken = req.params.token;
   let cartItem = req.body.cartItem;
-  let reqID = req.body.reqID;
+  const reqID = req.body.reqID;
 
   let user;
 
   let date = new Date();
   let num = Math.floor(Math.random() * 100 + 1);
-  let resID = date + num;
+  const resID = date + num;
 
   //console.log(cartItem);
 
@@ -231,14 +231,14 @@ app.post("/api/cart/:email/:token", async (req, res) => {
 
 app.get("/api/user/:email/:reqID", async (req, res) => {
   const userEmail = req.params.email;
-  let reqID = req.params.reqID;
+  const reqID = req.params.reqID;
 
   let user;
   let apiToken;
 
   let date = new Date();
   let num = Math.floor(Math.random() * 100 + 1);
-  let resID = date + num;
+  const resID = date + num;
 
   if (req.body.token != undefined) {
     user = await User.findOne({ apiToken: req.body.token });
@@ -270,11 +270,11 @@ app.get("/api/user/:email/:reqID", async (req, res) => {
 app.post("/api/user/:email", async (req, res) => {
   let user;
   let apiToken = req.body.token;
-  let reqID = req.body.reqID;
+  const reqID = req.body.reqID;
 
   let date = new Date();
   let num = Math.floor(Math.random() * 100 + 1);
-  let resID = date + num;
+  const resID = date + num;
 
   //if using token, pass through api token
   if (
@@ -322,11 +322,11 @@ app.post("/api/login", async (req, res) => {
 
   let user;
   let apiToken = req.body.token;
-  let reqID = req.body.reqID;
+  const reqID = req.body.reqID;
 
   let date = new Date();
   let num = Math.floor(Math.random() * 100 + 1);
-  let resID = date + num;
+  const resID = date + num;
 
   console.log("Token sent into login from api: ", req.body.token);
 
@@ -359,7 +359,7 @@ app.post("/api/login", async (req, res) => {
 app.post("/api/register", async (req, res) => {
   let date = new Date();
   let num = Math.floor(Math.random() * 100 + 1);
-  let resID = date + num;
+  const resID = date + num;
 
   const { username, name, email, address, password, reqID } = req.body;
 

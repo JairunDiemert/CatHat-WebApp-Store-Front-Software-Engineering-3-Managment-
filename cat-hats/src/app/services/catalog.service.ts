@@ -24,7 +24,7 @@ export class CatalogService {
   ) {}
 
   getCatalog() {
-    let reqID = this.reqService.createRequestID();
+    const reqID = this.reqService.createRequestID();
 
     logging.createLog(
       sendingService,
@@ -38,7 +38,7 @@ export class CatalogService {
   }
 
   getItem(item) {
-    let reqID = this.reqService.createRequestID();
+    const reqID = this.reqService.createRequestID();
 
     logging.createLog(
       sendingService,
@@ -52,7 +52,7 @@ export class CatalogService {
   }
 
   searchItem(item) {
-    let reqID = this.reqService.createRequestID();
+    const reqID = this.reqService.createRequestID();
 
     logging.createLog(
       sendingService,
@@ -66,7 +66,7 @@ export class CatalogService {
   }
 
   updateItemQuantity(id) {
-    let reqID = this.reqService.createRequestID();
+    const reqID = this.reqService.createRequestID();
 
     logging.createLog(
       sendingService,
