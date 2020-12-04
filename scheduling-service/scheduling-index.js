@@ -36,15 +36,19 @@ app.use(function (req, res, next) {
 });
 
 app.post("/api/addschedule", async (req, res) => {
+  const { token, scheduleDate, userEmail, shippingCart, reqID } = req.body;
+
+  let date = new Date();
+  let num = Math.floor(Math.random() * 100 + 1);
+  const resID = date + num;
+
   logging.createLog(
     sendingService,
     "/api/addschedule",
     reqID,
     "N/A",
-    sendingService + " addSchedule()" + " Called"
+    sendingService + " app.post()" + " Called"
   );
-
-  const { token, scheduleDate, userEmail, shippingCart } = req.body;
 
   const schedule = new Schedule({
     token,
@@ -56,22 +60,32 @@ app.post("/api/addschedule", async (req, res) => {
   const result = await schedule.save();
 
   if (result) {
-    let date = new Date();
-    let num = Math.floor(Math.random() * 100 + 1);
-    let resID = date + num;
+    logging.createLog(
+      sendingService,
+      "/api/addschedule",
+      reqID,
+      resID,
+      sendingService + " app.post()" + " Schedule added"
+    );
 
     res.json({
       success: true,
       message: "Schedule added!",
       token: token,
-      resID: resID,
     });
   } else {
+    logging.createLog(
+      sendingService,
+      "/api/addschedule",
+      reqID,
+      resID,
+      sendingService + " app.post()" + " Schedule not added"
+    );
+
     res.json({
       success: false,
       message: "Schedule not added!",
       token: token,
-      resID: resID,
     });
   }
 });
