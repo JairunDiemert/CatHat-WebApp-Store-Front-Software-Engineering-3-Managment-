@@ -42,25 +42,46 @@ app.get("/api/catalog/:reqID", async (req, res) => {
   let catalog;
   const reqID = req.params.reqID;
 
-  let date = new Date();
   let num = Math.floor(Math.random() * 100 + 1);
-  const resID = date + num;
+  const resID = num + " - " + reqID;
+
+  logging.createLog(
+    sendingService,
+    "/api/catalog/:reqID",
+    reqID,
+    "N/A",
+    sendingService + " app.get()" + " Called"
+  );
 
   catalog = await Catalog.find({});
 
   if (!catalog) {
+    logging.createLog(
+      sendingService,
+      "/api/catalog/:reqID",
+      reqID,
+      resID,
+      sendingService + " app.get()" + " Catalog is empty"
+    );
+
     res.json({
       success: false,
       message: "Catalog is empty.",
-      resID: resID,
     });
     return;
   }
 
+  logging.createLog(
+    sendingService,
+    "/api/catalog/:reqID",
+    reqID,
+    resID,
+    sendingService + " app.get()" + " Catalog retrieved"
+  );
+
   res.json({
     success: true,
     data: catalog,
-    resID: resID,
   });
 });
 
@@ -69,9 +90,16 @@ app.get("/api/item/:item/:reqID", async (req, res) => {
   const reqID = req.params.reqID;
   let item;
 
-  let date = new Date();
   let num = Math.floor(Math.random() * 100 + 1);
-  const resID = date + num;
+  const resID = num + " - " + reqID;
+
+  logging.createLog(
+    sendingService,
+    "/api/item/:item/:reqID",
+    reqID,
+    "N/A",
+    sendingService + " app.get()" + " Called"
+  );
 
   if (req.params != undefined) {
     item = await Catalog.findOne({ _id: itemID });
@@ -80,18 +108,32 @@ app.get("/api/item/:item/:reqID", async (req, res) => {
   }
 
   if (!item) {
+    logging.createLog(
+      sendingService,
+      "/api/item/:item/:reqID",
+      reqID,
+      resID,
+      sendingService + " app.get()" + " Item does not exist"
+    );
+
     res.json({
       status: false,
       message: "Item does not exist",
-      resID: resID,
     });
     return;
   }
 
+  logging.createLog(
+    sendingService,
+    "/api/item/:item/:reqID",
+    reqID,
+    resID,
+    sendingService + " app.get()" + " Item retrieved"
+  );
+
   res.json({
     success: true,
     data: item,
-    resID: resID,
   });
 });
 
@@ -100,9 +142,16 @@ app.get("/api/search/:itemSearch/:reqID", async (req, res) => {
   const reqID = req.params.reqID;
   let items;
 
-  let date = new Date();
   let num = Math.floor(Math.random() * 100 + 1);
-  const resID = date + num;
+  const resID = num + " - " + reqID;
+
+  logging.createLog(
+    sendingService,
+    "/api/search/:itemSearch/:reqID",
+    reqID,
+    "N/A",
+    sendingService + " app.get()" + " Called"
+  );
 
   if (req.params != undefined) {
     items = await Catalog.find({
@@ -116,18 +165,32 @@ app.get("/api/search/:itemSearch/:reqID", async (req, res) => {
   }
 
   if (!items[0]) {
+    logging.createLog(
+      sendingService,
+      "/api/search/:itemSearch/:reqID",
+      reqID,
+      resID,
+      sendingService + " app.get()" + " Item does not exist"
+    );
+
     res.json({
       status: false,
       message: "Item does not exist",
-      resID: resID,
     });
     return;
   }
 
+  logging.createLog(
+    sendingService,
+    "/api/search/:itemSearch/:reqID",
+    reqID,
+    resID,
+    sendingService + " app.get()" + " Item retrieved"
+  );
+
   res.json({
     success: true,
     data: items,
-    resID: resID,
   });
 });
 
@@ -137,15 +200,29 @@ app.post("/api/updateQuantity", async (req, res) => {
   item = await Catalog.findById(req.body.itemID);
   //console.log(req.body.id);
 
-  let date = new Date();
   let num = Math.floor(Math.random() * 100 + 1);
-  const resID = date + num;
+  const resID = num + " - " + reqID;
+
+  logging.createLog(
+    sendingService,
+    "/api/updateQuantity",
+    reqID,
+    "N/A",
+    sendingService + " app.post()" + " Called"
+  );
 
   if (!item) {
+    logging.createLog(
+      sendingService,
+      "/api/updateQuantity",
+      reqID,
+      resID,
+      sendingService + " app.post()" + " item not found"
+    );
+
     res.json({
       success: false,
       message: "item not found",
-      resID: resID,
     });
     return;
   }
@@ -170,9 +247,16 @@ app.post("/api/updateQuantity", async (req, res) => {
     );
   }
 
+  logging.createLog(
+    sendingService,
+    "/api/updateQuantity",
+    reqID,
+    resID,
+    sendingService + " app.post()" + " Item found"
+  );
+
   res.json({
     success: true,
-    resID: resID,
   });
 });
 

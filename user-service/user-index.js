@@ -51,12 +51,19 @@ app.get("/api/cart/:email/:token/:reqID", async (req, res) => {
   const token = req.params.token;
   const reqID = req.params.reqID;
 
-  let date = new Date();
   let num = Math.floor(Math.random() * 100 + 1);
-  const resID = date + num;
+  const resID = num + " - " + reqID;
 
   let user;
   let apiToken;
+
+  logging.createLog(
+    sendingService,
+    "/api/cart/:email/:token/:reqID",
+    reqID,
+    "N/A",
+    sendingService + " app.get()" + " Called"
+  );
 
   if (req.body.token != undefined) {
     user = await User.findOne({ apiToken: token });
@@ -65,19 +72,33 @@ app.get("/api/cart/:email/:token/:reqID", async (req, res) => {
   }
 
   if (!user) {
+    logging.createLog(
+      sendingService,
+      "/api/cart/:email/:token/:reqID",
+      reqID,
+      resID,
+      sendingService + " app.get()" + " Cart not retrieved. User not found"
+    );
+
     res.json({
       success: false,
       message: "Cart not retrieved. User not found.",
-      resID: resID,
     });
     return;
   }
+
+  logging.createLog(
+    sendingService,
+    "/api/cart/:email/:token/:reqID",
+    reqID,
+    resID,
+    sendingService + " app.get()" + " Cart retrieved"
+  );
 
   res.json({
     success: true,
     cart: user.cart,
     apiToken: user._id,
-    resID: resID,
   });
 });
 
@@ -87,9 +108,16 @@ app.post("/api/cart/deleteAll", async (req, res) => {
   const reqID = req.body.reqID;
   let user;
 
-  let date = new Date();
   let num = Math.floor(Math.random() * 100 + 1);
-  const resID = date + num;
+  const resID = num + " - " + reqID;
+
+  logging.createLog(
+    sendingService,
+    "/api/cart/deleteAll",
+    reqID,
+    "N/A",
+    sendingService + " app.post()" + " Called"
+  );
 
   if (req.body.token != undefined) {
     user = await User.findById(apiToken);
@@ -98,10 +126,17 @@ app.post("/api/cart/deleteAll", async (req, res) => {
   }
 
   if (!user) {
+    logging.createLog(
+      sendingService,
+      "/api/cart/deleteAll",
+      reqID,
+      resID,
+      sendingService + " app.post()" + " Invalid user!"
+    );
+
     res.json({
       success: false,
       message: "Invalid user!",
-      resID: resID,
     });
     return;
   }
@@ -115,10 +150,17 @@ app.post("/api/cart/deleteAll", async (req, res) => {
     }
   );
 
+  logging.createLog(
+    sendingService,
+    "/api/cart/deleteAll",
+    reqID,
+    resID,
+    sendingService + " app.post()" + " Deleted Cart"
+  );
+
   res.json({
     success: true,
     apiToken,
-    resID: resID,
   });
 });
 
@@ -129,11 +171,16 @@ app.post("/api/cart/delete/:email/:token/:reqID", async (req, res) => {
   let cartItem = req.body.cartItem;
   let user;
 
-  let date = new Date();
   let num = Math.floor(Math.random() * 100 + 1);
-  const resID = date + num;
+  const resID = num + " - " + reqID;
 
-  //console.log(cartItem);
+  logging.createLog(
+    sendingService,
+    "/api/cart/delete/:email/:token/:reqID",
+    reqID,
+    "N/A",
+    sendingService + " app.post()" + " Called"
+  );
 
   if (
     req.body.token != undefined &&
@@ -144,13 +191,18 @@ app.post("/api/cart/delete/:email/:token/:reqID", async (req, res) => {
     user = await User.findOne({ email: userEmail });
   }
 
-  //console.log("User found to add cart item to: ", user);
-
   if (!user) {
+    logging.createLog(
+      sendingService,
+      "/api/cart/delete/:email/:token/:reqID",
+      reqID,
+      resID,
+      sendingService + " app.post()" + " Invalid user!"
+    );
+
     res.json({
       success: false,
       message: "Invalid user!",
-      resID: resID,
     });
     return;
   }
@@ -169,10 +221,17 @@ app.post("/api/cart/delete/:email/:token/:reqID", async (req, res) => {
     }
   );
 
+  logging.createLog(
+    sendingService,
+    "/api/cart/delete/:email/:token/:reqID",
+    reqID,
+    resID,
+    sendingService + " app.post()" + " Item Deleted"
+  );
+
   res.json({
     success: true,
     apiToken,
-    resID: resID,
   });
 });
 
@@ -186,11 +245,16 @@ app.post("/api/cart/:email/:token", async (req, res) => {
 
   let user;
 
-  let date = new Date();
   let num = Math.floor(Math.random() * 100 + 1);
-  const resID = date + num;
+  const resID = num + " - " + reqID;
 
-  //console.log(cartItem);
+  logging.createLog(
+    sendingService,
+    "/api/cart/:email/:token",
+    reqID,
+    "N/A",
+    sendingService + " app.post()" + " Called"
+  );
 
   if (
     req.body.token != undefined &&
@@ -201,13 +265,18 @@ app.post("/api/cart/:email/:token", async (req, res) => {
     user = await User.findOne({ email: userEmail });
   }
 
-  //console.log("User found to add cart item to: ", user);
-
   if (!user) {
+    logging.createLog(
+      sendingService,
+      "/api/cart/:email/:token",
+      reqID,
+      resID,
+      sendingService + " app.post()" + " Invalid user!"
+    );
+
     res.json({
       success: false,
       message: "Invalid user!",
-      resID: resID,
     });
     return;
   }
@@ -222,10 +291,17 @@ app.post("/api/cart/:email/:token", async (req, res) => {
     }
   );
 
+  logging.createLog(
+    sendingService,
+    "/api/cart/:email/:token",
+    reqID,
+    resID,
+    sendingService + " app.post()" + " Item added"
+  );
+
   res.json({
     success: true,
     apiToken,
-    resID: resID,
   });
 });
 
@@ -236,9 +312,16 @@ app.get("/api/user/:email/:reqID", async (req, res) => {
   let user;
   let apiToken;
 
-  let date = new Date();
   let num = Math.floor(Math.random() * 100 + 1);
-  const resID = date + num;
+  const resID = num + " - " + reqID;
+
+  logging.createLog(
+    sendingService,
+    "/api/user/:email/:reqID",
+    reqID,
+    "N/A",
+    sendingService + " app.get()" + " Called"
+  );
 
   if (req.body.token != undefined) {
     user = await User.findOne({ apiToken: req.body.token });
@@ -247,13 +330,28 @@ app.get("/api/user/:email/:reqID", async (req, res) => {
   }
 
   if (!user) {
+    logging.createLog(
+      sendingService,
+      "/api/user/:email/:reqID",
+      reqID,
+      resID,
+      sendingService + " app.get()" + " User was deleted."
+    );
+
     res.json({
       status: false,
       message: "User was deleted.",
-      resID: resID,
     });
     return;
   }
+
+  logging.createLog(
+    sendingService,
+    "/api/user/:email/:reqID",
+    reqID,
+    resID,
+    sendingService + " app.get()" + " Profile retrieved"
+  );
 
   res.json({
     status: true,
@@ -263,7 +361,6 @@ app.get("/api/user/:email/:reqID", async (req, res) => {
     name: user.name,
     address: user.address,
     apiToken: user._id,
-    resID: resID,
   });
 });
 
@@ -272,9 +369,16 @@ app.post("/api/user/:email", async (req, res) => {
   let apiToken = req.body.token;
   const reqID = req.body.reqID;
 
-  let date = new Date();
   let num = Math.floor(Math.random() * 100 + 1);
-  const resID = date + num;
+  const resID = num + " - " + reqID;
+
+  logging.createLog(
+    sendingService,
+    "/api/user/:email",
+    reqID,
+    "N/A",
+    sendingService + " app.post()" + " Profile called"
+  );
 
   //if using token, pass through api token
   if (
@@ -289,10 +393,17 @@ app.post("/api/user/:email", async (req, res) => {
   // console.log("User found for profile update: ", user);
 
   if (!user) {
+    logging.createLog(
+      sendingService,
+      "/api/user/:email",
+      reqID,
+      resID,
+      sendingService + " app.post()" + " Invalid user!"
+    );
+
     res.json({
       success: false,
       message: "Invalid user!",
-      resID: resID,
     });
     return;
   }
@@ -310,10 +421,17 @@ app.post("/api/user/:email", async (req, res) => {
     }
   );
 
+  logging.createLog(
+    sendingService,
+    "/api/user/:email",
+    reqID,
+    resID,
+    sendingService + " app.post()" + " Profile Updated"
+  );
+
   res.json({
     success: true,
     apiToken,
-    resID: resID,
   });
 });
 
@@ -324,11 +442,18 @@ app.post("/api/login", async (req, res) => {
   let apiToken = req.body.token;
   const reqID = req.body.reqID;
 
-  let date = new Date();
   let num = Math.floor(Math.random() * 100 + 1);
-  const resID = date + num;
+  const resID = num + " - " + reqID;
 
-  console.log("Token sent into login from api: ", req.body.token);
+  logging.createLog(
+    sendingService,
+    "/api/login",
+    reqID,
+    "N/A",
+    sendingService + " app.post()" + " Called"
+  );
+
+  //console.log("Token sent into login from api: ", req.body.token);
 
   //retrieve user by token or regular info
   if (
@@ -341,35 +466,63 @@ app.post("/api/login", async (req, res) => {
   }
 
   if (!user) {
+    logging.createLog(
+      sendingService,
+      "/api/login",
+      reqID,
+      resID,
+      sendingService + " app.post()" + " Incorrect credentials."
+    );
+
     res.json({
       success: false,
       message: "Incorrect credentials.",
-      resID: resID,
     });
   } else {
+    logging.createLog(
+      sendingService,
+      "/api/login",
+      reqID,
+      resID,
+      sendingService + " app.post()" + " Logged in"
+    );
+
     //json object created with success value
     res.json({
       success: true,
       apiToken: user._id,
-      resID: resID,
     });
   }
 });
 
 app.post("/api/register", async (req, res) => {
-  let date = new Date();
-  let num = Math.floor(Math.random() * 100 + 1);
-  const resID = date + num;
-
   const { username, name, email, address, password, reqID } = req.body;
+
+  let num = Math.floor(Math.random() * 100 + 1);
+  const resID = num + " - " + reqID;
+
+  logging.createLog(
+    sendingService,
+    "/api/register",
+    reqID,
+    "N/A",
+    sendingService + " app.post()" + " Called"
+  );
 
   const existingUser = await User.findOne({ email });
 
   if (existingUser) {
+    logging.createLog(
+      sendingService,
+      "/api/register",
+      reqID,
+      resID,
+      sendingService + " app.post()" + " Email already in use."
+    );
+
     res.json({
       success: false,
       message: "Email already in use.",
-      resID: resID,
     });
     return;
   }
@@ -388,11 +541,18 @@ app.post("/api/register", async (req, res) => {
   const result = await user.save();
   console.log("New user successfully saved: ", result);
 
+  logging.createLog(
+    sendingService,
+    "/api/register",
+    reqID,
+    resID,
+    sendingService + " app.post()" + " New user registered."
+  );
+
   res.json({
     success: true,
     message: "Welcome!",
     apiToken,
-    resID: resID,
   });
 });
 

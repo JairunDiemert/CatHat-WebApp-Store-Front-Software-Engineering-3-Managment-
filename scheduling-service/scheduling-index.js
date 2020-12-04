@@ -38,9 +38,8 @@ app.use(function (req, res, next) {
 app.post("/api/addschedule", async (req, res) => {
   const { token, scheduleDate, userEmail, shippingCart, reqID } = req.body;
 
-  let date = new Date();
   let num = Math.floor(Math.random() * 100 + 1);
-  const resID = date + num;
+  const resID = num + " - " + reqID;
 
   logging.createLog(
     sendingService,
@@ -94,9 +93,16 @@ app.get("/api/getschedule/:token/:reqID", async (req, res) => {
   const token = req.params.token;
   const reqID = req.params.reqID;
 
-  let date = new Date();
   let num = Math.floor(Math.random() * 100 + 1);
-  const resID = date + num;
+  const resID = num + " - " + reqID;
+
+  logging.createLog(
+    sendingService,
+    "/api/getschedule/:token/:reqID",
+    reqID,
+    "N/A",
+    sendingService + " app.get()" + " Called"
+  );
 
   let schedule;
 
@@ -105,13 +111,28 @@ app.get("/api/getschedule/:token/:reqID", async (req, res) => {
   }
 
   if (!schedule) {
+    logging.createLog(
+      sendingService,
+      "/api/getschedule/:token/:reqID",
+      reqID,
+      resID,
+      sendingService + " app.get()" + " No schedule found"
+    );
+
     res.json({
       success: false,
       message: `No schedule found.`,
-      resID: resID,
     });
     return;
   }
+
+  logging.createLog(
+    sendingService,
+    "/api/getschedule/:token/:reqID",
+    reqID,
+    resID,
+    sendingService + " app.get()" + " Schedule found"
+  );
 
   res.json({
     success: true,
