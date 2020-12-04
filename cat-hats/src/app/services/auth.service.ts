@@ -4,8 +4,9 @@ import { Observable } from "rxjs";
 import { customerModel } from "../models/customer-model";
 import { catchError, tap } from "rxjs/operators";
 import { RequestService } from "./request.service";
-//this looks broken but the dockerfile can access the library through this routing
-import { logging } from "../../../log-library/logging-library";
+
+let logging = require("../../../log-library/logging-library");
+const sendingService = "auth.service.ts";
 
 interface registerResponse {
   success: boolean;

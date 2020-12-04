@@ -37,7 +37,6 @@ export class CartPageComponent implements OnInit {
       if (data.success) {
         this.router.navigate(["history"]);
       }
-      window.alert(data.message);
     });
   }
 

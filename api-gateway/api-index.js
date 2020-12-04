@@ -6,7 +6,6 @@ const cookieParser = require("cookie-parser");
 let userService = require("./user-service-logic");
 let catalogService = require("./catalog-service-logic");
 let scheduleService = require("./schedule-service-logic");
-let logging = require("./log-library/logging-library");
 let sendingService = "api-gateway";
 
 app.use(bodyParser.json());
@@ -21,6 +20,15 @@ app.use(
     saveUninitialized: true,
   })
 );
+
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
 
 app.get("/api/isloggedin/:reqID", (req, res) => {
   userService.isLoggedIn(req, res);
@@ -83,16 +91,7 @@ app.post("/api/register", async (req, res) => {
 });
 
 app.post("/api/addschedule", async (req, res) => {
-  logging
-    .createLog(
-      sendingService,
-      req.path,
-      req.body.reqID,
-      req.body.resID,
-      req.body.outcome
-    )
-    .then(scheduleService.addSchedule(req, res))
-    .then(userService.deleteCart(req, res));
+  scheduleService.addSchedule(req, res).then(userService.deleteCart(req, res));
 });
 
 app.get("/api/getschedule/:token/:reqID", async (req, res) => {
