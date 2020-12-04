@@ -59,7 +59,7 @@ app.get("/api/search/:item/:reqID", async (req, res) => {
   catalogService.getSearch(req, res);
 });
 
-app.post("/api/itemQuanity/", async (req, res) => {
+app.post("/api/itemQuantity/", async (req, res) => {
   catalogService.updateQuantityDown(req, res);
 });
 

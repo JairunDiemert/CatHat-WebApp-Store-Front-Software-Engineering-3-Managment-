@@ -36,6 +36,14 @@ export class UserService {
     let token: String = this.auth.getCookie(cookieName);
     let reqID = this.reqService.createRequestID();
 
+    logging.createLog(
+      sendingService,
+      "/api/cart/email/token/reqID",
+      reqID,
+      "N/A",
+      sendingService + " getCart()" + " Called"
+    );
+
     return this.http.get<userCart>(
       "/api/cart/" + email + "/" + token + "/" + reqID
     );
@@ -45,6 +53,14 @@ export class UserService {
     let cookieName = "authToken";
     let token = this.auth.getCookie(cookieName);
     let reqID = this.reqService.createRequestID();
+
+    logging.createLog(
+      sendingService,
+      "/api/cart/email/token/[itemID, reqID]",
+      reqID,
+      "N/A",
+      sendingService + " addCartItem()" + " Called"
+    );
 
     return this.http.post<any>("/api/cart/" + email + "/" + token, {
       itemID,
@@ -57,6 +73,14 @@ export class UserService {
     let token = this.auth.getCookie(cookieName);
     let reqID = this.reqService.createRequestID();
 
+    logging.createLog(
+      sendingService,
+      "/api/cart/delete/email/token/[itemID, reqID]",
+      reqID,
+      "N/A",
+      sendingService + " deleteCartItem()" + " Called"
+    );
+
     return this.http.post<any>("/api/cart/delete/" + email + "/" + token, {
       itemID,
       reqID,
@@ -67,6 +91,14 @@ export class UserService {
     let cookieName = "authToken";
     let token = this.auth.getCookie(cookieName);
     let reqID = this.reqService.createRequestID();
+
+    logging.createLog(
+      sendingService,
+      "/api/user/email/[oldEmail, username, name, email, address, password, token, reqID]",
+      reqID,
+      "N/A",
+      sendingService + " updateUser()" + " Called"
+    );
 
     return this.http.post<any>("/api/user/:email", {
       oldEmail,
@@ -82,12 +114,30 @@ export class UserService {
 
   isLoggedIn(): Observable<isLoggedIn> {
     let reqID = this.reqService.createRequestID();
+
+    logging.createLog(
+      sendingService,
+      "/api/isloggedin/reqID",
+      reqID,
+      "N/A",
+      sendingService + " isLoggedIn()" + " Called"
+    );
+
     return this.http.get<isLoggedIn>("/api/isloggedin/" + reqID);
   }
 
   logout() {
     localStorage.setItem("loggedIn", "false");
     let reqID = this.reqService.createRequestID();
+
+    logging.createLog(
+      sendingService,
+      "/api/logout/reqID",
+      reqID,
+      "N/A",
+      sendingService + " logout()" + " Called"
+    );
+
     return this.http.get<logoutStatus>("/api/logout/" + reqID);
   }
 }

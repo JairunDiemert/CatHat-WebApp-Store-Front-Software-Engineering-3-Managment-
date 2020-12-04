@@ -25,22 +25,58 @@ export class CatalogService {
 
   getCatalog() {
     let reqID = this.reqService.createRequestID();
+
+    logging.createLog(
+      sendingService,
+      "/api/catalog/reqID",
+      reqID,
+      "N/A",
+      sendingService + " getCatalog()" + " Called"
+    );
+
     return this.http.get<any>("/api/catalog/" + reqID);
   }
 
   getItem(item) {
     let reqID = this.reqService.createRequestID();
+
+    logging.createLog(
+      sendingService,
+      "/api/item/item/reqID",
+      reqID,
+      "N/A",
+      sendingService + " getItem()" + " Called"
+    );
+
     return this.http.get<any>("/api/item/" + item + "/" + reqID);
   }
 
   searchItem(item) {
     let reqID = this.reqService.createRequestID();
+
+    logging.createLog(
+      sendingService,
+      "/api/search/item/reqID",
+      reqID,
+      "N/A",
+      sendingService + " searchItem()" + " Called"
+    );
+
     return this.http.get<any>("/api/search/" + item + "/" + reqID);
   }
 
   updateItemQuantity(id) {
     let reqID = this.reqService.createRequestID();
-    return this.http.post<any>("/api/itemQuanity/", {
+
+    logging.createLog(
+      sendingService,
+      "/api/itemQuantity/[id, reqID]",
+      reqID,
+      "N/A",
+      sendingService + " updateItemQuantity()" + " Called"
+    );
+
+    return this.http.post<any>("/api/itemQuantity/", {
       id,
       reqID,
     });

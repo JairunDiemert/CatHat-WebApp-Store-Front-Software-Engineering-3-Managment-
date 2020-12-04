@@ -24,7 +24,7 @@ export class ScheduleService {
     console.log("Token found in browser for shipment schedule: ", token);
     logging.createLog(
       sendingService,
-      "/api/addschedule",
+      "/api/addschedule/[scheduleDate, userEmail, token, reqID]",
       reqID,
       "N/A",
       sendingService + " addSchedule()" + " Called"
@@ -46,6 +46,14 @@ export class ScheduleService {
     let cookieName = "authToken";
     let token: String = this.auth.getCookie(cookieName);
     let reqID = this.reqService.createRequestID();
+
+    logging.createLog(
+      sendingService,
+      "/api/getschedule/token/reqID",
+      reqID,
+      "N/A",
+      sendingService + " getSchedule()" + " Called"
+    );
 
     return this.http.get<any>("/api/getschedule/" + token + "/" + reqID);
   }

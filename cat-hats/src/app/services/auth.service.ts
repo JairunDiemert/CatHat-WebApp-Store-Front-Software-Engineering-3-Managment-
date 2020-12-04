@@ -67,6 +67,14 @@ export class AuthService {
 
     //checks if token is set by getting cookie storing the token
     if (token != "") {
+      logging.createLog(
+        sendingService,
+        "/api/login/[token, reqID]",
+        reqID,
+        "N/A",
+        sendingService + " getUserDetails()" + " Called"
+      );
+
       return this.http.post<any>("/api/login", {
         token,
         reqID,
@@ -74,6 +82,15 @@ export class AuthService {
     } else {
       //checks if cookie set in document.cookie
       ///post these details to API server, will return user information if correct
+
+      logging.createLog(
+        sendingService,
+        "/api/login/[email, password, reqID]",
+        reqID,
+        "N/A",
+        sendingService + " getUserDetails()" + " Called"
+      );
+
       return this.http.post<any>("/api/login", {
         email,
         password,
@@ -84,6 +101,15 @@ export class AuthService {
 
   registerUser(username, name, email, address, password) {
     let reqID = this.reqService.createRequestID();
+
+    logging.createLog(
+      sendingService,
+      "/api/register/[username, name, email, address, password, reqID]",
+      reqID,
+      "N/A",
+      sendingService + " registerUser()" + " Called"
+    );
+
     return this.http.post<registerResponse>("/api/register", {
       username,
       name,
@@ -96,6 +122,15 @@ export class AuthService {
 
   getUser(email) {
     let reqID = this.reqService.createRequestID();
+
+    logging.createLog(
+      sendingService,
+      "/api/user/email/reqID",
+      reqID,
+      "N/A",
+      sendingService + " getUser()" + " Called"
+    );
+
     return this.http.get<any>("/api/user/" + email + "/" + reqID);
   }
 }
