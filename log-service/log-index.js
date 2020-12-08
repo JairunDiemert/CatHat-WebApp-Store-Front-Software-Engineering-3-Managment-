@@ -63,6 +63,42 @@ app.get("/", async (req, res) => {
   });
 });
 
+app.get("/serviceLogs/:serviceName", async (req, res) => {
+  const serviceName = req.params.serviceName;
+  const log = await Log.find({ sendingService: serviceName });
+
+  res.json({
+    log
+  });
+});
+
+app.get("/logByDate/:date", async (req, res) => {
+  const date = req.params.date;
+  const log = await Log.find({ time: date });
+
+  res.json({
+    log
+  });
+});
+
+app.get("/logByReq/:reqID", async (req, res) => {
+  const reqID = req.params.reqID;
+  const log = await Log.find({ reqID: reqID });
+
+  res.json({
+    log
+  });
+});
+
+app.get("/logByRes/:resID", async (req, res) => {
+  const responseID = req.params.resID;
+  const log = await Log.find({ resID: responseID });
+
+  res.json({
+    log
+  });
+});
+
 app.listen(65535, () => console.log("Server listening at 65535."));
 
 //this command in terminal will post a log to te database
