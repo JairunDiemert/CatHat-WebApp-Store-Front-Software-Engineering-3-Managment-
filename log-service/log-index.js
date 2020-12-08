@@ -74,7 +74,18 @@ app.get("/serviceLogs/:serviceName", async (req, res) => {
 
 app.get("/logByDate/:date", async (req, res) => {
   const date = req.params.date;
-  const log = await Log.find({ time: date });
+
+  //set search date ISOString with appropriate UTC time stamp to begin at midnight
+  const dateString = date + "T00:00:00.000Z";
+
+  //create date objects for search range
+  const dateToSearch = new Date(dateString);
+  const endDateToSearch= new Date(dateString);
+  endDateToSearch.setDate(endDateToSearch.getDate() + 1);
+
+  //find function retrieves logs with the given search date
+  const log = await Log
+    .find({time: {$gte: dateToSearch.toISOString(), $lt: endDateToSearch.toISOString()}});
 
   res.json({
     log,
