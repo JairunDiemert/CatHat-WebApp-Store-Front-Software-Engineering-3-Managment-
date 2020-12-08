@@ -7,7 +7,7 @@ const User = require("./models/users");
 const { Mongoose } = require("mongoose");
 const mongoose = require("mongoose");
 
-let logging = require("../log-library/logging-library");
+let logging = require("./log-library/logging-library");
 const sendingService = "user-index.js";
 
 const connectionString =

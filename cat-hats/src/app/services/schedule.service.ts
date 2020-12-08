@@ -4,7 +4,7 @@ import { send } from "process";
 import { AuthService } from "./auth.service";
 import { RequestService } from "./request.service";
 
-let logging = require("../../../../log-library/logging-library");
+let logging = require("../../../log-library/logging-library");
 const sendingService = "schedule.service.ts";
 @Injectable({
   providedIn: "root",

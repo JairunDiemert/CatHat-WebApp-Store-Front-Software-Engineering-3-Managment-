@@ -68,7 +68,7 @@ app.get("/serviceLogs/:serviceName", async (req, res) => {
   const log = await Log.find({ sendingService: serviceName });
 
   res.json({
-    log
+    log,
   });
 });
 
@@ -77,7 +77,7 @@ app.get("/logByDate/:date", async (req, res) => {
   const log = await Log.find({ time: date });
 
   res.json({
-    log
+    log,
   });
 });
 
@@ -86,7 +86,7 @@ app.get("/logByReq/:reqID", async (req, res) => {
   const log = await Log.find({ reqID: reqID });
 
   res.json({
-    log
+    log,
   });
 });
 
@@ -95,7 +95,7 @@ app.get("/logByRes/:resID", async (req, res) => {
   const log = await Log.find({ resID: responseID });
 
   res.json({
-    log
+    log,
   });
 });
 

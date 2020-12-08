@@ -18,15 +18,16 @@ exports.createLog = async (
   };
 
   //axios to make http request to user service
-  axios.post("http://localhost:65535/addlog", jsonPayload)
+  axios
+    .post("http://localhost:65535/addlog", jsonPayload)
 
-  //axiosResponse: json payload returned from user service
-  .then((axiosResponse) => {
-  //sends json request back to calling client
-  res.json(axiosResponse.data);
-  })
-  //catch calls errors with sending or receiving request
-  .catch((axiosError) => {
-   console.log(axiosError);
-  });
+    //axiosResponse: json payload returned from user service
+    .then((axiosResponse) => {
+      //sends json request back to calling client
+      res.json(axiosResponse.data);
+    })
+    //catch calls errors with sending or receiving request
+    .catch((axiosError) => {
+      console.log(axiosError);
+    });
 };

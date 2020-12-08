@@ -5,7 +5,7 @@ const Schedule = require("./models/schedule");
 const { Mongoose } = require("mongoose");
 const mongoose = require("mongoose");
 
-let logging = require("../log-library/logging-library");
+let logging = require("./log-library/logging-library");
 const sendingService = "scheduling-index.js";
 
 const connectionString =

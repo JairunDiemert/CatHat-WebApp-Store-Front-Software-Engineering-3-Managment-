@@ -4,7 +4,7 @@ import { Observable } from "rxjs";
 import { AuthService } from "src/app/services/auth.service";
 import { RequestService } from "./request.service";
 
-let logging = require("../../../../log-library/logging-library");
+let logging = require("../../../log-library/logging-library");
 const sendingService = "user.service.ts";
 
 interface userCart {
