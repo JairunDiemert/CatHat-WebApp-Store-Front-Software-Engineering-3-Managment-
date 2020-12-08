@@ -40,20 +40,20 @@ To run our project:
 <b>View a log with a particular Request ID</b>
 
 1. The Request ID format is "userEmail%20-%20date" where %20 replaces spaces
-      Example: "M5 - Tue Dec 08 2020 10:53:07 GMT-0800 (Pacific Standard Time)" 
+2. Example: "M5 - Tue Dec 08 2020 10:53:07 GMT-0800 (Pacific Standard Time)" 
                 will be input as
-               "M5%20-%20Tue%20Dec%2008%202020%2010:53:07%20GMT-0800%20(Pacific%20Standard%20Time)"
-2. The URL is http://localhost:65535/logByReq/:requestID
-3. Replace ":requestID" in the above URL with a properly formatted requestID for which you would like to view a log.
-4. Go to the URL.
+            "M5%20-%20Tue%20Dec%2008%202020%2010:53:07%20GMT-0800%20(Pacific%20Standard%20Time)"
+3. The URL is http://localhost:65535/logByReq/:requestID
+4. Replace ":requestID" in the above URL with a properly formatted requestID for which you would like to view a log.
+5. Go to the URL.
 
 <b>View a log with a particular Response ID</b>
 
 1. The Response ID format is "#%20-%20userEmail%20-%20date" where %20 replaces spaces
-      Example: "22 - M5 - Tue Dec 08 2020 10:53:13 GMT-0800 (Pacific Standard Time)" 
+2. Example: "22 - M5 - Tue Dec 08 2020 10:53:13 GMT-0800 (Pacific Standard Time)" 
                 will be input as
-               "22%20-%20M5%20-%20Tue%20Dec%2008%202020%2010:53:13%20GMT-0800%20(Pacific%20Standard%20Time)"
-2. The URL is http://localhost:65535/logByRes/:responseID
-3. Replace ":responseID" in the above URL with a properly formatted responseID for which you would like to view a log.
-4. Go to the URL.
+            "22%20-%20M5%20-%20Tue%20Dec%2008%202020%2010:53:13%20GMT-0800%20(Pacific%20Standard%20Time)"
+3. The URL is http://localhost:65535/logByRes/:responseID
+4. Replace ":responseID" in the above URL with a properly formatted responseID for which you would like to view a log.
+5. Go to the URL.
 
