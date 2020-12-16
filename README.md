@@ -2,6 +2,11 @@
 
 # Mad Hatters
 
+# This is a storefront Web Application. CLient side is built on the Angulare Framwork atop noje.js.
+# Server side is written with node.js using express comunicateing to multiple services through one API gateway.
+# The database and its collections are stored on AWS cloud using MongoDB and mongoose scheama.
+# The API is bundles of micro services composed using Docker.
+
 To run our project:
 
 <b>Turn on Services</b>
